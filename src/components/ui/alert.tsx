@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import { AlertCircle, AlertTriangle, Info, CheckCircle, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -8,9 +9,19 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
+        default: "bg-background text-foreground border-border",
         destructive:
           "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
+        success: 
+          "bg-green-50 text-green-900 border-green-200 [&>svg]:text-green-600 dark:bg-green-950 dark:text-green-100 dark:border-green-800",
+        warning:
+          "bg-yellow-50 text-yellow-900 border-yellow-200 [&>svg]:text-yellow-600 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-800",
+        info:
+          "bg-blue-50 text-blue-900 border-blue-200 [&>svg]:text-blue-600 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-800",
+        secondary:
+          "bg-secondary text-secondary-foreground border-secondary",
+        outline:
+          "bg-transparent border-input hover:bg-accent hover:text-accent-foreground",
       },
     },
     defaultVariants: {
@@ -19,17 +30,43 @@ const alertVariants = cva(
   }
 )
 
-const Alert = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-  <div
-    ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
-    {...props}
-  />
-))
+type IconType = "info" | "warning" | "error" | "success" | "close" | null;
+
+const iconMap = {
+  info: Info,
+  warning: AlertTriangle,
+  error: AlertCircle,
+  success: CheckCircle,
+  close: X,
+};
+
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {
+  icon?: IconType;
+  iconColor?: string;
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, variant, icon, iconColor, children, ...props }, ref) => {
+    const IconComponent = icon ? iconMap[icon] : null;
+    
+    return (
+      <div
+        ref={ref}
+        role="alert"
+        className={cn(alertVariants({ variant }), className)}
+        {...props}
+      >
+        {IconComponent && (
+          <IconComponent 
+            className="h-4 w-4" 
+            style={iconColor ? { color: iconColor } : undefined}
+          />
+        )}
+        {children}
+      </div>
+    );
+  }
+);
 Alert.displayName = "Alert"
 
 const AlertTitle = React.forwardRef<
