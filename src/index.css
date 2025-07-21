@@ -146,3 +146,55 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+/* Shadcn Pro Blocks - Section Styles */
+@layer components {
+  /* Section padding utilities */
+  .section-padding-y {
+    @apply py-16 lg:py-24;
+  }
+  
+  .section-padding-x {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Container padding utilities */
+  .container-padding-x {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Section title gap utilities */
+  .section-title-gap-xl {
+    @apply gap-6 lg:gap-8;
+  }
+  
+  .section-title-gap-lg {
+    @apply gap-4 lg:gap-6;
+  }
+  
+  .section-title-gap-md {
+    @apply gap-3 lg:gap-4;
+  }
+  
+  /* Heading utilities */
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight;
+  }
+  
+  .heading-sm {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight;
+  }
+  
+  /* Shadow utilities */
+  .shadow-xs {
+    @apply shadow-sm;
+  }
+}
