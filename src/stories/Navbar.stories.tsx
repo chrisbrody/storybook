@@ -38,6 +38,22 @@ const meta: Meta<typeof Navbar> = {
       control: 'boolean',
       description: 'Whether to show logo component or text-based site title',
     },
+    ctaVariant: {
+      control: 'select',
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      description: 'Visual style variant for the CTA button',
+    },
+    ctaSize: {
+      control: 'select',
+      options: ['default', 'sm', 'lg'],
+      description: 'Size variant for the CTA button',
+    },
+    centerMenu: {
+      table: { disable: true }
+    },
+    leftMenu: {
+      table: { disable: true }
+    },
   },
   args: {
     siteTitle: 'Your Site',
@@ -46,6 +62,8 @@ const meta: Meta<typeof Navbar> = {
     className: '',
     showCTA: true,
     showLogo: true,
+    ctaVariant: 'default',
+    ctaSize: 'default',
   },
 };
 
@@ -59,64 +77,31 @@ export const Default: Story = {
 export const Minimal: Story = {
   args: {
     showCTA: false,
-    showLogo: false,
+    showLogo: true,
     siteTitle: 'Minimal Site',
   },
 };
 
-export const CustomBranding: Story = {
-  args: {
-    siteTitle: 'Custom Brand',
-    ctaButtonLabel: 'Start Free Trial',
-    ctaButtonHref: '#trial',
-    className: 'bg-slate-900 text-white border-b border-slate-700',
-    showLogo: false,
-  },
-};
 
-export const WithLogo: Story = {
+export const MenuCentered: Story = {
   args: {
-    siteTitle: 'Brand Name',
-    ctaButtonLabel: 'Contact Us',
-    ctaButtonHref: '#contact',
+    siteTitle: 'Centered Navigation',
     showLogo: true,
     showCTA: true,
-  },
-};
-
-export const NoCTA: Story = {
-  args: {
-    showCTA: false,
-    siteTitle: 'Simple Navigation',
-    showLogo: true,
-  },
-};
-
-export const TextOnly: Story = {
-  args: {
-    showLogo: false,
-    siteTitle: 'Text Brand',
-    ctaButtonLabel: 'Sign Up',
-    ctaButtonHref: '#signup',
-  },
-};
-
-export const DarkTheme: Story = {
-  args: {
-    siteTitle: 'Dark Mode',
-    className: 'bg-gray-900 text-white border-b border-gray-700',
+    centerMenu: true,
     ctaButtonLabel: 'Get Started',
-    showLogo: false,
+    ctaButtonHref: '#get-started',
   },
 };
 
-export const Marketing: Story = {
+export const MenuLeft: Story = {
   args: {
-    siteTitle: 'Marketing Site',
-    ctaButtonLabel: 'Start Free Trial',
-    ctaButtonHref: '#trial',
+    siteTitle: 'Left Navigation',
     showLogo: true,
     showCTA: true,
+    leftMenu: true,
+    ctaButtonLabel: 'Sign up',
+    ctaButtonHref: '#signup',
   },
 };
 
@@ -126,6 +111,8 @@ export const CustomStyling: Story = {
     className: 'border-t-4 border-blue-500 bg-blue-50',
     ctaButtonLabel: 'Learn More',
     ctaButtonHref: '#learn',
-    showLogo: false,
+    showLogo: true,
   },
 };
+
+
