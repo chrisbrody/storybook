@@ -4,7 +4,12 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --global-font-family: "Inter", sans-serif;
+  --font-sans: var(--global-font-family);
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "Source Code Pro", monospace;
+  
+  font-family: var(--global-font-family);
   line-height: 1.5;
   font-weight: 400;
 
@@ -33,6 +38,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: var(--global-font-family);
 }
 
 h1 {

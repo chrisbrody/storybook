@@ -43,17 +43,32 @@ const iconMap = {
 interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {
   icon?: IconType;
   iconColor?: string;
+  fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
 }
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ className, variant, icon, iconColor, children, ...props }, ref) => {
+  ({ className, variant, icon, iconColor, fontFamily, children, style, ...props }, ref) => {
     const IconComponent = icon ? iconMap[icon] : null;
+    
+    const fontFamilyMap = {
+      'Inter': '"Inter", sans-serif',
+      'Roboto': '"Roboto", sans-serif', 
+      'Open Sans': '"Open Sans", sans-serif',
+      'Playfair Display': '"Playfair Display", serif',
+      'Source Code Pro': '"Source Code Pro", monospace',
+    };
+
+    const combinedStyle = {
+      ...style,
+      fontFamily: fontFamily ? fontFamilyMap[fontFamily] : undefined,
+    };
     
     return (
       <div
         ref={ref}
         role="alert"
         className={cn(alertVariants({ variant }), className)}
+        style={combinedStyle}
         {...props}
       >
         {IconComponent && (

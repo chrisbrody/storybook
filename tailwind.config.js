@@ -7,6 +7,11 @@ export default {
   ],
   theme: {
   	extend: {
+      fontFamily: {
+        'sans': ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        'serif': ['var(--font-serif)', 'serif'],
+        'mono': ['var(--font-mono)', 'monospace'],
+      },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run storybook:*)",
+      "Bash(npm run build-storybook:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(npx vitest run:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,7 +1,5 @@
 // src/stories/Button.stories.ts
 import { Button } from './Button';
-// CORRECTED: Ensure this import is direct from '@/components/ui/button'
-import { buttonVariants } from '@/components/ui/button';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
@@ -20,8 +18,17 @@ const meta = {
       options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
       description: 'The visual style variant of the button (e.g., default, destructive, outline).',
       table: {
-        type: { summary: buttonVariants?.variants?.variant ? Object.keys(buttonVariants.variants.variant).join(' | ') : 'string' },
+        type: { summary: 'string' },
         defaultValue: { summary: 'default' },
+      },
+    },
+    fontFamily: {
+      control: { type: 'select' },
+      options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
+      description: 'Font family for button text.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Inter' },
       },
     },
     className: {

@@ -1,5 +1,4 @@
 // src/stories/Button.tsx
-import React from 'react';
 // CORRECTED: Only import ShadcnButton and its Props, NOT buttonVariants
 import { Button as ShadcnButton } from '@/components/ui/button';
 import type { ButtonProps as ShadcnButtonProps } from '@/components/ui/button';
@@ -14,6 +13,8 @@ export interface ButtonProps extends Omit<ShadcnButtonProps, 'size' | 'children'
     backgroundColor?: string;
     /** What text color to use. Overrides `variant` text color. */
     textColor?: string;
+    /** Font family to use for button text. */
+    fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
     /** How large should the button be? Maps to 'sm', 'default', or 'lg' size. */
     size?: 'small' | 'medium' | 'large';
     /** Button contents */
@@ -33,6 +34,7 @@ export const Button = ({
                            variant,
                            backgroundColor,
                            textColor,
+                           fontFamily,
                            className,
                            style,
                            ...props
@@ -46,10 +48,19 @@ export const Button = ({
         shadcnSize = 'lg';
     }
 
+    const fontFamilyMap = {
+        'Inter': '"Inter", sans-serif',
+        'Roboto': '"Roboto", sans-serif', 
+        'Open Sans': '"Open Sans", sans-serif',
+        'Playfair Display': '"Playfair Display", serif',
+        'Source Code Pro': '"Source Code Pro", monospace',
+    };
+
     const combinedStyle = {
         ...style,
         backgroundColor,
         color: textColor,
+        fontFamily: fontFamily ? fontFamilyMap[fontFamily] : undefined,
     };
 
     return (
