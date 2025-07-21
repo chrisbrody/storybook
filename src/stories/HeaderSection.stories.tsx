@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { HeaderSection } from '../slices/header/HeaderSection';
 
 const meta: Meta<typeof HeaderSection> = {
-  title: 'Slices/Header/HeaderSection',
+  title: 'Slices/Header',
   component: HeaderSection,
   parameters: {
     layout: 'fullscreen',
