@@ -51,6 +51,7 @@ const meta = {
       description: 'Custom background color for the button. Overrides variant color.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '#000000' },
       },
     },
     textColor: {
@@ -58,6 +59,7 @@ const meta = {
       description: 'Custom text color for the button. Overrides variant color.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '#ffffff' },
       },
     },
   },
@@ -73,6 +75,15 @@ export const Primary: Story = {
     label: 'Button',
     primary: true,
   },
+  decorators: [
+    (Story, context) => {
+      const backgroundColor = context.args.backgroundColor;
+      if (backgroundColor) {
+        document.documentElement.style.setProperty('--base-primary', backgroundColor);
+      }
+      return Story();
+    },
+  ],
 };
 
 export const Secondary: Story = {
@@ -144,7 +155,7 @@ export const CustomHoverEffect: Story = {
 export const CustomColorsForDesigners: Story = {
   args: {
     label: 'Designers Rock!',
-    variant: 'default',
+    variant: 'outline',
     backgroundColor: '#FFDDC1',
     textColor: '#A0522D',
   },

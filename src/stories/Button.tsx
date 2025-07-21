@@ -1,5 +1,6 @@
 // src/stories/Button.tsx
 // CORRECTED: Only import ShadcnButton and its Props, NOT buttonVariants
+import React from 'react';
 import { Button as ShadcnButton } from '@/components/ui/button';
 import type { ButtonProps as ShadcnButtonProps } from '@/components/ui/button';
 
@@ -40,6 +41,7 @@ export const Button = ({
                            ...props
                        }: ButtonProps) => {
     const effectiveVariant = variant || (primary ? 'default' : 'secondary');
+
 
     let shadcnSize: ShadcnButtonProps['size'] = 'default';
     if (size === 'small') {

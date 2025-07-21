@@ -88,7 +88,7 @@ button:focus-visible {
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -107,6 +107,20 @@ button:focus-visible {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    
+    /* Custom button variables */
+    --border-radius-rounded-md: 8px;
+    --base-primary: #000000;
+    --shadow-xs-offset-x: 0px;
+    --shadow-xs-offset-y: 1px;
+    --shadow-xs-blur-radius: 2px;
+    --shadow-xs-spread-radius: 0px;
+    --shadow-xs-color: rgba(0, 0, 0, 0.05);
+    
+    /* Custom heading color variables */
+    --heading-default-color: hsl(var(--foreground));
+    --heading-primary-color: hsl(var(--primary));
+    --heading-muted-color: hsl(var(--muted-foreground));
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -147,8 +161,56 @@ button:focus-visible {
   }
 }
 
+/* Typography base styles */
+@layer base {
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight;
+  }
+  
+  h4 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight leading-tight;
+  }
+  
+  h5 {
+    @apply text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight leading-tight;
+  }
+  
+  h6 {
+    @apply text-base sm:text-lg lg:text-xl font-medium tracking-tight leading-tight;
+  }
+}
+
+
 /* Shadcn Pro Blocks - Section Styles */
 @layer components {
+  /* Button with dynamic primary color */
+  .btn-dynamic-primary {
+    background-color: var(--base-primary) !important;
+    border-radius: var(--border-radius-rounded-md, 8px);
+    box-shadow: var(--shadow-xs-offset-x, 0px) var(--shadow-xs-offset-y, 1px) var(--shadow-xs-blur-radius, 2px) var(--shadow-xs-spread-radius, 0px) var(--shadow-xs-color, rgba(0, 0, 0, 0.05));
+  }
+
+  /* Heading with dynamic colors */
+  .heading-dynamic-default {
+    color: var(--heading-default-color) !important;
+  }
+  
+  .heading-dynamic-primary {
+    color: var(--heading-primary-color) !important;
+  }
+  
+  .heading-dynamic-muted {
+    color: var(--heading-muted-color) !important;
+  }
+
   /* Section padding utilities */
   .section-padding-y {
     @apply py-16 lg:py-24;
