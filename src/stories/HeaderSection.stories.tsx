@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { HeaderSection2 } from '../slices/header/HeaderSection2';
+import { HeaderSection } from '../slices/header/HeaderSection';
 
-const meta: Meta<typeof HeaderSection2> = {
-  title: 'Slices/Header/HeaderSection2',
-  component: HeaderSection2,
+const meta: Meta<typeof HeaderSection> = {
+  title: 'Slices/Header/HeaderSection',
+  component: HeaderSection,
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -57,7 +57,7 @@ const meta: Meta<typeof HeaderSection2> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof HeaderSection2>;
+type Story = StoryObj<typeof HeaderSection>;
 
 export const Default: Story = {
   args: {},

@@ -2,7 +2,7 @@
 
 import { Tagline } from "./Tagline";
 
-interface HeaderSection2Props {
+interface HeaderSectionProps {
   /** The tagline text displayed above the heading */
   tagline?: string;
   /** The main heading text */
@@ -19,7 +19,7 @@ interface HeaderSection2Props {
   background?: "default" | "muted" | "accent";
 }
 
-export function HeaderSection2({
+export function HeaderSection({
   tagline = "Header section",
   heading = "Short engaging headline",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit interdum hendrerit ex vitae sodales.",
@@ -27,7 +27,7 @@ export function HeaderSection2({
   alignment = "center",
   className = "",
   background = "default"
-}: HeaderSection2Props) {
+}: HeaderSectionProps) {
   const backgroundClasses = {
     default: "bg-background",
     muted: "bg-muted",
@@ -64,4 +64,4 @@ export function HeaderSection2({
   );
 }
 
-export type { HeaderSection2Props };
+export type { HeaderSectionProps };
