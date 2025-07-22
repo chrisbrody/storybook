@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Navbar } from "../slices/navbar";
+import { Navbar } from "../../slices/navbar";
 
 const meta: Meta<typeof Navbar> = {
   title: "Slices/Navbar",

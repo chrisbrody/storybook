@@ -19,6 +19,7 @@ export interface HeroSectionProps {
   socialProofText?: string;
   className?: string;
   fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
+  heroImage?: string;
 }
 
 export function HeroSection({
@@ -34,6 +35,7 @@ export function HeroSection({
   socialProofText = 'Loved by 500+ Home Owner',
   className,
   fontFamily = 'Inter',
+  heroImage,
 }: HeroSectionProps = {}) {
   const fontFamilyMap = {
     'Inter': '"Inter", sans-serif',
@@ -44,6 +46,39 @@ export function HeroSection({
   };
 
   const fontStyle = { fontFamily: fontFamilyMap[fontFamily] };
+
+  const renderImageOrPlaceholder = () => {
+    if (heroImage) {
+      return (
+        <img
+          src={heroImage}
+          alt="Hero section image"
+          className="h-full w-full object-cover rounded-xl"
+        />
+      );
+    }
+    
+    return (
+      <div className="text-muted-foreground text-center">
+        <div className="w-16 h-16 mx-auto mb-4 bg-muted-foreground/20 rounded-lg flex items-center justify-center">
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <p className="text-sm">Image placeholder</p>
+      </div>
+    );
+  };
 
   const renderVariant = () => {
     switch (variant) {
@@ -83,24 +118,7 @@ export function HeroSection({
             <div className="w-full flex-1 min-w-0">
               <AspectRatio ratio={1 / 1}>
                 <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
-                  <div className="text-muted-foreground text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-muted-foreground/20 rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-sm">Image placeholder</p>
-                  </div>
+                  {renderImageOrPlaceholder()}
                 </div>
               </AspectRatio>
             </div>
@@ -201,9 +219,24 @@ export function HeroSection({
             <div className="w-full flex-1 min-w-0">
               <AspectRatio ratio={16 / 10}>
                 <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center relative">
-                  <div className="w-16 h-16 rounded-full bg-foreground/10 flex items-center justify-center">
-                    <Play className="w-8 h-8 text-foreground ml-1" />
-                  </div>
+                  {heroImage ? (
+                    <>
+                      <img
+                        src={heroImage}
+                        alt="Hero section video thumbnail"
+                        className="h-full w-full object-cover rounded-xl"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm">
+                          <Play className="w-8 h-8 text-white ml-1" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-foreground/10 flex items-center justify-center">
+                      <Play className="w-8 h-8 text-foreground ml-1" />
+                    </div>
+                  )}
                 </div>
               </AspectRatio>
             </div>
@@ -233,24 +266,7 @@ export function HeroSection({
             <div className="max-w-3xl mx-auto">
               <AspectRatio ratio={16 / 10}>
                 <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
-                  <div className="text-muted-foreground text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-muted-foreground/20 rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-sm">Image placeholder</p>
-                  </div>
+                  {renderImageOrPlaceholder()}
                 </div>
               </AspectRatio>
             </div>
@@ -281,24 +297,7 @@ export function HeroSection({
             <div className="w-full flex-1 min-w-0">
               <AspectRatio ratio={16 / 10}>
                 <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
-                  <div className="text-muted-foreground text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-muted-foreground/20 rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-sm">Image placeholder</p>
-                  </div>
+                  {renderImageOrPlaceholder()}
                 </div>
               </AspectRatio>
             </div>

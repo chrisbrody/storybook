@@ -10,11 +10,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuRadioGroup,
-} from '../components/ui/dropdown-menu';
-import { Button } from '../components/ui/button';
+} from '../../components/ui/dropdown-menu';
+import { Button } from '../../components/ui/button';
 
 const meta = {
-  title: 'UI/Dropdown',
+  title: 'Components/Dropdown',
   component: DropdownMenu,
   parameters: {
     layout: 'centered',

@@ -4,10 +4,10 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from '../components/ui/alert';
+} from '../../components/ui/alert';
 
 const meta: Meta<typeof Alert> = {
-  title: 'UI/Alert',
+  title: 'Components/Alert',
   component: Alert,
   parameters: {
     layout: 'centered',

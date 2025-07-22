@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { HeroSection } from '../slices/hero-section';
+import { HeroSection } from '../../slices/hero-section';
 
 const meta: Meta<typeof HeroSection> = {
   title: 'Slices/Hero Section',
@@ -66,6 +66,10 @@ const meta: Meta<typeof HeroSection> = {
       options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
       description: 'Font family for headers and paragraphs',
     },
+    heroImage: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload a hero image (PNG, JPG, JPEG, GIF, WebP)',
+    },
   },
   args: {
     variant: 'default',
@@ -79,6 +83,7 @@ const meta: Meta<typeof HeroSection> = {
     checklistItems: ['Benefit drives feature one', 'Benefit drives feature two', 'Benefit drives feature three'],
     socialProofText: 'Loved by 500+ Home Owners',
     fontFamily: 'Inter',
+    heroImage: undefined,
   },
 };
 
