@@ -54,6 +54,11 @@ const meta: Meta<typeof Navbar> = {
     leftMenu: {
       table: { disable: true }
     },
+    fontFamily: {
+      control: { type: 'select' },
+      options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
+      description: 'Font family for navigation text and site title',
+    },
   },
   args: {
     siteTitle: 'Your Site',
@@ -64,6 +69,7 @@ const meta: Meta<typeof Navbar> = {
     showLogo: true,
     ctaVariant: 'default',
     ctaSize: 'default',
+    fontFamily: 'Inter',
   },
 };
 

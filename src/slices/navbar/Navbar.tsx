@@ -24,6 +24,7 @@ interface NavbarProps extends VariantProps<typeof buttonVariants> {
   leftMenu?: boolean;
   ctaVariant?: VariantProps<typeof buttonVariants>["variant"];
   ctaSize?: VariantProps<typeof buttonVariants>["size"];
+  fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
 }
 
 const MENU_ITEMS = [
@@ -41,13 +42,14 @@ const ABOUT_ITEMS = [
 interface NavMenuItemsProps {
   className?: string;
   onItemClick?: () => void;
+  fontStyle?: React.CSSProperties;
 }
 
-const NavMenuItems = ({ className, onItemClick }: NavMenuItemsProps) => (
+const NavMenuItems = ({ className, onItemClick, fontStyle }: NavMenuItemsProps) => (
   <div className={`flex flex-col gap-1 md:flex-row ${className ?? ""}`}>
     {MENU_ITEMS.map(({ label, href }) => (
       <a key={label} href={href} onClick={onItemClick}>
-        <Button variant="ghost" className="w-full md:w-auto text-foreground">
+        <Button variant="ghost" className="w-full md:w-auto text-foreground" style={fontStyle}>
           {label}
         </Button>
       </a>
@@ -56,7 +58,7 @@ const NavMenuItems = ({ className, onItemClick }: NavMenuItemsProps) => (
     {/* About Dropdown */}
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="w-full md:w-auto text-foreground">
+        <Button variant="ghost" className="w-full md:w-auto text-foreground" style={fontStyle}>
           About
           <ChevronDown className="ml-1 h-4 w-4" />
         </Button>
@@ -64,7 +66,7 @@ const NavMenuItems = ({ className, onItemClick }: NavMenuItemsProps) => (
       <DropdownMenuContent align="start" className="w-56">
         {ABOUT_ITEMS.map(({ label, href }) => (
           <DropdownMenuItem key={label} asChild>
-            <a href={href} onClick={onItemClick} className="text-foreground">
+            <a href={href} onClick={onItemClick} className="text-foreground" style={fontStyle}>
               {label}
             </a>
           </DropdownMenuItem>
@@ -73,7 +75,7 @@ const NavMenuItems = ({ className, onItemClick }: NavMenuItemsProps) => (
     </DropdownMenu>
 
     <a href="#contact" onClick={onItemClick}>
-      <Button variant="ghost" className="w-full md:w-auto text-foreground">
+      <Button variant="ghost" className="w-full md:w-auto text-foreground" style={fontStyle}>
         Contact
       </Button>
     </a>
@@ -91,8 +93,19 @@ export function Navbar({
   leftMenu = false,
   ctaVariant = "default",
   ctaSize = "default",
+  fontFamily = 'Inter',
 }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const fontFamilyMap = {
+    'Inter': '"Inter", sans-serif',
+    'Roboto': '"Roboto", sans-serif', 
+    'Open Sans': '"Open Sans", sans-serif',
+    'Playfair Display': '"Playfair Display", serif',
+    'Source Code Pro': '"Source Code Pro", monospace',
+  };
+
+  const fontStyle = { fontFamily: fontFamilyMap[fontFamily] };
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
@@ -110,7 +123,7 @@ export function Navbar({
                   <Logo />
                 </a>
               ) : (
-                <a href="/" className="text-xl font-bold">
+                <a href="/" className="text-xl font-bold" style={fontStyle}>
                   {siteTitle}
                 </a>
               )}
@@ -118,7 +131,7 @@ export function Navbar({
 
             {/* Desktop Navigation - centered */}
             <div className="hidden md:flex">
-              <NavMenuItems />
+              <NavMenuItems fontStyle={fontStyle} />
             </div>
 
             {/* Mobile menu button and CTA for centered layout */}
@@ -152,14 +165,14 @@ export function Navbar({
                   <Logo />
                 </a>
               ) : (
-                <a href="/" className="text-xl font-bold">
+                <a href="/" className="text-xl font-bold" style={fontStyle}>
                   {siteTitle}
                 </a>
               )}
               
               {/* Desktop Navigation - next to logo on left */}
               <div className="hidden md:flex">
-                <NavMenuItems />
+                <NavMenuItems fontStyle={fontStyle} />
               </div>
             </div>
 
@@ -192,7 +205,7 @@ export function Navbar({
                   <Logo />
                 </a>
               ) : (
-                <a href="/" className="text-xl font-bold">
+                <a href="/" className="text-xl font-bold" style={fontStyle}>
                   {siteTitle}
                 </a>
               )}
@@ -208,7 +221,7 @@ export function Navbar({
 
             {/* Desktop Navigation */}
             <div className="hidden w-full flex-row justify-end gap-5 md:flex">
-              <NavMenuItems />
+              <NavMenuItems fontStyle={fontStyle} />
               {showCTA && (
                 <a href={ctaButtonHref}>
                   <Button variant={ctaVariant} size={ctaSize}>{ctaButtonLabel}</Button>
@@ -246,7 +259,7 @@ export function Navbar({
               </Button>
             </div>
             
-            <NavMenuItems onItemClick={closeMenu} />
+            <NavMenuItems onItemClick={closeMenu} fontStyle={fontStyle} />
             {showCTA && (
               <a href={ctaButtonHref}>
                 <Button className="w-full" variant={ctaVariant} size={ctaSize} onClick={closeMenu}>
