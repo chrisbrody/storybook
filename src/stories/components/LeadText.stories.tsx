@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { LeadText } from './LeadText'
+import { LeadText } from '../../components/ui/lead-text'
 
 const meta = {
   title: 'Components/LeadText',

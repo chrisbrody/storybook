@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { InlineCode } from './InlineCode'
+import { InlineCode } from '../../components/ui/inline-code'
 
 const meta = {
   title: 'Components/InlineCode',

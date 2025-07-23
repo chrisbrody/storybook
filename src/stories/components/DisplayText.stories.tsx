@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { DisplayText } from './DisplayText'
+import { DisplayText } from '../../components/ui/display-text'
 
 const meta = {
   title: 'Components/DisplayText',

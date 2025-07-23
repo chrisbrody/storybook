@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Caption } from './Caption'
+import { Caption } from '../../components/ui/caption'
 
 const meta = {
   title: 'Components/Caption',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Blockquote } from './Blockquote'
+import { Blockquote } from '../../components/ui/blockquote-typography'
 
 const meta = {
   title: 'Components/Blockquote',

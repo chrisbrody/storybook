@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { QuoteAttribution } from './QuoteAttribution'
-import { Blockquote } from './Blockquote'
+import { QuoteAttribution } from '../../components/ui/quote-attribution'
+import { Blockquote } from '../../components/ui/blockquote-typography'
 
 const meta = {
   title: 'Components/QuoteAttribution',

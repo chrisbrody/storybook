@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { SmallText } from './SmallText'
+import { SmallText } from '../../components/ui/small-text'
 
 const meta = {
   title: 'Components/SmallText',

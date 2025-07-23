@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { List } from './List'
+import { List } from '../../components/ui/list-typography'
 
 const meta = {
   title: 'Components/List',
