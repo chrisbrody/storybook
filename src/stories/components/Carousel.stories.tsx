@@ -10,7 +10,7 @@ interface CarouselSectionStoryProps extends CarouselSectionProps {
 }
 
 const meta: Meta<CarouselSectionStoryProps> = {
-  title: 'Slices/Carousel Section',
+  title: 'Components/Carousel',
   component: CarouselSection,
   parameters: {
     layout: 'fullscreen',
@@ -189,35 +189,3 @@ export const FullWidth: Story = {
     description: 'Experience our full-width gallery showcasing multiple projects simultaneously, perfect for highlighting the breadth of our design capabilities.',
   },
 };
-
-export const KitchenProjects: Story = {
-  args: {
-    tagline: 'Kitchen Transformations',
-    heading: 'Contemporary Kitchen Designs',
-    description: 'Explore our specialized kitchen remodeling projects featuring custom cabinetry, premium appliances, and sophisticated material selections.',
-    size: 'lg',
-  },
-};
-
-export const BathroomProjects: Story = {
-  args: {
-    tagline: 'Bathroom Renovations',
-    heading: 'Luxury Spa-Like Retreats',
-    description: 'Discover our bathroom transformation projects that combine functionality with resort-style luxury using premium materials and innovative design.',
-    variant: 'minimal',
-  },
-};
-
-export const CommercialProjects: Story = {
-  args: {
-    tagline: 'Commercial Spaces',
-    heading: 'Professional Interior Design',
-    description: 'View our commercial interior design portfolio featuring office spaces, retail environments, and hospitality venues that enhance both aesthetics and functionality.',
-    size: 'full',
-    variant: 'dark',
-    backgroundColor: '#0F172A',
-    headerColor: '#FFFFFF',
-    textColor: '#CBD5E1',
-  },
-};
-
