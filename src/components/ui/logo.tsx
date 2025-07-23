@@ -1,4 +1,4 @@
-import appLogo from '../assets/app_logo.png';
+import appLogo from '../../assets/app_logo.png';
 
 interface LogoProps {
   width?: number;
