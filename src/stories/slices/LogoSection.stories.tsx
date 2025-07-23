@@ -28,6 +28,7 @@ const meta: Meta<typeof LogoSection> = {
           {`
             .text-foreground { color: ${args.headerColor || '#000000'} !important; }
             .text-muted-foreground { color: ${args.textColor || '#666666'} !important; }
+            .bg-black { background-color: ${args.backgroundColor || '#ffffff'} !important; }
           `}
         </style>
         <Story />
@@ -138,6 +139,8 @@ export const TwoColumn: Story = {
 export const TwoColumnBlack: Story = {
   args: {
     variant: 'TwoColumnBlack',
+    backgroundColor: "#000000",
+    headerColor: "#FFFFFF"
   },
 };
 
@@ -150,6 +153,7 @@ export const ThreeColumnMinimal: Story = {
 export const ThreeColumnMinimalBlack: Story = {
   args: {
     variant: 'ThreeColumnMinimalBlack',
+    backgroundColor: "#000000"
   },
 };
 
