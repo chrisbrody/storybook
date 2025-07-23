@@ -305,7 +305,7 @@ export function FaqSection({
         <Accordion type="single" defaultValue={defaultOpenItem}>
           {faqItems.map((item) => (
             <AccordionItem key={item.id} value={item.id}>
-              <AccordionTrigger className="text-left text-base font-medium pl-0 border-none focus:border-none hover:border-none [&[data-state=open]]:border-none" style={fontStyle}>
+              <AccordionTrigger className="text-left text-base font-medium pl-0" style={fontStyle}>
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-sm" style={fontStyle}>
