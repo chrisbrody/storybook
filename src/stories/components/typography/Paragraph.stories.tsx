@@ -78,7 +78,10 @@ const meta = {
     },
     fontFamily: {
       control: 'select',
-      options: ['sans', 'serif', 'mono'],
+      options: [
+        'sans', 'serif', 'mono', 'inter', 'playfair', 'montserrat', 'poppins',
+        'dancing', 'greatvibes', 'pacifico', 'anton', 'bebas', 'sourcecodepro'
+      ],
       description: 'Font family variant.',
       table: {
         type: { summary: 'string' },

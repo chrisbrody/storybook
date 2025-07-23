@@ -16,7 +16,7 @@ export interface ParagraphProps {
   /** Text alignment */
   align?: 'left' | 'center' | 'right' | 'justify';
   /** Font family */
-  fontFamily?: 'sans' | 'serif' | 'mono';
+  fontFamily?: 'sans' | 'serif' | 'mono' | 'inter' | 'playfair' | 'montserrat' | 'poppins' | 'dancing' | 'greatvibes' | 'pacifico' | 'anton' | 'bebas' | 'sourcecodepro';
   /** Custom color for default variant (docs only) */
   defaultColor?: string;
   /** Custom color for muted variant (docs only) */
@@ -97,6 +97,21 @@ export const Paragraph = ({
     sans: 'font-sans',
     serif: 'font-serif',
     mono: 'font-mono',
+    // Modern & clean fonts
+    inter: 'font-[Inter]',
+    montserrat: 'font-[Montserrat]',
+    poppins: 'font-[Poppins]',
+    // Elegant serif
+    playfair: 'font-[Playfair_Display]',
+    // Cursive & script fonts
+    dancing: 'font-[Dancing_Script]',
+    greatvibes: 'font-[Great_Vibes]',
+    pacifico: 'font-[Pacifico]',
+    // Bold display fonts
+    anton: 'font-[Anton]',
+    bebas: 'font-[Bebas_Neue]',
+    // Monospace
+    sourcecodepro: 'font-[Source_Code_Pro]',
   };
 
   // Apply custom color overrides based on selected color variant
