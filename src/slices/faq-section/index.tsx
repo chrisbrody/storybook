@@ -153,7 +153,7 @@ export function FaqSection({
               <Accordion type="single" defaultValue={defaultOpenItem} className="space-y-4">
                 {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map((item) => (
                   <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
-                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline bg-white border-none" style={fontStyle}>
                       {item.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
@@ -177,7 +177,7 @@ export function FaqSection({
               <Accordion type="single" className="space-y-4">
                 {faqItems.slice(Math.ceil(faqItems.length / 2)).map((item) => (
                   <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
-                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline bg-white border-none" style={fontStyle}>
                       {item.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
@@ -240,7 +240,7 @@ export function FaqSection({
                   <Accordion type="single" defaultValue={defaultOpenItem} className="space-y-4">
                     {generalItems.map((item) => (
                       <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
-                        <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                        <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline bg-white border-none" style={fontStyle}>
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
@@ -259,7 +259,7 @@ export function FaqSection({
                   <Accordion type="single" className="space-y-4">
                     {billingItems.map((item) => (
                       <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
-                        <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                        <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline bg-white border-none" style={fontStyle}>
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
@@ -305,7 +305,7 @@ export function FaqSection({
         <Accordion type="single" defaultValue={defaultOpenItem}>
           {faqItems.map((item) => (
             <AccordionItem key={item.id} value={item.id}>
-              <AccordionTrigger className="text-left text-base font-medium pl-0" style={fontStyle}>
+              <AccordionTrigger className="text-left text-base font-medium pl-0 bg-white border-none" style={fontStyle}>
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-sm" style={fontStyle}>
