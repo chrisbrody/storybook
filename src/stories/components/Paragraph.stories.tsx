@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Paragraph } from './Paragraph'
 
 const meta = {
-  title: 'Components/Typography/Paragraph',
+  title: 'Components/Paragraph',
   component: Paragraph,
   parameters: {
     layout: 'centered',

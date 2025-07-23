@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Heading } from './Heading'
-import { Heading as ShadcnHeading } from '../../../components/ui/Heading'
 
 const meta = {
-  title: 'Components/Typography/Heading',
+  title: 'Components/Heading',
   component: Heading,
   parameters: {
     layout: 'centered',
