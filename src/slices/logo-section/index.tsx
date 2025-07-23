@@ -4,7 +4,7 @@ import { Tagline } from "@/components/ui/tagline";
 import { cn } from "@/lib/utils";
 
 export interface LogoSectionProps {
-  variant?: 'default';
+  variant?: 'default' | 'ThreeColumn' | 'TwoColumn' | 'TwoColumnBlack' | 'ThreeColumnMinimal' | 'ThreeColumnMinimalBlack';
   tagline?: string;
   heading?: string;
   description?: string;
@@ -45,7 +45,7 @@ export function LogoSection({
     }
     
     return (
-      <div className="h-12 w-24 bg-muted-foreground/20 rounded-md flex items-center justify-center">
+      <div className="h-16 w-full bg-muted-foreground/20 flex items-center justify-center">
         <div className="text-muted-foreground text-xs text-center">
           <svg
             className="w-6 h-6 mx-auto mb-1"
@@ -68,7 +68,63 @@ export function LogoSection({
 
   const renderVariant = () => {
     switch (variant) {
-      default: // 'default'
+      case 'ThreeColumn':
+        return (
+          <div className="container-padding-x container mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Left Content */}
+              <div className="flex flex-col gap-6">
+                <Tagline>{tagline}</Tagline>
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground">
+                  {heading}
+                </h2>
+                <p className="text-muted-foreground text-sm lg:text-base">
+                  {description}
+                </p>
+              </div>
+
+              {/* Center Logos Grid */}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        
+      case 'TwoColumn':
+        return (
+          <div className="container-padding-x container mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Left Content */}
+              <div className="flex flex-col gap-6">
+                <Tagline>{tagline}</Tagline>
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground">
+                  {heading}
+                </h2>
+                <p className="text-muted-foreground text-sm lg:text-base">
+                  {description}
+                </p>
+              </div>
+
+              {/* Center Logos Grid */}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
         return (
           <div className="container-padding-x container mx-auto">
             <div className="flex flex-col items-center gap-12 md:gap-16">
@@ -82,8 +138,8 @@ export function LogoSection({
                 </p>
               </div>
 
-              <div className="flex  flex-wrap justify-center gap-6 md:gap-8">
-                {[...Array(10)].map((_, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto">
+                {[...Array(6)].map((_, index) => (
                   <div key={index} className="flex items-center justify-center">
                     {renderLogoOrPlaceholder(index)}
                   </div>
@@ -91,6 +147,128 @@ export function LogoSection({
               </div>
             </div>
           </div>
+        );
+
+      case 'TwoColumnBlack':
+        return (
+          <div className="container-padding-x container mx-auto max-w-7xl bg-black text-white py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Left Content */}
+              <div className="flex flex-col gap-6">
+                <Tagline className="text-white">{tagline}</Tagline>
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground text-white">
+                  {heading}
+                </h2>
+                <p className="text-sm lg:text-white">
+                  {description}
+                </p>
+              </div>
+
+              {/* Center Logos Grid */}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        return (
+          <div className="container-padding-x container mx-auto">
+            <div className="flex flex-col items-center gap-12 md:gap-16">
+              <div className="section-title-gap-lg flex max-w-xl flex-col items-center text-center">
+                <Tagline>{tagline}</Tagline>
+                <h2 className="heading-lg text-foreground">
+                  {heading}
+                </h2>
+                <p className="text-muted-foreground">
+                  {description}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto">
+                {[...Array(6)].map((_, index) => (
+                  <div key={index} className="flex items-center justify-center">
+                    {renderLogoOrPlaceholder(index)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+  
+      case 'ThreeColumnMinimal':
+        return (
+          <div className="w-[75vw]">
+            <div className="grid grid-cols-1 gap-8 lg:gap-12 items-start w-full">
+              {/* Center Logos Grid */}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center w-full">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        );
+        
+      case 'ThreeColumnMinimalBlack':
+        return (
+          <div className="w-[75vw]">
+            <div className="grid grid-cols-1 gap-8 lg:gap-12 items-start w-full">
+              {/* Center Logos Grid */}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full bg-black p-20">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center w-full">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        );
+          
+
+      default: // 'default'
+        return (
+          <>
+            <div className="container-padding-x container mx-auto w-full">
+              <div className="flex flex-col items-center gap-12 md:gap-16">
+                <div className="section-title-gap-lg flex max-w-xl flex-col items-center text-center">
+                  <Tagline>{tagline}</Tagline>
+                  <h2 className="heading-lg text-foreground">
+                    {heading}
+                  </h2>
+                  <p className="text-muted-foreground">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="w-[75vw]">
+              <div className="flex flex-col items-center gap-12 md:gap-16 mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-6 gap-4 w-full max-w-6xl">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="flex items-center justify-center basis-[calc(16.667%-1rem)]">
+                      {renderLogoOrPlaceholder(index)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>          
         );
     }
   };

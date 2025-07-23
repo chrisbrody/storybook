@@ -16,7 +16,7 @@ const meta: Meta<typeof LogoSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default'],
+      options: ['default', 'compact', 'minimal'],
       description: 'Layout variant of the logo section',
     },
     tagline: {
@@ -80,5 +80,35 @@ type Story = StoryObj<typeof LogoSection>;
 export const Default: Story = {
   args: {
     variant: 'default',
+  },
+};
+
+export const ThreeColumn: Story = {
+  args: {
+    variant: 'ThreeColumn',
+  },
+};
+
+export const TwoColumn: Story = {
+  args: {
+    variant: 'TwoColumn',
+  },
+};
+
+export const TwoColumnBlack: Story = {
+  args: {
+    variant: 'TwoColumnBlack',
+  },
+};
+
+export const ThreeColumnMinimal: Story = {
+  args: {
+    variant: 'ThreeColumnMinimal',
+  },
+};
+
+export const ThreeColumnMinimalBlack: Story = {
+  args: {
+    variant: 'ThreeColumnMinimalBlack',
   },
 };
