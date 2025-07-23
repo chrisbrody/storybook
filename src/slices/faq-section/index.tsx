@@ -28,7 +28,7 @@ export interface FaqSectionProps {
   defaultOpenItem?: string;
   className?: string;
   fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
-  variant?: 'default' | 'sidebar';
+  variant?: 'default' | 'sidebar' | 'side-by-side' | 'three-column';
 }
 
 export function FaqSection({
@@ -85,6 +85,113 @@ export function FaqSection({
   };
 
   const fontStyle = { fontFamily: fontFamilyMap[fontFamily] };
+
+  if (variant === 'three-column') {
+    return (
+      <section
+        className={cn("bg-background section-padding-y", className)}
+        aria-labelledby="faq-heading"
+      >
+        <div className="container-padding-x mx-auto max-w-6xl">
+          {/* Section Header */}
+          <div className="flex flex-col gap-6 mb-12 text-center">
+            <Tagline className="w-full text-center">{tagline}</Tagline>
+            <h2 id="faq-heading" className="text-3xl lg:text-4xl font-bold text-foreground" style={fontStyle}>
+              {heading}
+            </h2>
+            <p className="text-muted-foreground text-base max-w-2xl mx-auto" style={fontStyle}>
+              {description}{" "}
+              <span className="text-black underline cursor-pointer">
+                {contactLinkText}
+              </span>
+            </p>
+          </div>
+
+          {/* FAQ Items as Simple Rows */}
+          <div className="space-y-8">
+            {faqItems.map((item) => (
+              <div key={item.id} className="flex flex-row items-start space-y-3 gap-6">
+                <h3 className="text-base font-medium text-foreground w-[40%]" style={fontStyle}>
+                  {item.question}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed !mt-0 w-[60%]" style={fontStyle}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (variant === 'side-by-side') {
+    return (
+      <section
+        className={cn("bg-background section-padding-y", className)}
+        aria-labelledby="faq-heading"
+      >
+        <div className="container-padding-x mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Left Column - FAQ Content */}
+            <div>
+              {/* Section Header */}
+              <div className="flex flex-col gap-6 mb-8">
+                <Tagline>{tagline}</Tagline>
+                <h2 id="faq-heading" className="text-3xl lg:text-4xl font-bold text-foreground" style={fontStyle}>
+                  {heading}
+                </h2>
+                <p className="text-muted-foreground text-base" style={fontStyle}>
+                  {description}{" "}
+                  <span className="text-black underline cursor-pointer">
+                    {contactLinkText}
+                  </span>
+                </p>
+              </div>
+
+              {/* FAQ Accordion - First Half */}
+              <Accordion type="single" defaultValue={defaultOpenItem} className="space-y-4">
+                {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map((item) => (
+                  <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
+                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Right Column - Remaining FAQ Items and CTA */}
+            <div>
+              {/* CTA Card at top */}
+              <div className="flex w-full flex-col gap-6 rounded-xl p-6 pr-0 mb-8 text-right">
+                <div className="">
+                  <Button variant="outline" aria-label="Contact support">{ctaButtonText}</Button>
+                </div>
+              </div>
+
+              {/* FAQ Accordion - Second Half */}
+              <Accordion type="single" className="space-y-4">
+                {faqItems.slice(Math.ceil(faqItems.length / 2)).map((item) => (
+                  <AccordionItem key={item.id} value={item.id} className="border-b border-gray-200">
+                    <AccordionTrigger className="text-left text-base font-medium pl-0 py-4 hover:no-underline" style={fontStyle}>
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-sm pb-4" style={fontStyle}>
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (variant === 'sidebar') {
     // Group FAQ items by category for the sidebar layout
