@@ -16,7 +16,7 @@ const meta: Meta<typeof LogoSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'compact', 'minimal'],
+      options: ['default', 'ThreeColumn', 'TwoColumn', 'TwoColumnBlack', 'ThreeColumnMinimal', 'ThreeColumnMinimalBlack', 'slider'],
       description: 'Layout variant of the logo section',
     },
     tagline: {
@@ -110,5 +110,14 @@ export const ThreeColumnMinimal: Story = {
 export const ThreeColumnMinimalBlack: Story = {
   args: {
     variant: 'ThreeColumnMinimalBlack',
+  },
+};
+
+export const Slider: Story = {
+  args: {
+    variant: 'slider',
+    tagline: "Logo carousel",
+    heading: 'Trusted by industry leaders',
+    description: 'Our products are used by leading companies worldwide. This smooth-scrolling carousel showcases our partners and clients in an engaging way.',
   },
 };

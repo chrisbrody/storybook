@@ -297,3 +297,21 @@ button:focus-visible {
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+/* Logo slider animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 20s linear infinite;
+}
+
+.animate-slide:hover {
+  animation-play-state: paused;
+}

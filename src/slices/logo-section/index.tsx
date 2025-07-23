@@ -4,7 +4,7 @@ import { Tagline } from "@/components/ui/tagline";
 import { cn } from "@/lib/utils";
 
 export interface LogoSectionProps {
-  variant?: 'default' | 'ThreeColumn' | 'TwoColumn' | 'TwoColumnBlack' | 'ThreeColumnMinimal' | 'ThreeColumnMinimalBlack';
+  variant?: 'default' | 'ThreeColumn' | 'TwoColumn' | 'TwoColumnBlack' | 'ThreeColumnMinimal' | 'ThreeColumnMinimalBlack' | 'slider';
   tagline?: string;
   heading?: string;
   description?: string;
@@ -236,6 +236,72 @@ export function LogoSection({
               </div>
             </div>
             
+          </div>
+        );
+
+      case 'slider':
+        const validLogos = logoImages.filter(logo => logo);
+        const defaultLogos = [
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/microsoft.svg',
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/google.svg',
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/amazon.svg',
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/apple.svg',
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/netflix.svg',
+          'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v9/icons/spotify.svg'
+        ];
+        const slidingLogos = validLogos.length > 0 ? [...validLogos, ...validLogos] : [...defaultLogos, ...defaultLogos];
+        
+        return (
+          <div className="container-padding-x container mx-auto">
+            <div className="flex flex-col items-center gap-12 md:gap-16">
+              <div className="section-title-gap-lg flex max-w-xl flex-col items-center text-center">
+                <Tagline>{tagline}</Tagline>
+                <h2 className="heading-lg text-foreground">
+                  {heading}
+                </h2>
+                <p className="text-muted-foreground">
+                  {description}
+                </p>
+              </div>
+
+              <div className="w-full overflow-hidden">
+                <div className="flex animate-slide gap-8 md:gap-16 hover:paused">
+                  {slidingLogos.map((logo, index) => (
+                    <div 
+                      key={index} 
+                      className="flex-shrink-0 flex items-center justify-center w-32 md:w-40 h-16 md:h-20"
+                    >
+                      {logo ? (
+                        <img
+                          src={logo}
+                          alt={`Company logo ${(index % 6) + 1}`}
+                          className="h-12 md:h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                      ) : (
+                        <div className="h-12 md:h-16 w-full bg-muted-foreground/20 flex items-center justify-center rounded">
+                          <div className="text-muted-foreground text-xs text-center">
+                            <svg
+                              className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span className="text-xs">Logo {(index % 6) + 1}</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         );
           
