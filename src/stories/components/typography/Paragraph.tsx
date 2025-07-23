@@ -62,10 +62,10 @@ export const Paragraph = ({
 
   // Color classes
   const colorClasses = {
-    default: 'text-foreground',
-    muted: 'text-muted-foreground',
-    subtle: 'text-muted-foreground/70',
-    accent: 'text-primary',
+    default: 'text-foreground text-gray-900 dark:text-gray-100',
+    muted: 'text-muted-foreground text-gray-600 dark:text-gray-400',
+    subtle: 'text-muted-foreground/70 text-gray-500 dark:text-gray-500',
+    accent: 'text-primary text-blue-600 dark:text-blue-400',
   };
 
   // Line height classes
@@ -114,9 +114,9 @@ export const Paragraph = ({
   return (
     <p
       className={cn(
-        // Base shadcn paragraph styles
-        'leading-7 [&:not(:first-child)]:mt-6',
-        // Custom variants
+        // Base shadcn paragraph styles - but don't let them override our custom classes
+        '[&:not(:first-child)]:mt-6',
+        // Custom variants (these should take precedence)
         sizeClasses[size],
         weightClasses[weight],
         colorClasses[color],

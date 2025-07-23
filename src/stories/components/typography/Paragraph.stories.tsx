@@ -118,7 +118,7 @@ const meta = {
     },
   },
   args: {
-    text: 'This is a sample paragraph demonstrating the typography component. It shows how text appears with different styling options and can be customized using the various controls available in Storybook.',
+    text: 'This contemporary kitchen remodel in Minnetonka represents a complete transformation from a dated, compartmentalized space into an open, light-filled hub of the home.',
     size: 'base',
     weight: 'normal',
     color: 'default',
@@ -169,17 +169,51 @@ export const Docs: Story = {
 
 // Primary story with core controls
 export const Primary: Story = {
+  render: (args) => <Paragraph {...args} />,
   args: {
-    text: 'This is a paragraph component that demonstrates the core typography controls available for designers.',
+    text: 'Our design approach focused on creating seamless flow between cooking, dining, and entertaining areas while maximizing both functionality and aesthetic appeal.',
     size: 'base',
     weight: 'normal',
     color: 'default',
     lineHeight: 'normal',
+    maxWidth: 'none',
+    align: 'left',
+    fontFamily: 'sans',
   },
   parameters: {
     controls: {
       exclude: ['defaultColor', 'mutedColor', 'accentColor', 'className'],
     },
+  },
+}
+
+// Test Controls - Simple story to verify all controls work
+export const TestControls: Story = {
+  render: (args) => (
+    <div className="space-y-4">
+      <div className="p-4 border border-gray-200 rounded">
+        <h3 className="text-sm font-semibold mb-2">Test all controls below:</h3>
+        <Paragraph {...args} />
+      </div>
+      <div className="text-xs text-gray-500">
+        <p><strong>Current settings:</strong></p>
+        <p>Size: {args.size}, Weight: {args.weight}, Color: {args.color}</p>
+        <p>Line Height: {args.lineHeight}, Font: {args.fontFamily}, Align: {args.align}</p>
+      </div>
+    </div>
+  ),
+  args: {
+    text: 'Change the controls above and watch this text transform! Try different sizes, weights, colors, and alignments.',
+    size: 'base',
+    weight: 'normal',
+    color: 'default',
+    lineHeight: 'normal',
+    maxWidth: 'none',
+    align: 'left',
+    fontFamily: 'sans',
+  },
+  parameters: {
+    layout: 'padded',
   },
 }
 
@@ -189,44 +223,42 @@ export const AllSizes: Story = {
     color: 'default',
     weight: 'normal',
     lineHeight: 'normal',
+    align: 'left',
+    fontFamily: 'sans',
+    maxWidth: 'none',
   },
-  render: ({ color, weight, lineHeight }) => {
+  render: (args) => {
+    const { color, weight, lineHeight, align, fontFamily, maxWidth } = args;
     return (
       <div className="space-y-4">
         <div>
-          <Paragraph size="xs" color={color} weight={weight} lineHeight={lineHeight}>
-            Extra Small (12px) - This paragraph demonstrates the xs size variant.
-          </Paragraph>
+          <Paragraph size="xs" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="Extra Small (12px) - This contemporary kitchen remodel demonstrates the xs size variant." />
           <p className="text-xs text-muted-foreground mt-1">size="xs"</p>
         </div>
         <div>
-          <Paragraph size="sm" color={color} weight={weight} lineHeight={lineHeight}>
-            Small (14px) - This paragraph demonstrates the sm size variant.
-          </Paragraph>
+          <Paragraph size="sm" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="Small (14px) - This luxury bathroom renovation demonstrates the sm size variant." />
           <p className="text-xs text-muted-foreground mt-1">size="sm"</p>
         </div>
         <div>
-          <Paragraph size="base" color={color} weight={weight} lineHeight={lineHeight}>
-            Base (16px) - This paragraph demonstrates the base size variant, which is the default.
-          </Paragraph>
+          <Paragraph size="base" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="Base (16px) - This award-winning living space design demonstrates the base size variant, which is the default." />
           <p className="text-xs text-muted-foreground mt-1">size="base" (default)</p>
         </div>
         <div>
-          <Paragraph size="lg" color={color} weight={weight} lineHeight={lineHeight}>
-            Large (18px) - This paragraph demonstrates the lg size variant for emphasis.
-          </Paragraph>
+          <Paragraph size="lg" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="Large (18px) - This custom millwork project demonstrates the lg size variant for emphasis." />
           <p className="text-xs text-muted-foreground mt-1">size="lg"</p>
         </div>
         <div>
-          <Paragraph size="xl" color={color} weight={weight} lineHeight={lineHeight}>
-            Extra Large (20px) - This paragraph demonstrates the xl size variant.
-          </Paragraph>
+          <Paragraph size="xl" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="Extra Large (20px) - This premium material selection demonstrates the xl size variant." />
           <p className="text-xs text-muted-foreground mt-1">size="xl"</p>
         </div>
         <div>
-          <Paragraph size="2xl" color={color} weight={weight} lineHeight={lineHeight}>
-            2X Large (24px) - This paragraph demonstrates the 2xl size variant.
-          </Paragraph>
+          <Paragraph size="2xl" color={color} weight={weight} lineHeight={lineHeight} align={align} fontFamily={fontFamily} maxWidth={maxWidth}
+            text="2X Large (24px) - This sophisticated transformation demonstrates the 2xl size variant." />
           <p className="text-xs text-muted-foreground mt-1">size="2xl"</p>
         </div>
       </div>
@@ -243,34 +275,31 @@ export const AllSizes: Story = {
 // Color variants story
 export const ColorVariants: Story = {
   args: {
+    size: 'base',
+    weight: 'normal',
+    lineHeight: 'normal',
+    align: 'left',
+    fontFamily: 'sans',
+    maxWidth: 'none',
     defaultColor: '#000000',
     mutedColor: '#6b7280',
     accentColor: '#3b82f6',
   },
-  render: () => (
+  render: (args) => (
     <div className="space-y-4">
       <div>
-        <Paragraph color="default" size="base">
-          Default Color - This paragraph uses the default text color for primary content.
-        </Paragraph>
+        <Paragraph {...args} color="default" 
+          text="Default Color - This contemporary kitchen transformation uses the default text color for primary content." />
         <p className="text-xs text-muted-foreground mt-1">color="default"</p>
       </div>
       <div>
-        <Paragraph color="muted" size="base">
-          Muted Color - This paragraph uses muted text color for secondary content.
-        </Paragraph>
+        <Paragraph {...args} color="muted"
+          text="Muted Color - This luxury bathroom renovation uses muted text color for secondary content." />
         <p className="text-xs text-muted-foreground mt-1">color="muted"</p>
       </div>
       <div>
-        <Paragraph color="subtle" size="base">
-          Subtle Color - This paragraph uses an even more subtle color for tertiary content.
-        </Paragraph>
-        <p className="text-xs text-muted-foreground mt-1">color="subtle"</p>
-      </div>
-      <div>
-        <Paragraph color="accent" size="base">
-          Accent Color - This paragraph uses the accent/brand color for highlighted content.
-        </Paragraph>
+        <Paragraph {...args} color="accent"
+          text="Accent Color - This award-winning design uses the accent/brand color for highlighted content." />
         <p className="text-xs text-muted-foreground mt-1">color="accent"</p>
       </div>
     </div>
@@ -300,38 +329,38 @@ export const ColorVariants: Story = {
 
 // Weight variants story
 export const WeightVariants: Story = {
-  render: ({ size = 'base', color = 'default' }) => (
+  args: {
+    size: 'base',
+    color: 'default',
+    lineHeight: 'normal',
+    align: 'left',
+    fontFamily: 'sans',
+    maxWidth: 'none',
+  },
+  render: (args) => (
     <div className="space-y-4">
       <div>
-        <Paragraph size={size} color={color} weight="normal">
-          Normal Weight - This paragraph demonstrates normal font weight for regular text.
-        </Paragraph>
+        <Paragraph {...args} weight="normal"
+          text="Normal Weight - This contemporary kitchen transformation demonstrates normal font weight for regular text." />
         <p className="text-xs text-muted-foreground mt-1">weight="normal" (default)</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} weight="medium">
-          Medium Weight - This paragraph demonstrates medium font weight for emphasis.
-        </Paragraph>
+        <Paragraph {...args} weight="medium"
+          text="Medium Weight - This luxury bathroom renovation demonstrates medium font weight for emphasis." />
         <p className="text-xs text-muted-foreground mt-1">weight="medium"</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} weight="semibold">
-          Semibold Weight - This paragraph demonstrates semibold font weight for strong emphasis.
-        </Paragraph>
+        <Paragraph {...args} weight="semibold"
+          text="Semibold Weight - This custom millwork project demonstrates semibold font weight for strong emphasis." />
         <p className="text-xs text-muted-foreground mt-1">weight="semibold"</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} weight="bold">
-          Bold Weight - This paragraph demonstrates bold font weight for maximum emphasis.
-        </Paragraph>
+        <Paragraph {...args} weight="bold"
+          text="Bold Weight - This award-winning design demonstrates bold font weight for maximum emphasis." />
         <p className="text-xs text-muted-foreground mt-1">weight="bold"</p>
       </div>
     </div>
   ),
-  args: {
-    size: 'base',
-    color: 'default',
-  },
   parameters: {
     layout: 'padded',
     controls: {
@@ -342,38 +371,38 @@ export const WeightVariants: Story = {
 
 // Line height variants story
 export const LineHeightVariants: Story = {
-  render: ({ size = 'base', color = 'default' }) => (
+  args: {
+    size: 'base',
+    color: 'default',
+    weight: 'normal',
+    align: 'left',
+    fontFamily: 'sans',
+    maxWidth: 'none',
+  },
+  render: (args) => (
     <div className="space-y-6">
       <div>
-        <Paragraph size={size} color={color} lineHeight="tight">
-          Tight Line Height - This paragraph demonstrates tight line height which reduces the space between lines for a more compact appearance. It's useful when you need to conserve vertical space.
-        </Paragraph>
+        <Paragraph {...args} lineHeight="tight"
+          text="Tight Line Height - This contemporary kitchen remodel demonstrates tight line height which reduces the space between lines for a more compact appearance in luxury design presentations." />
         <p className="text-xs text-muted-foreground mt-1">lineHeight="tight"</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} lineHeight="normal">
-          Normal Line Height - This paragraph demonstrates normal line height which provides balanced spacing between lines for good readability. This is the default setting that works well for most content.
-        </Paragraph>
+        <Paragraph {...args} lineHeight="normal"
+          text="Normal Line Height - This award-winning bathroom renovation demonstrates normal line height which provides balanced spacing between lines for good readability in premium design content." />
         <p className="text-xs text-muted-foreground mt-1">lineHeight="normal" (default)</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} lineHeight="relaxed">
-          Relaxed Line Height - This paragraph demonstrates relaxed line height which increases the space between lines for improved readability and a more open, airy feeling in longer text blocks.
-        </Paragraph>
+        <Paragraph {...args} lineHeight="relaxed"
+          text="Relaxed Line Height - This custom millwork project demonstrates relaxed line height which increases the space between lines for improved readability and a more open, airy feeling in sophisticated design portfolios." />
         <p className="text-xs text-muted-foreground mt-1">lineHeight="relaxed"</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} lineHeight="loose">
-          Loose Line Height - This paragraph demonstrates loose line height which provides maximum space between lines for enhanced readability, particularly useful for accessibility or when working with larger text sizes.
-        </Paragraph>
+        <Paragraph {...args} lineHeight="loose"
+          text="Loose Line Height - This luxury living space transformation demonstrates loose line height which provides maximum space between lines for enhanced readability in high-end interior design presentations." />
         <p className="text-xs text-muted-foreground mt-1">lineHeight="loose"</p>
       </div>
     </div>
   ),
-  args: {
-    size: 'base',
-    color: 'default',
-  },
   parameters: {
     layout: 'padded',
     controls: {
@@ -384,21 +413,26 @@ export const LineHeightVariants: Story = {
 
 // Max width and alignment demonstration
 export const LayoutVariants: Story = {
-  render: ({ size = 'base', color = 'default' }) => (
+  args: {
+    size: 'base',
+    color: 'default',
+    weight: 'normal',
+    lineHeight: 'normal',
+    fontFamily: 'sans',
+  },
+  render: (args) => (
     <div className="w-full space-y-8">
       <div>
         <h3 className="text-lg font-semibold mb-4">Max Width Variants</h3>
         <div className="space-y-4">
           <div>
-            <Paragraph size={size} color={color} maxWidth="none" className="bg-muted/20 p-4">
-              No Max Width - This paragraph has no width constraint and will expand to fill the full width of its container, which can make it harder to read on very wide screens.
-            </Paragraph>
+            <Paragraph {...args} maxWidth="none" className="bg-muted/20 p-4"
+              text="No Max Width - This contemporary kitchen transformation has no width constraint and will expand to fill the full width of its container for bold design statements." />
             <p className="text-xs text-muted-foreground mt-1">maxWidth="none"</p>
           </div>
           <div>
-            <Paragraph size={size} color={color} maxWidth="prose" className="bg-muted/20 p-4">
-              Prose Width - This paragraph is constrained to an optimal reading width (around 65 characters) which is considered ideal for readability in longer text blocks.
-            </Paragraph>
+            <Paragraph {...args} maxWidth="prose" className="bg-muted/20 p-4"
+              text="Prose Width - This luxury bathroom renovation is constrained to an optimal reading width (around 65 characters) which is considered ideal for readability in sophisticated design content." />
             <p className="text-xs text-muted-foreground mt-1">maxWidth="prose"</p>
           </div>
         </div>
@@ -408,37 +442,29 @@ export const LayoutVariants: Story = {
         <h3 className="text-lg font-semibold mb-4">Text Alignment</h3>
         <div className="space-y-4">
           <div>
-            <Paragraph size={size} color={color} align="left" className="bg-muted/20 p-4">
-              Left Aligned - This paragraph is aligned to the left, which is the default and most common alignment for body text.
-            </Paragraph>
+            <Paragraph {...args} align="left" className="bg-muted/20 p-4"
+              text="Left Aligned - This award-winning living space is aligned to the left, which is the default and most common alignment for premium design content." />
             <p className="text-xs text-muted-foreground mt-1">align="left" (default)</p>
           </div>
           <div>
-            <Paragraph size={size} color={color} align="center" className="bg-muted/20 p-4">
-              Center Aligned - This paragraph is center aligned, often used for headings or special callout text.
-            </Paragraph>
+            <Paragraph {...args} align="center" className="bg-muted/20 p-4"
+              text="Center Aligned - This custom millwork project is center aligned, often used for elegant headings or special design callouts." />
             <p className="text-xs text-muted-foreground mt-1">align="center"</p>
           </div>
           <div>
-            <Paragraph size={size} color={color} align="right" className="bg-muted/20 p-4">
-              Right Aligned - This paragraph is right aligned, less common but useful for specific design layouts.
-            </Paragraph>
+            <Paragraph {...args} align="right" className="bg-muted/20 p-4"
+              text="Right Aligned - This luxury material selection is right aligned, less common but useful for sophisticated design layouts." />
             <p className="text-xs text-muted-foreground mt-1">align="right"</p>
           </div>
           <div>
-            <Paragraph size={size} color={color} align="justify" className="bg-muted/20 p-4">
-              Justified Text - This paragraph uses justified alignment, where text is stretched to align with both left and right margins, creating even edges on both sides but can sometimes create awkward spacing.
-            </Paragraph>
+            <Paragraph {...args} align="justify" className="bg-muted/20 p-4"
+              text="Justified Text - This premium interior transformation uses justified alignment, where text is stretched to align with both left and right margins, creating even edges for formal design presentations." />
             <p className="text-xs text-muted-foreground mt-1">align="justify"</p>
           </div>
         </div>
       </div>
     </div>
   ),
-  args: {
-    size: 'base',
-    color: 'default',
-  },
   parameters: {
     layout: 'padded',
     controls: {
@@ -449,32 +475,33 @@ export const LayoutVariants: Story = {
 
 // Font family variants
 export const FontFamilyVariants: Story = {
-  render: ({ size = 'base', color = 'default' }) => (
+  args: {
+    size: 'base',
+    color: 'default',
+    weight: 'normal',
+    lineHeight: 'normal',
+    align: 'left',
+    maxWidth: 'none',
+  },
+  render: (args) => (
     <div className="space-y-4">
       <div>
-        <Paragraph size={size} color={color} fontFamily="sans">
-          Sans Serif - This paragraph uses a sans-serif font family, which is clean and modern. It's the default choice for most web content and provides excellent readability on screens.
-        </Paragraph>
+        <Paragraph {...args} fontFamily="sans"
+          text="Sans Serif - This contemporary kitchen remodel uses a clean, modern sans-serif font family. It's the default choice for luxury interior design content and provides excellent readability." />
         <p className="text-xs text-muted-foreground mt-1">fontFamily="sans" (default)</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} fontFamily="serif">
-          Serif - This paragraph uses a serif font family, which has decorative strokes that can give a more traditional, formal, or literary feel to your content.
-        </Paragraph>
+        <Paragraph {...args} fontFamily="serif"
+          text="Serif - This award-winning bathroom transformation uses an elegant serif font family with decorative strokes that give a sophisticated, formal feel perfect for luxury design presentations." />
         <p className="text-xs text-muted-foreground mt-1">fontFamily="serif"</p>
       </div>
       <div>
-        <Paragraph size={size} color={color} fontFamily="mono">
-          Monospace - This paragraph uses a monospace font family where each character takes up the same width. It's commonly used for code, technical content, or when you need precise character alignment.
-        </Paragraph>
+        <Paragraph {...args} fontFamily="mono"
+          text="Monospace - This custom millwork project uses a monospace font family where each character takes the same width. Perfect for technical specifications and precise measurements in design documentation." />
         <p className="text-xs text-muted-foreground mt-1">fontFamily="mono"</p>
       </div>
     </div>
   ),
-  args: {
-    size: 'base',
-    color: 'default',
-  },
   parameters: {
     layout: 'padded',
     controls: {
