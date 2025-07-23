@@ -12,8 +12,42 @@ const meta: Meta<typeof LogoSection> = {
       },
     },
   },
+  decorators: [
+    (Story, { args }) => (
+      <div style={{ 
+        '--background': args.backgroundColor || '#ffffff',
+        '--foreground': args.headerColor || '#000000',
+        '--muted-foreground': args.textColor || '#666666',
+        backgroundColor: args.backgroundColor || '#ffffff',
+        minHeight: '100vh',
+        width: '100%',
+        padding: 0,
+        margin: 0
+      } as React.CSSProperties}>
+        <style>
+          {`
+            .text-foreground { color: ${args.headerColor || '#000000'} !important; }
+            .text-muted-foreground { color: ${args.textColor || '#666666'} !important; }
+          `}
+        </style>
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
   argTypes: {
+    backgroundColor: {
+      control: { type: 'color' },
+      description: 'Background color for the story canvas',
+    },
+    headerColor: {
+      control: { type: 'color' },
+      description: 'Color for the main heading text',
+    },
+    textColor: {
+      control: { type: 'color' },
+      description: 'Color for tagline and paragraph text',
+    },
     variant: {
       control: { type: 'select' },
       options: ['default', 'ThreeColumn', 'TwoColumn', 'TwoColumnBlack', 'ThreeColumnMinimal', 'ThreeColumnMinimalBlack', 'slider'],
@@ -61,6 +95,9 @@ const meta: Meta<typeof LogoSection> = {
     },
   },
   args: {
+    backgroundColor: '#ffffff',
+    headerColor: '#000000',
+    textColor: '#666666',
     variant: 'default',
     tagline: 'Logo section',
     heading: 'Showcase that builds trust',
@@ -86,6 +123,9 @@ export const Default: Story = {
 export const ThreeColumn: Story = {
   args: {
     variant: 'ThreeColumn',
+    backgroundColor: "#ffffff",
+    headerColor: "#000000",
+    textColor: "#666666"
   },
 };
 
