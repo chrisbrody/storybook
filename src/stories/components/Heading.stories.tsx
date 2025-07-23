@@ -145,7 +145,7 @@ export const AllLevels: Story = {
     color: 'default',
     weight: 'default',
   },
-  render: ({ color, weight, defaultColor, primaryColor, mutedColor }) => {
+  render: ({ color, weight }) => {
     return (
       <div className="space-y-6">
         <div>
@@ -217,7 +217,7 @@ export const ColorVariants: Story = {
     primaryColor: '#3b82f6', 
     mutedColor: '#6b7280',
   },
-  render: ({ defaultColor, primaryColor, mutedColor }) => (
+  render: () => (
     <div className="space-y-4">
       <div>
         <ShadcnHeading level="h2" size="h2" color="default">Default Color Heading</ShadcnHeading>

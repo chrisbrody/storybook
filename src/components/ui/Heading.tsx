@@ -35,7 +35,7 @@ const headingVariants = cva(
 )
 
 export interface HeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement>,
+  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, 'color'>,
     VariantProps<typeof headingVariants> {
   level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
@@ -48,7 +48,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     return React.createElement(
       Component,
       {
-        className: cn(headingVariants({ size, color, weight, className })),
+        className: cn(headingVariants({ size, color: color as any, weight, className })),
         ref,
         ...props
       }

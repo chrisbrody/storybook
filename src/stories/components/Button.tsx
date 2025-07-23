@@ -1,6 +1,5 @@
 // src/stories/Button.tsx
 // CORRECTED: Only import ShadcnButton and its Props, NOT buttonVariants
-import React from 'react';
 import { Button as ShadcnButton } from '@/components/ui/button';
 import type { ButtonProps as ShadcnButtonProps } from '@/components/ui/button';
 

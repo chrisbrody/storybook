@@ -1,7 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { LogoSection } from '../../slices/logo-section';
+import type { LogoSectionProps } from '../../slices/logo-section';
 
-const meta: Meta<typeof LogoSection> = {
+// Extend LogoSectionProps with Storybook-specific color controls
+interface LogoSectionStoryProps extends LogoSectionProps {
+  backgroundColor?: string;
+  headerColor?: string;
+  textColor?: string;
+}
+
+const meta: Meta<LogoSectionStoryProps> = {
   title: 'Slices/Logo Section',
   component: LogoSection,
   parameters: {
@@ -113,7 +121,7 @@ const meta: Meta<typeof LogoSection> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof LogoSection>;
+type Story = StoryObj<LogoSectionStoryProps>;
 
 export const Default: Story = {
   args: {
