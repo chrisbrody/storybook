@@ -14,11 +14,15 @@ export interface RichTextSectionProps {
   authorRole?: string;
   authorAvatar?: string;
   featuredImage?: string;
+  inlineImage1?: string;
+  inlineImage2?: string;
   content?: {
-    type: 'paragraph' | 'heading' | 'blockquote' | 'list';
+    type: 'paragraph' | 'heading' | 'blockquote' | 'list' | 'image';
     level?: 2 | 3;
     text?: string;
     items?: string[];
+    src?: string;
+    alt?: string;
   }[];
   className?: string;
   fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
@@ -33,6 +37,8 @@ export function RichTextSection({
   authorRole = 'Interior Design Studio',
   authorAvatar = 'https://github.com/shadcn.png',
   featuredImage = 'https://ui.shadcn.com/placeholder.svg',
+  inlineImage1,
+  inlineImage2,
   content = [
     {
       type: 'paragraph',
@@ -155,6 +161,19 @@ export function RichTextSection({
                 <li key={`${key}-item-${listIndex}`}>{listItem}</li>
               ))}
             </ul>
+          );
+
+        case 'image':
+          const imageIndex = parseInt(item.src?.replace('inline', '') || '1');
+          const imageSrc = imageIndex === 1 ? inlineImage1 : imageIndex === 2 ? inlineImage2 : item.src;
+          return (
+            <AspectRatio key={key} ratio={16 / 10} className="my-6">
+              <img
+                src={imageSrc || 'https://ui.shadcn.com/placeholder.svg'}
+                alt={item.alt || 'Inline content image'}
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </AspectRatio>
           );
           
         default:

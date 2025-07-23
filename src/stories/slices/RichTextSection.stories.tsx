@@ -44,16 +44,24 @@ const meta: Meta<typeof RichTextSection> = {
       description: 'Author role/position',
     },
     authorAvatar: {
-      control: 'text',
-      description: 'URL for author avatar image',
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload author avatar image (PNG, JPG, JPEG, GIF, WebP)',
     },
     featuredImage: {
-      control: 'text',
-      description: 'URL for the featured article image',
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload featured article image (PNG, JPG, JPEG, GIF, WebP)',
     },
     content: {
       control: 'object',
-      description: 'Array of content blocks with different types (paragraph, heading, blockquote, list)',
+      description: 'Array of content blocks with different types (paragraph, heading, blockquote, list, image)',
+    },
+    inlineImage1: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload inline content image 1 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    inlineImage2: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload inline content image 2 (PNG, JPG, JPEG, GIF, WebP)',
     },
     className: {
       control: 'text',
@@ -117,6 +125,11 @@ const meta: Meta<typeof RichTextSection> = {
         text: 'The result is a sophisticated yet comfortable space that has truly become the heart of the home. Natural light floods the space through enlarged windows, while the neutral color palette with warm wood accents creates an inviting atmosphere that works beautifully for both everyday family life and special occasions.'
       },
       {
+        type: 'image',
+        src: 'inline1',
+        alt: 'Kitchen interior showing the completed transformation'
+      },
+      {
         type: 'heading',
         level: 3,
         text: 'Materials & Finishes'
@@ -128,6 +141,11 @@ const meta: Meta<typeof RichTextSection> = {
       {
         type: 'paragraph',
         text: 'The transformation has exceeded our clients\' expectations, creating a space that perfectly balances style, functionality, and livability. This kitchen now serves as the perfect backdrop for everything from quiet morning coffee to lively dinner parties with friends and family.'
+      },
+      {
+        type: 'image',
+        src: 'inline2',
+        alt: 'Detail shot of the kitchen materials and finishes'
       }
     ],
     fontFamily: 'Inter',
