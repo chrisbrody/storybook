@@ -10,7 +10,7 @@ interface SliderSectionStoryProps extends SliderSectionProps {
 }
 
 const meta: Meta<SliderSectionStoryProps> = {
-  title: 'Slices/Slider Section',
+  title: 'Components/Slider',
   component: SliderSection,
   parameters: {
     layout: 'fullscreen',
