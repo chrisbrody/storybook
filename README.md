@@ -1,69 +1,302 @@
-# React + TypeScript + Vite
+# Eminent Interior Design - Storybook Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive React-based UI component library for **Eminent Interior Design**, a luxury interior design studio. Built with Storybook for component development, documentation, and testing. All components are designed to reflect the sophisticated, premium aesthetic of high-end interior design work.
 
-Currently, two official plugins are available:
+## 🏗️ Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project follows a **slice-based architecture** where components are organized as reusable slices that can be composed into larger layouts. Components are built on **shadcn/ui** foundations and styled with Tailwind CSS for consistency and best practices.
 
-## Expanding the ESLint configuration
+## 🎨 Design System
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Foundation**: shadcn/ui component library
+- **Styling**: Tailwind CSS with custom luxury design tokens
+- **Typography**: Multiple font family options (Inter, Roboto, Open Sans, Playfair Display, Source Code Pro)
+- **Theme**: Dark mode support with sophisticated color palettes
+- **Content**: All examples focus on luxury interior design projects and high-end residential work
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Components Overview
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Core UI Components (`src/components/ui/`)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**With Storybook Documentation:**
+- **Typography Components**: Heading, Paragraph, Display Text, Lead Text, Small Text, Caption
+- **Interactive Elements**: Button, Link, Dropdown Menu
+- **Content Components**: Badge, Blockquote, Quote Attribution, Inline Code
+- **Form Components**: Calendar
+- **Data Components**: List Typography
+- **Feedback Components**: Alert
+- **Interactive Components**: Slider
+
+**Additional Components Available:**
+- **Layout Components**: Card, Separator, Sheet
+- **Form Components**: Input
+- **Media Components**: Avatar, Aspect Ratio, Logo
+- **Navigation Components**: Accordion
+- **Interactive Components**: Carousel
+- **Typography Extensions**: Button Typography, Button Variants, Tagline
+
+### Slice Components (`src/slices/`)
+
+**With Storybook Documentation:**
+
+## 🏠 Header Section (`header/`) ✅
+Complete website header with navigation and branding.
+
+**Features:**
+- Logo integration with tagline support
+- Responsive navigation menu
+- Professional header layout for luxury design studios
+
+## 🎯 Hero Section (`hero-section/`) ✅
+Primary landing section for showcasing interior design work.
+
+**Features:**
+- Large hero content area
+- Call-to-action integration
+- Premium visual layouts for luxury branding
+
+## 🧭 Navbar (`navbar/`) ✅
+Responsive navigation component for site-wide navigation.
+
+**Features:**
+- Mobile-responsive design
+- Clean, professional navigation structure
+- Integration with header components
+
+## 🏷️ Logo Section (`logo-section/`) ✅
+Dedicated component for logo display and branding.
+
+**Features:**
+- Logo with tagline support
+- Flexible branding layouts
+- Professional presentation for design studios
+
+## ❓ FAQ Section (`faq-section/`) ✅
+Accordion-style FAQ component for client questions.
+
+**Features:**
+- Expandable question/answer format
+- Interior design focused content
+- Clean, accessible accordion interface
+
+## 📝 Rich Text Section (`rich-text-section/`) ✅
+Comprehensive article/blog component with multiple layout variants.
+
+**Available Slices (Components Only - No Storybook Stories Yet):**
+
+## 🎠 Carousel Section (`carousel-section/`)
+Image gallery carousel for showcasing interior design projects.
+
+**Features:**
+- **6 customizable project images** with drag-and-drop upload support
+- **Project overlay information** with hover effects and project titles
+- **Multiple size variants**: sm, md, lg, xl, full width options
+- **Visual variants**: default, dark, minimal themes
+- **Autoplay functionality** with manual controls
+- **Responsive design** that works on all devices
+- **Luxury project examples**: Kitchen remodels, bathroom transformations, living spaces
+
+**Default Projects Showcased:**
+- Contemporary Kitchen Remodel - Minnetonka
+- Luxury Bathroom Transformation - Wayzata  
+- Modern Living Space - Edina
+- Custom Millwork & Built-ins - Plymouth
+- Award-Winning Master Suite - Excelsior
+- Sophisticated Home Office - Orono
+
+## 🎚️ Slider Section (`slider-section/`)
+Before/after transformation slider for dramatic project reveals.
+
+**Features:**
+- **Interactive before/after slider** with drag control
+- **Visual transformation reveals** showing project progression
+- **Premium project examples** with before/after photography
+- **Smooth slider interaction** with position control
+- **Project information overlay** with studio branding
+- **Multiple size variants** for different layout needs
+- **Responsive design** that works across all devices
+
+**Perfect for showcasing:**
+- Kitchen transformations
+- Bathroom renovations
+- Living space makeovers
+- Any dramatic interior design transformation
+
+---
+
+## 📝 Rich Text Section Variants (Detailed)
+
+### Variant 1: Default
+**Features:**
+- **Clean article layout** with featured image
+- **Author information** with avatar and credentials
+- **Inline images** (2) embedded within content
+- **Rich content support**: headings, paragraphs, blockquotes, lists
+- **Typography controls** with multiple font family options
+- **Responsive design** optimized for reading
+
+### Variant 2: With Carousel  
+**Features:**
+- **Split layout**: Content (left) + Image carousel (right)
+- **6-image carousel** with luxury project photography
+- **Mobile responsive**: Carousel moves above content on mobile
+- **Project information overlays** with hover effects
+- **Sticky positioning** for optimal viewing experience
+- **All Default variant features** plus carousel integration
+
+### Variant 3: With Sidebar ⭐ **NEW**
+**Features:**
+- **Professional article layout**: 3/4 content + 1/4 sidebar
+- **Table of contents sidebar** with "On this page" navigation
+- **Smooth scrolling navigation** to content sections
+- **Before/after slider integration** using SliderSection component
+- **Featured image** + **2 inline images** + **slider** support
+- **Jump-to-section functionality** with smooth scroll behavior
+- **Sticky sidebar** that follows scroll position
+- **Perfect for long-form content** and detailed project case studies
+
+**Content Types Supported:**
+- Paragraphs with custom typography
+- Headings (H2, H3) with anchor links
+- Blockquotes for client testimonials
+- Bulleted lists for project details
+- Inline images for project photography
+- Before/after sliders for transformations
+
+**All Rich Text Variants Include:**
+- **Ultra-luxury project imagery** reflecting 6-figure+ interior design work
+- **Premium material showcases**: Calacatta marble, custom millwork, designer fixtures
+- **High-end project examples**: Minnetonka kitchen remodel, Wayzata bathroom transformation
+- **Professional content structure** for luxury interior design marketing
+- **Mobile-optimized layouts** for all device types
+
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Development Server
+```bash
+npm run dev
 ```
+
+### Storybook Development
+```bash
+npm run storybook
+```
+
+### Build
+```bash
+npm run build
+```
+
+### Build Storybook
+```bash
+npm run build-storybook
+```
+
+## 📚 Storybook Integration
+
+All components include comprehensive Storybook documentation with:
+
+- **Interactive controls** for all component props
+- **Multiple story variants** showing different use cases
+- **Accessibility testing** with `@storybook/addon-a11y`
+- **Responsive design previews** across device sizes
+- **Dark mode support** with theme switching
+- **File upload controls** for image customization
+- **Real-time prop editing** and preview
+
+## 🎯 Usage Examples
+
+### Carousel Section
+```tsx
+<CarouselSection
+  variant="default"
+  size="lg"
+  tagline="Project Gallery"
+  heading="Luxury Interior Design Portfolio"
+  description="Explore our award-winning projects..."
+  autoplay={false}
+/>
+```
+
+### Rich Text Section - Sidebar Variant
+```tsx
+<RichTextSection
+  variant="with-sidebar"
+  title="Contemporary Kitchen Remodel - Minnetonka"
+  description="A stunning transformation..."
+  beforeImage="before-photo.jpg"
+  afterImage="after-photo.jpg"
+  content={[
+    { type: 'heading', level: 2, text: 'Design Vision', id: 'design-vision' },
+    { type: 'paragraph', text: 'Our approach...' },
+    { type: 'slider' },
+    // ... more content
+  ]}
+/>
+```
+
+### Slider Section
+```tsx
+<SliderSection
+  variant="default"
+  size="lg"
+  tagline="Transformation Gallery"
+  heading="Before & After Reveals"
+  beforeImage="kitchen-before.jpg"
+  afterImage="kitchen-after.jpg"
+  projectTitle="Kitchen Transformation - Minnetonka"
+/>
+```
+
+## 🎨 Customization
+
+### Typography
+- **5 font families** available: Inter, Roboto, Open Sans, Playfair Display, Source Code Pro
+- **Responsive typography** scales across device sizes
+- **Consistent spacing** and line-height ratios
+
+### Theming
+- **Dark mode support** across all components
+- **CSS custom properties** for easy theme customization
+- **Tailwind CSS integration** for utility-first styling
+
+### Content
+- **Luxury interior design focus** with high-end project examples
+- **Customizable imagery** with file upload support in Storybook
+- **Professional copy** reflecting premium interior design services
+
+## 🚀 Deployment
+
+The Storybook is configured for easy deployment to static hosting services:
+
+```bash
+npm run build-storybook
+# Deploy the storybook-static folder
+```
+
+## 📱 Responsive Design
+
+All components are fully responsive with:
+- **Mobile-first approach** using Tailwind CSS breakpoints
+- **Flexible layouts** that adapt to screen sizes
+- **Touch-friendly interactions** for mobile devices
+- **Optimized performance** across all device types
+
+## ♿ Accessibility
+
+- **ARIA labels** and semantic HTML structure
+- **Keyboard navigation** support for all interactive elements
+- **Screen reader compatibility** with proper heading hierarchy
+- **Color contrast compliance** for luxury design aesthetics
+- **Focus management** for complex interactive components
+
+---
