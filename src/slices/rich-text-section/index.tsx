@@ -1,11 +1,13 @@
 "use client";
 
+import * as React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
 export interface RichTextSectionProps {
-  variant?: 'default';
+  variant?: 'default' | 'with-carousel';
   date?: string;
   category?: string;
   title?: string;
@@ -16,6 +18,16 @@ export interface RichTextSectionProps {
   featuredImage?: string;
   inlineImage1?: string;
   inlineImage2?: string;
+  carouselImages?: {
+    src: string | File;
+    alt: string;
+  }[];
+  carouselImage1?: string | File;
+  carouselImage2?: string | File;
+  carouselImage3?: string | File;
+  carouselImage4?: string | File;
+  carouselImage5?: string | File;
+  carouselImage6?: string | File;
   content?: {
     type: 'paragraph' | 'heading' | 'blockquote' | 'list' | 'image';
     level?: 2 | 3;
@@ -29,6 +41,7 @@ export interface RichTextSectionProps {
 }
 
 export function RichTextSection({
+  variant = 'default',
   date = 'Nov 11, 2024',
   category = 'Projects',
   title = 'Contemporary Kitchen Remodel - Minnetonka',
@@ -39,6 +52,13 @@ export function RichTextSection({
   featuredImage = 'https://ui.shadcn.com/placeholder.svg',
   inlineImage1,
   inlineImage2,
+  carouselImages,
+  carouselImage1,
+  carouselImage2,
+  carouselImage3,
+  carouselImage4,
+  carouselImage5,
+  carouselImage6,
   content = [
     {
       type: 'paragraph',
@@ -106,6 +126,62 @@ export function RichTextSection({
   };
 
   const fontStyle = { fontFamily: fontFamilyMap[fontFamily] };
+
+  // Default images from carousel component
+  const defaultCarouselImages = [
+    {
+      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+      alt: "Contemporary Kitchen Remodel - Minnetonka"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      alt: "Luxury Bathroom Transformation - Wayzata"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+      alt: "Modern Living Space - Edina"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop",
+      alt: "Custom Millwork & Built-ins - Plymouth"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+      alt: "Award-Winning Master Suite - Excelsior"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop",
+      alt: "Sophisticated Home Office - Orono"
+    }
+  ];
+
+  // Process carousel images - use defaults if none provided
+  const processedCarouselImages = React.useMemo(() => {
+    // If individual file props are provided, use those first
+    const individualImages = [
+      carouselImage1 && { src: carouselImage1, alt: defaultCarouselImages[0]?.alt || "Project Image 1" },
+      carouselImage2 && { src: carouselImage2, alt: defaultCarouselImages[1]?.alt || "Project Image 2" },
+      carouselImage3 && { src: carouselImage3, alt: defaultCarouselImages[2]?.alt || "Project Image 3" },
+      carouselImage4 && { src: carouselImage4, alt: defaultCarouselImages[3]?.alt || "Project Image 4" },
+      carouselImage5 && { src: carouselImage5, alt: defaultCarouselImages[4]?.alt || "Project Image 5" },
+      carouselImage6 && { src: carouselImage6, alt: defaultCarouselImages[5]?.alt || "Project Image 6" },
+    ].filter(Boolean) as { src: string | File; alt: string }[];
+
+    // Determine which images to use
+    let imagesToUse: { src: string | File; alt: string }[];
+    if (individualImages.length > 0) {
+      imagesToUse = individualImages;
+    } else if (carouselImages && carouselImages.length > 0) {
+      imagesToUse = carouselImages;
+    } else {
+      imagesToUse = defaultCarouselImages;
+    }
+    
+    return imagesToUse.map(image => ({
+      src: typeof image.src === 'string' ? image.src : URL.createObjectURL(image.src),
+      alt: image.alt
+    }));
+  }, [carouselImages, carouselImage1, carouselImage2, carouselImage3, carouselImage4, carouselImage5, carouselImage6]);
 
   const renderContent = () => {
     return content.map((item, index) => {
@@ -181,6 +257,97 @@ export function RichTextSection({
       }
     });
   };
+
+  if (variant === 'with-carousel') {
+    return (
+      <section
+        className={cn("bg-background py-16 md:py-24 w-full mobile-overflow-x-hidden", className)}
+        aria-labelledby="article-title"
+      >
+        <div className="mx-auto max-w-7xl px-6 w-full min-w-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left Column - Content */}
+            <div className="flex flex-col gap-8 lg:sticky lg:top-8">
+              <div className="flex flex-col gap-4 md:gap-5">
+                <div className="flex items-center gap-2 flex-wrap min-w-0">
+                  <p className="text-muted-foreground text-sm break-words" style={fontStyle}>{date}</p>
+                  <span
+                    className="text-muted-foreground text-sm flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    ·
+                  </span>
+                  <p className="text-muted-foreground text-sm break-words" style={fontStyle}>{category}</p>
+                </div>
+
+                <h1 id="article-title" className="heading-xl break-words hyphens-auto" style={fontStyle}>
+                  {title}
+                </h1>
+
+                <p className="text-muted-foreground text-lg break-words hyphens-auto" style={fontStyle}>
+                  {description}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage
+                    src={authorAvatar}
+                    alt={authorName}
+                  />
+                </Avatar>
+                <div className="flex flex-col min-w-0">
+                  <p className="text-sm font-medium break-words" style={fontStyle}>{authorName}</p>
+                  <p className="text-muted-foreground text-sm break-words" style={fontStyle}>
+                    {authorRole}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {renderContent()}
+              </div>
+            </div>
+
+            {/* Right Column - Carousel */}
+            <div className="lg:sticky lg:top-8">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {processedCarouselImages.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                        <div className="relative overflow-hidden rounded-xl">
+                          <AspectRatio ratio={16 / 10}>
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                              <div className="absolute bottom-4 left-4 text-white">
+                                <h3 className="font-semibold text-lg mb-1" style={fontStyle}>
+                                  {image.alt}
+                                </h3>
+                                <p className="text-sm text-gray-200" style={fontStyle}>
+                                  Eminent Interior Design
+                                </p>
+                              </div>
+                            </div>
+                          </AspectRatio>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4" />
+                <CarouselNext className="right-4" />
+              </Carousel>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

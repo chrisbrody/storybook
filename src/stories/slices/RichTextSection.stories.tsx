@@ -16,7 +16,7 @@ const meta: Meta<typeof RichTextSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default'],
+      options: ['default', 'with-carousel'],
       description: 'Layout variant for the rich text section',
     },
     date: {
@@ -62,6 +62,34 @@ const meta: Meta<typeof RichTextSection> = {
     inlineImage2: {
       control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
       description: 'Upload inline content image 2 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImages: {
+      control: 'object',
+      description: 'Array of images for carousel variant with src and alt properties',
+    },
+    carouselImage1: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 1 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImage2: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 2 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImage3: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 3 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImage4: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 4 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImage5: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 5 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    carouselImage6: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload carousel image 6 (PNG, JPG, JPEG, GIF, WebP)',
     },
     className: {
       control: 'text',
@@ -157,4 +185,61 @@ type Story = StoryObj<typeof RichTextSection>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const WithCarousel: Story = {
+  args: {
+    variant: 'with-carousel',
+    date: 'Dec 15, 2024',
+    category: 'Featured Projects',
+    title: 'Luxury Bathroom Transformation - Wayzata',
+    description: 'This luxury bathroom renovation showcases premium materials and sophisticated design elements that create a spa-like retreat in this Wayzata residence. Every detail was carefully curated to reflect timeless elegance and modern functionality.',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'This Wayzata bathroom transformation represents the pinnacle of luxury residential design. Our clients desired a sophisticated retreat that would serve as a daily sanctuary while maintaining the timeless elegance befitting their historic home. The result is a masterful blend of contemporary functionality and classic luxury.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Design Philosophy',
+      },
+      {
+        type: 'paragraph',
+        text: 'Our approach centered on creating a serene, spa-like environment using the finest materials and most thoughtful design elements. The space needed to feel both grand and intimate, offering moments of quiet luxury within the busy rhythms of daily life.',
+      },
+      {
+        type: 'blockquote',
+        text: 'We wanted a space that felt like a five-star resort spa, but completely personal to our lifestyle and aesthetic preferences.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Premium Materials Selection',
+      },
+      {
+        type: 'list',
+        items: [
+          'Calacatta Gold marble for vanity countertops and accent walls',
+          'Natural travertine flooring with radiant heating system',
+          'Custom millwork in rich walnut with integrated storage',
+          'Brushed gold fixtures and hardware throughout',
+          'Floor-to-ceiling windows with automated privacy glass',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'The transformation has created a truly exceptional space that elevates the daily ritual of self-care. Natural light floods the room through strategically placed windows, while the carefully curated material palette creates a sense of warmth and luxury that our clients enjoy every day.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Innovative Features',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beyond aesthetic beauty, this bathroom incorporates cutting-edge technology and wellness features. The steam shower with chromotherapy lighting, heated floors, and smart mirror with integrated display create a truly modern luxury experience. Every element was selected to enhance both form and function.',
+      },
+    ],
+  },
 };
