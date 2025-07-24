@@ -110,7 +110,7 @@ const meta: Meta<typeof RichTextSection> = {
     authorName: 'Eminent Interior Design',
     authorRole: 'Interior Design Studio',
     authorAvatar: 'https://github.com/shadcn.png',
-    featuredImage: 'https://ui.shadcn.com/placeholder.svg',
+    featuredImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop',
     content: [
       {
         type: 'paragraph',
@@ -185,6 +185,16 @@ type Story = StoryObj<typeof RichTextSection>;
 
 export const Default: Story = {
   args: {},
+  argTypes: {
+    // Hide carousel-specific controls for default variant
+    carouselImages: { table: { disable: true } },
+    carouselImage1: { table: { disable: true } },
+    carouselImage2: { table: { disable: true } },
+    carouselImage3: { table: { disable: true } },
+    carouselImage4: { table: { disable: true } },
+    carouselImage5: { table: { disable: true } },
+    carouselImage6: { table: { disable: true } },
+  },
 };
 
 export const WithCarousel: Story = {
@@ -207,6 +217,11 @@ export const WithCarousel: Story = {
       {
         type: 'paragraph',
         text: 'Our approach centered on creating a serene, spa-like environment using the finest materials and most thoughtful design elements. The space needed to feel both grand and intimate, offering moments of quiet luxury within the busy rhythms of daily life.',
+      },
+      {
+        type: 'image',
+        src: 'inline1',
+        alt: 'Before transformation - original bathroom layout',
       },
       {
         type: 'blockquote',
@@ -232,6 +247,11 @@ export const WithCarousel: Story = {
         text: 'The transformation has created a truly exceptional space that elevates the daily ritual of self-care. Natural light floods the room through strategically placed windows, while the carefully curated material palette creates a sense of warmth and luxury that our clients enjoy every day.',
       },
       {
+        type: 'image',
+        src: 'inline2',
+        alt: 'Calacatta Gold marble vanity with walnut millwork details',
+      },
+      {
         type: 'heading',
         level: 3,
         text: 'Innovative Features',
@@ -241,5 +261,9 @@ export const WithCarousel: Story = {
         text: 'Beyond aesthetic beauty, this bathroom incorporates cutting-edge technology and wellness features. The steam shower with chromotherapy lighting, heated floors, and smart mirror with integrated display create a truly modern luxury experience. Every element was selected to enhance both form and function.',
       },
     ],
+  },
+  argTypes: {
+    // Hide featured image control for carousel variant (not used in layout)
+    featuredImage: { table: { disable: true } },
   },
 };

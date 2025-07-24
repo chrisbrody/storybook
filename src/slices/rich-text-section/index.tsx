@@ -22,12 +22,12 @@ export interface RichTextSectionProps {
     src: string | File;
     alt: string;
   }[];
-  carouselImage1?: string | File;
-  carouselImage2?: string | File;
-  carouselImage3?: string | File;
-  carouselImage4?: string | File;
-  carouselImage5?: string | File;
-  carouselImage6?: string | File;
+  carouselImage1?: string;
+  carouselImage2?: string;
+  carouselImage3?: string;
+  carouselImage4?: string;
+  carouselImage5?: string;
+  carouselImage6?: string;
   content?: {
     type: 'paragraph' | 'heading' | 'blockquote' | 'list' | 'image';
     level?: 2 | 3;
@@ -48,10 +48,10 @@ export function RichTextSection({
   description = 'A stunning transformation of a traditional kitchen into a modern, functional space that perfectly balances style and practicality for everyday living.',
   authorName = 'Eminent Interior Design',
   authorRole = 'Interior Design Studio',
-  authorAvatar = 'https://github.com/shadcn.png',
-  featuredImage = 'https://ui.shadcn.com/placeholder.svg',
-  inlineImage1,
-  inlineImage2,
+  authorAvatar = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=face',
+  featuredImage = 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
+  inlineImage1 = 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=500&fit=crop',
+  inlineImage2 = 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=500&fit=crop',
   carouselImages,
   carouselImage1,
   carouselImage2,
@@ -72,6 +72,11 @@ export function RichTextSection({
     {
       type: 'paragraph',
       text: 'The homeowners came to us with a clear vision: they wanted a kitchen that would serve as the heart of their home, where family gatherings and dinner parties could unfold naturally. The existing kitchen felt cramped and disconnected from the dining and living areas.'
+    },
+    {
+      type: 'image',
+      src: 'inline1',
+      alt: 'Before transformation - original cramped kitchen layout'
     },
     {
       type: 'blockquote',
@@ -110,6 +115,11 @@ export function RichTextSection({
       text: 'We selected materials that would stand the test of time while reflecting the homeowners\' refined taste. The white oak cabinetry provides warmth and texture, while the Calacatta marble island serves as a stunning focal point. Brushed brass hardware and fixtures add a touch of luxury without feeling ostentatious.'
     },
     {
+      type: 'image',
+      src: 'inline2',
+      alt: 'Calacatta marble island with white oak cabinetry and brass fixtures'
+    },
+    {
       type: 'paragraph',
       text: 'The transformation has exceeded our clients\' expectations, creating a space that perfectly balances style, functionality, and livability. This kitchen now serves as the perfect backdrop for everything from quiet morning coffee to lively dinner parties with friends and family.'
     }
@@ -130,58 +140,45 @@ export function RichTextSection({
   // Default images from carousel component
   const defaultCarouselImages = [
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
       alt: "Contemporary Kitchen Remodel - Minnetonka"
     },
     {
-      src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=600&fit=crop",
       alt: "Luxury Bathroom Transformation - Wayzata"
     },
     {
-      src: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop",
       alt: "Modern Living Space - Edina"
     },
     {
-      src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop",
       alt: "Custom Millwork & Built-ins - Plymouth"
     },
     {
-      src: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=600&fit=crop",
       alt: "Award-Winning Master Suite - Excelsior"
     },
     {
-      src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop",
+      src: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&h=600&fit=crop",
       alt: "Sophisticated Home Office - Orono"
     }
   ];
 
-  // Process carousel images - use defaults if none provided
-  const processedCarouselImages = React.useMemo(() => {
-    // If individual file props are provided, use those first
-    const individualImages = [
-      carouselImage1 && { src: carouselImage1, alt: defaultCarouselImages[0]?.alt || "Project Image 1" },
-      carouselImage2 && { src: carouselImage2, alt: defaultCarouselImages[1]?.alt || "Project Image 2" },
-      carouselImage3 && { src: carouselImage3, alt: defaultCarouselImages[2]?.alt || "Project Image 3" },
-      carouselImage4 && { src: carouselImage4, alt: defaultCarouselImages[3]?.alt || "Project Image 4" },
-      carouselImage5 && { src: carouselImage5, alt: defaultCarouselImages[4]?.alt || "Project Image 5" },
-      carouselImage6 && { src: carouselImage6, alt: defaultCarouselImages[5]?.alt || "Project Image 6" },
-    ].filter(Boolean) as { src: string | File; alt: string }[];
-
-    // Determine which images to use
-    let imagesToUse: { src: string | File; alt: string }[];
-    if (individualImages.length > 0) {
-      imagesToUse = individualImages;
-    } else if (carouselImages && carouselImages.length > 0) {
-      imagesToUse = carouselImages;
-    } else {
-      imagesToUse = defaultCarouselImages;
-    }
-    
-    return imagesToUse.map(image => ({
-      src: typeof image.src === 'string' ? image.src : URL.createObjectURL(image.src),
-      alt: image.alt
-    }));
-  }, [carouselImages, carouselImage1, carouselImage2, carouselImage3, carouselImage4, carouselImage5, carouselImage6]);
+  // Blend uploaded carousel images with defaults - uploaded images override their slot, others remain default
+  const carouselImagesToShow = [
+    carouselImage1 || defaultCarouselImages[0].src,
+    carouselImage2 || defaultCarouselImages[1].src,
+    carouselImage3 || defaultCarouselImages[2].src,
+    carouselImage4 || defaultCarouselImages[3].src,
+    carouselImage5 || defaultCarouselImages[4].src,
+    carouselImage6 || defaultCarouselImages[5].src
+  ]
+  
+  const processedCarouselImages = carouselImagesToShow.map((src, index) => ({
+    src,
+    alt: defaultCarouselImages[index]?.alt || `Project Image ${index + 1}`
+  }))
 
   const renderContent = () => {
     return content.map((item, index) => {
@@ -304,13 +301,48 @@ export function RichTextSection({
                 </div>
               </div>
 
+              {/* Mobile Carousel - appears after avatar on mobile, hidden on desktop */}
+              <div className="lg:hidden">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {processedCarouselImages.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <div className="relative overflow-hidden rounded-xl">
+                            <AspectRatio ratio={16 / 10}>
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute bottom-4 left-4 text-white">
+                                  <h3 className="font-semibold text-lg mb-1" style={fontStyle}>
+                                    {image.alt}
+                                  </h3>
+                                  <p className="text-sm text-gray-200" style={fontStyle}>
+                                    Eminent Interior Design
+                                  </p>
+                                </div>
+                              </div>
+                            </AspectRatio>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </div>
+
               <div className="flex flex-col gap-6">
                 {renderContent()}
               </div>
             </div>
 
-            {/* Right Column - Carousel */}
-            <div className="lg:sticky lg:top-8">
+            {/* Right Column - Desktop Carousel */}
+            <div className="hidden lg:block lg:sticky lg:top-8">
               <Carousel className="w-full">
                 <CarouselContent>
                   {processedCarouselImages.map((image, index) => (
