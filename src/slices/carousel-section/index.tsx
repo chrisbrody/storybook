@@ -41,12 +41,12 @@ export interface CarouselSectionProps
   tagline?: string
   heading?: string
   description?: string
-  image1?: string | File
-  image2?: string | File  
-  image3?: string | File
-  image4?: string | File
-  image5?: string | File
-  image6?: string | File
+  image1?: string
+  image2?: string  
+  image3?: string
+  image4?: string
+  image5?: string
+  image6?: string
   autoplay?: boolean
 }
 
@@ -69,33 +69,7 @@ export const CarouselSection = React.forwardRef<
   autoplay = false,
   ...props 
 }, ref) => {
-  // Collect images from individual image props
-  const allImages = React.useMemo(() => {
-    const imageList: (string | File)[] = []
-    
-    // Add individual image props - safely handle undefined values
-    const individualImages = [image1, image2, image3, image4, image5, image6].filter(Boolean)
-    individualImages.forEach(img => {
-      if (img) imageList.push(img)
-    })
-    
-    return imageList
-  }, [image1, image2, image3, image4, image5, image6])
-
-  // Convert File objects to URLs for display
-  const displayImages = React.useMemo(() => {
-    return allImages.map(img => {
-      if (typeof img === 'string') {
-        return img
-      } else if (img instanceof File) {
-        return URL.createObjectURL(img)
-      }
-      return ''
-    })
-  }, [allImages])
-
-
-  // Default project images if no images provided
+  // Default project images
   const defaultImages = [
     "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
     "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
@@ -105,7 +79,15 @@ export const CarouselSection = React.forwardRef<
     "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop"
   ]
 
-  const imagesToShow = displayImages.length > 0 ? displayImages : defaultImages
+  // Blend uploaded images with defaults - uploaded images override their slot, others remain default
+  const imagesToShow = [
+    image1 || defaultImages[0],
+    image2 || defaultImages[1], 
+    image3 || defaultImages[2],
+    image4 || defaultImages[3],
+    image5 || defaultImages[4],
+    image6 || defaultImages[5]
+  ]
 
   const projectTitles = [
     "Contemporary Kitchen Remodel - Minnetonka",
