@@ -16,7 +16,7 @@ const meta: Meta<typeof RichTextSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'with-carousel'],
+      options: ['default', 'with-carousel', 'with-sidebar'],
       description: 'Layout variant for the rich text section',
     },
     date: {
@@ -90,6 +90,14 @@ const meta: Meta<typeof RichTextSection> = {
     carouselImage6: {
       control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
       description: 'Upload carousel image 6 (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    beforeImage: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload before transformation image (PNG, JPG, JPEG, GIF, WebP)',
+    },
+    afterImage: {
+      control: { type: 'file', accept: '.png,.jpg,.jpeg,.gif,.webp' },
+      description: 'Upload after transformation image (PNG, JPG, JPEG, GIF, WebP)',
     },
     className: {
       control: 'text',
@@ -265,5 +273,98 @@ export const WithCarousel: Story = {
   argTypes: {
     // Hide featured image control for carousel variant (not used in layout)
     featuredImage: { table: { disable: true } },
+  },
+};
+
+export const WithSidebar: Story = {
+  args: {
+    variant: 'with-sidebar',
+    date: 'Nov 11, 2024',
+    category: 'Projects',
+    title: 'Contemporary Kitchen Remodel - Minnetonka',  
+    description: 'A stunning transformation of a traditional kitchen into a modern, functional space that perfectly balances style and practicality for everyday living.',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'This contemporary kitchen remodel in Minnetonka represents a complete transformation from a dated, compartmentalized space into an open, light-filled hub of the home. Our design approach focused on creating a seamless flow between cooking, dining, and entertaining areas while maximizing both functionality and aesthetic appeal.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Design Vision & Goals',
+        id: 'design-vision-goals'
+      },
+      {
+        type: 'paragraph',
+        text: 'The homeowners came to us with a clear vision: they wanted a kitchen that would serve as the heart of their home, where family gatherings and dinner parties could unfold naturally. The existing kitchen felt cramped and disconnected from the dining and living areas.'
+      },
+      {
+        type: 'image',
+        src: 'inline1',
+        alt: 'Before transformation - original cramped kitchen layout'
+      },
+      {
+        type: 'blockquote',
+        text: 'We wanted a space that felt both sophisticated and welcoming – somewhere our teenagers would want to hang out and do homework, but elegant enough for entertaining our friends.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Key Design Elements',
+        id: 'key-design-elements'
+      },
+      {
+        type: 'paragraph',
+        text: 'Our design strategy centered on several core principles that would transform this space:'
+      },
+      {
+        type: 'list',
+        items: [
+          'Open floor plan connecting kitchen to dining and living areas',
+          'High-end appliances integrated seamlessly into custom cabinetry',
+          'Large island with seating for casual dining and homework',
+          'Premium materials including quartz countertops and hardwood floors',
+          'Strategic lighting design for both task and ambient illumination'
+        ]
+      },
+      {
+        type: 'slider'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Materials & Finishes',
+        id: 'materials-finishes'
+      },
+      {
+        type: 'paragraph',
+        text: 'We selected materials that would stand the test of time while reflecting the homeowners\' refined taste. The white oak cabinetry provides warmth and texture, while the Calacatta marble island serves as a stunning focal point. Brushed brass hardware and fixtures add a touch of luxury without feeling ostentatious.'
+      },
+      {
+        type: 'image',
+        src: 'inline2',
+        alt: 'Calacatta marble island with white oak cabinetry and brass fixtures'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'The Result',
+        id: 'the-result'
+      },
+      {
+        type: 'paragraph',
+        text: 'The transformation has exceeded our clients\' expectations, creating a space that perfectly balances style, functionality, and livability. This kitchen now serves as the perfect backdrop for everything from quiet morning coffee to lively dinner parties with friends and family.'
+      }
+    ],
+  },
+  argTypes: {
+    // Hide carousel-specific controls for sidebar variant
+    carouselImages: { table: { disable: true } },
+    carouselImage1: { table: { disable: true } },
+    carouselImage2: { table: { disable: true } },
+    carouselImage3: { table: { disable: true } },
+    carouselImage4: { table: { disable: true } },
+    carouselImage5: { table: { disable: true } },
+    carouselImage6: { table: { disable: true } },
   },
 };
