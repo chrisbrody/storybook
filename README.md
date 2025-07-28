@@ -92,93 +92,23 @@ Accordion-style FAQ component for client questions.
 ## 📝 Rich Text Section (`rich-text-section/`) ✅
 Comprehensive article/blog component with multiple layout variants.
 
+**Features:**
+- **3 Layout Variants**: Default, With Carousel, With Sidebar
+- **Rich content support**: headings, paragraphs, blockquotes, lists, inline images
+- **Table of contents sidebar** with smooth scrolling navigation
+- **Before/after slider integration** for project transformations
+- **6-image carousel** with luxury project photography
+- **Mobile-responsive layouts** optimized for all device types
+- **Ultra-luxury project imagery** reflecting high-end interior design work
+
 **Available Slices (Components Only - No Storybook Stories Yet):**
 
 ## 🎠 Carousel Section (`carousel-section/`)
-Image gallery carousel for showcasing interior design projects.
-
-**Features:**
-- **6 customizable project images** with drag-and-drop upload support
-- **Project overlay information** with hover effects and project titles
-- **Multiple size variants**: sm, md, lg, xl, full width options
-- **Visual variants**: default, dark, minimal themes
-- **Autoplay functionality** with manual controls
-- **Responsive design** that works on all devices
-- **Luxury project examples**: Kitchen remodels, bathroom transformations, living spaces
-
-**Default Projects Showcased:**
-- Contemporary Kitchen Remodel - Minnetonka
-- Luxury Bathroom Transformation - Wayzata  
-- Modern Living Space - Edina
-- Custom Millwork & Built-ins - Plymouth
-- Award-Winning Master Suite - Excelsior
-- Sophisticated Home Office - Orono
+Image gallery carousel for showcasing interior design projects with 6 customizable project images, multiple size variants, and autoplay functionality.
 
 ## 🎚️ Slider Section (`slider-section/`)
-Before/after transformation slider for dramatic project reveals.
+Interactive before/after transformation slider for dramatic project reveals with drag control and smooth slider interaction.
 
-**Features:**
-- **Interactive before/after slider** with drag control
-- **Visual transformation reveals** showing project progression
-- **Premium project examples** with before/after photography
-- **Smooth slider interaction** with position control
-- **Project information overlay** with studio branding
-- **Multiple size variants** for different layout needs
-- **Responsive design** that works across all devices
-
-**Perfect for showcasing:**
-- Kitchen transformations
-- Bathroom renovations
-- Living space makeovers
-- Any dramatic interior design transformation
-
----
-
-## 📝 Rich Text Section Variants (Detailed)
-
-### Variant 1: Default
-**Features:**
-- **Clean article layout** with featured image
-- **Author information** with avatar and credentials
-- **Inline images** (2) embedded within content
-- **Rich content support**: headings, paragraphs, blockquotes, lists
-- **Typography controls** with multiple font family options
-- **Responsive design** optimized for reading
-
-### Variant 2: With Carousel  
-**Features:**
-- **Split layout**: Content (left) + Image carousel (right)
-- **6-image carousel** with luxury project photography
-- **Mobile responsive**: Carousel moves above content on mobile
-- **Project information overlays** with hover effects
-- **Sticky positioning** for optimal viewing experience
-- **All Default variant features** plus carousel integration
-
-### Variant 3: With Sidebar ⭐ **NEW**
-**Features:**
-- **Professional article layout**: 3/4 content + 1/4 sidebar
-- **Table of contents sidebar** with "On this page" navigation
-- **Smooth scrolling navigation** to content sections
-- **Before/after slider integration** using SliderSection component
-- **Featured image** + **2 inline images** + **slider** support
-- **Jump-to-section functionality** with smooth scroll behavior
-- **Sticky sidebar** that follows scroll position
-- **Perfect for long-form content** and detailed project case studies
-
-**Content Types Supported:**
-- Paragraphs with custom typography
-- Headings (H2, H3) with anchor links
-- Blockquotes for client testimonials
-- Bulleted lists for project details
-- Inline images for project photography
-- Before/after sliders for transformations
-
-**All Rich Text Variants Include:**
-- **Ultra-luxury project imagery** reflecting 6-figure+ interior design work
-- **Premium material showcases**: Calacatta marble, custom millwork, designer fixtures
-- **High-end project examples**: Minnetonka kitchen remodel, Wayzata bathroom transformation
-- **Professional content structure** for luxury interior design marketing
-- **Mobile-optimized layouts** for all device types
 
 ## 🛠️ Development
 
