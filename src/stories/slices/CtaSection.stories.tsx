@@ -52,8 +52,16 @@ const meta: Meta<typeof CtaSection> = {
     },
     layout: {
       control: { type: "select" },
-      options: ["vertical", "horizontal"],
-      description: "Layout variant - vertical (centered) or horizontal (side-by-side)",
+      options: ["vertical", "horizontal", "with-image"],
+      description: "Layout variant - vertical (centered), horizontal (side-by-side), or with-image (image + content)",
+    },
+    imageSrc: {
+      control: { type: "file", accept: ".jpg,.jpeg,.png,.gif,.webp" },
+      description: "Upload an image file for the with-image layout variant",
+    },
+    imageAlt: {
+      control: { type: "text" },
+      description: "Alt text for the image (with-image layout only)",
     },
   },
   args: {
@@ -67,6 +75,8 @@ const meta: Meta<typeof CtaSection> = {
     buttonVariant: "default",
     showArrow: true,
     layout: "vertical",
+    imageSrc: undefined,
+    imageAlt: "Luxury interior design showcase",
   },
 };
 
@@ -80,5 +90,17 @@ export const Horizontal: Story = {
     layout: "horizontal",
     headline: "Award-Winning Interior Design for Luxury Homes",
     buttonText: "View Portfolio",
+  },
+};
+
+export const WithImage: Story = {
+  args: {
+    layout: "with-image",
+    headline: "Transform Your Luxury Home with Expert Interior Design",
+    description: "Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life.",
+    buttonText: "Schedule Consultation",
+    buttonVariant: "ghost",
+    showArrow: true,
+    imageSrc: undefined,
   },
 };
