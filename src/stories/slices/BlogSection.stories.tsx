@@ -179,5 +179,11 @@ export const Minimal: Story = {
     cardGap: "medium",
     hoverEffect: true,
   },
+  argTypes: {
+    // Hide controls not used in Minimal layout
+    gridColumns: { table: { disable: true } },
+    showImages: { table: { disable: true } },
+    imageAspectRatio: { table: { disable: true } },
+  },
 };
 
