@@ -238,30 +238,32 @@ function BlogSection({
     >
       <div className="container-padding-x container mx-auto">
         <div className={cn("flex flex-col gap-10 md:gap-12", isMinimal ? "items-start" : "items-center")}>
-          {/* Section Title */}
-          <div className={cn("section-title-gap-lg flex max-w-xl flex-col", isMinimal ? "" : "mx-auto items-center text-center")}>
-            {/* Tagline */}
-            <Tagline 
-              style={{ color: actualTaglineColor }}
-            >
-              {tagline}
-            </Tagline>
-            {/* Main Heading */}
-            <h1 
-              id="blog-section-heading" 
-              className="heading-lg"
-              style={{ color: textColor }}
-            >
-              {headline}
-            </h1>
-            {/* Description */}
-            <p 
-              className="text-base"
-              style={{ color: actualMetaTextColor }}
-            >
-              {description}
-            </p>
-          </div>
+          {/* Section Title - Hidden for featured variant */}
+          {!isFeatured && (
+            <div className={cn("section-title-gap-lg flex max-w-xl flex-col", isMinimal ? "" : "mx-auto items-center text-center")}>
+              {/* Tagline */}
+              <Tagline 
+                style={{ color: actualTaglineColor }}
+              >
+                {tagline}
+              </Tagline>
+              {/* Main Heading */}
+              <h1 
+                id="blog-section-heading" 
+                className="heading-lg"
+                style={{ color: textColor }}
+              >
+                {headline}
+              </h1>
+              {/* Description */}
+              <p 
+                className="text-base"
+                style={{ color: actualMetaTextColor }}
+              >
+                {description}
+              </p>
+            </div>
+          )}
 
           {/* Blog Grid */}
           {isMinimal ? (
