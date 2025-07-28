@@ -22,7 +22,7 @@ interface BlogPost {
 }
 
 interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
-  variant?: "default" | "minimal" | "reversed" | "featured";
+  variant?: "default" | "minimal" | "reversed" | "featured" | "list";
   backgroundColor?: string;
   textColor?: string;
   taglineColor?: string;
@@ -46,132 +46,50 @@ interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
 const DEFAULT_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "Contemporary Kitchen Remodel - Minnetonka Estate",
-    description: "A stunning transformation of a traditional kitchen into a modern culinary space featuring premium quartz countertops, custom cabinetry, and high-end appliances.",
+    title: "Getting Started with shadcn/ui: A Complete Guide",
+    description: "Learn how to set up and use shadcn/ui components in your development workflow with shadcn/ui's powerful component library.",
     date: "Mar 15, 2024",
-    category: "Kitchen Design",
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&auto=format",
+    category: "Tutorial",
+    image: "https://ui.shadcn.com/placeholder.svg",
+    author: "John Doe",
+    authorImage: "https://github.com/shadcn.png",
+    authorRole: "Developer",
   },
   {
     id: 2,
-    title: "Luxury Master Suite Renovation - Wayzata Residence",
-    description: "Complete bedroom and bathroom transformation featuring custom millwork, marble finishes, and sophisticated lighting design for ultimate comfort.",
+    title: "Building Dark Mode with Next.js and Tailwind CSS",
+    description: "Learn how to implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and system preferences.",
     date: "Mar 12, 2024",
-    category: "Bedroom Design",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
+    category: "Development",
+    image: "https://ui.shadcn.com/placeholder.svg",
+    author: "Jane Smith",
+    authorImage: "https://github.com/shadcn.png",
+    authorRole: "Designer",
   },
   {
     id: 3,
-    title: "Award-Winning Living Space - Edina Home",
-    description: "An open-concept living area showcasing contemporary furniture, custom built-ins, and curated art pieces that create an elegant entertaining space.",
+    title: "Mastering React Server Components",
+    description: "Deep dive into React Server Components and learn how they can improve your application's performance and user experience.",
     date: "Mar 8, 2024",
-    category: "Living Spaces",
-    image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
+    category: "Advanced",
+    image: "https://ui.shadcn.com/placeholder.svg",
+    author: "Alex Johnson",
+    authorImage: "https://github.com/shadcn.png",
+    authorRole: "Developer",
   },
   {
     id: 4,
-    title: "Custom Home Office Design - Plymouth Executive Home",
-    description: "A sophisticated home office featuring built-in shelving, premium hardwood flooring, and carefully selected furnishings for productivity and style.",
+    title: "The Future of Web Development in 2024",
+    description: "Explore the latest trends and technologies shaping the future of web development this year and beyond.",
     date: "Mar 5, 2024",
-    category: "Office Design",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
+    category: "Insights",
+    image: "https://ui.shadcn.com/placeholder.svg",
+    author: "Max Verstappen",
+    authorImage: "https://github.com/shadcn.png",
+    authorRole: "Software Architect",
   },
 ];
 
-const MINIMAL_POSTS: BlogPost[] = [
-  {
-    id: 1,
-    title: "Luxury Interior Design Consultation Process",
-    description: "Learn how to set up and maximize your consultation experience with Eminent Interior Design's comprehensive approach to transforming your space.",
-    date: "Mar 15, 2024",
-    category: "Design Process",
-    author: "Eminent Interior Design",
-    authorImage: "https://images.unsplash.com/photo-1494790108755-2616c8c1415e?w=100&h=100&fit=crop&crop=face&auto=format",
-    authorRole: "Interior Design Studio",
-  },
-  {
-    id: 2,
-    title: "Selecting Premium Materials for Luxury Homes",
-    description: "Implement sophisticated material choices in your luxury home renovation using premium finishes, custom millwork, and designer elements.",
-    date: "Mar 12, 2024",
-    category: "Material Selection",
-    author: "Sarah Mitchell",
-    authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&auto=format",
-    authorRole: "Senior Designer",
-  },
-  {
-    id: 3,
-    title: "Mastering Open-Concept Living Spaces",
-    description: "Deep dive into open-concept design principles and learn how they can transform your home's flow and entertainment capabilities.",
-    date: "Mar 8, 2024",
-    category: "Space Planning",
-    author: "Michael Chen",
-    authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format",
-    authorRole: "Design Director",
-  },
-];
-
-const REVERSED_POSTS: BlogPost[] = [
-  {
-    id: 1,
-    title: "Contemporary Kitchen Design Trends for 2024",
-    description: "Explore the latest luxury kitchen design trends featuring premium materials, smart appliances, and sophisticated color palettes for modern homes.",
-    date: "Mar 15, 2024",
-    category: "Kitchen Design",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 2,
-    title: "Luxury Bathroom Spa Retreat Design",
-    description: "Transform your bathroom into a personal spa sanctuary with premium finishes, rainfall showers, and elegant lighting solutions.",
-    date: "Mar 12, 2024",
-    category: "Bathroom Design",
-    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 3,
-    title: "Open-Concept Living Room Elegance",
-    description: "Discover how to create sophisticated living spaces that seamlessly blend comfort, style, and functionality for modern entertaining.",
-    date: "Mar 8, 2024",
-    category: "Living Spaces",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
-  },
-];
-
-const FEATURED_POSTS: BlogPost[] = [
-  {
-    id: 1,
-    title: "Ultra-Luxury Estate Kitchen: Bespoke Italian Design",
-    description: "Exclusive showcase of a $2.8M custom kitchen featuring rare Calacatta marble, handcrafted Italian cabinetry, and museum-quality finishes for discerning collectors.",
-    date: "Mar 15, 2024",
-    category: "Estate Kitchens",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 2,
-    title: "Penthouse Master Suite: Manhattan Skyline Views",
-    description: "A breathtaking $1.5M master suite transformation featuring floor-to-ceiling windows, custom millwork, and the finest European textiles overlooking Central Park.",
-    date: "Mar 12, 2024",
-    category: "Master Suites",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 3,
-    title: "Grand Salon: Museum-Quality Interior Architecture",
-    description: "An extraordinary $3.2M living space featuring 18th-century antiques, custom crystal chandeliers, and hand-painted silk wallcoverings in a historic mansion.",
-    date: "Mar 8, 2024",
-    category: "Grand Salons",
-    image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
-  },
-  {
-    id: 4,
-    title: "Wine Cellar & Tasting Room: Collector's Paradise",
-    description: "A sophisticated $800K wine cellar design featuring climate control systems, imported stone, and custom millwork for serious wine connoisseurs.",
-    date: "Mar 5, 2024",
-    category: "Wine Cellars",
-    image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop&auto=format",
-  },
-];
 
 function BlogSection({
   className,
@@ -197,16 +115,54 @@ function BlogSection({
   style,
   ...props
 }: BlogSectionProps) {
-  // Set default posts based on variant
-  const defaultPosts = variant === "minimal" ? MINIMAL_POSTS : 
-                      variant === "reversed" ? REVERSED_POSTS : 
-                      variant === "featured" ? FEATURED_POSTS : DEFAULT_POSTS;
-  const actualPosts = posts || defaultPosts;
-  
   // Set variant-specific defaults
   const isMinimal = variant === "minimal";
   const isReversed = variant === "reversed";
   const isFeatured = variant === "featured";
+  const isList = variant === "list";
+  
+  // Use default posts for all variants, with variant-specific content
+  const basePosts = posts || DEFAULT_POSTS;
+  
+  // For minimal variant, use John Doe, Jane Smith, Alex Johnson as shown in reference image
+  const minimalPosts = isMinimal ? basePosts.slice(0, 3).map((post, index) => {
+    const minimalAuthors = [
+      { author: "John Doe", authorRole: "Developer" },
+      { author: "Jane Smith", authorRole: "Designer" },
+      { author: "Alex Johnson", authorRole: "Developer" }
+    ];
+    
+    if (minimalAuthors[index]) {
+      return {
+        ...post,
+        author: minimalAuthors[index].author,
+        authorRole: minimalAuthors[index].authorRole
+      };
+    }
+    return post;
+  }) : basePosts;
+  
+  // For list variant, use racing driver names as shown in reference image
+  const listPosts = isList ? basePosts.map((post, index) => {
+    const racingDrivers = [
+      { author: "Lando Norris", authorRole: "Product Designer", title: "How can shadcn/ui kit for Figma improve your workflow?" },
+      { author: "Charles Leclerc", authorRole: "Frontend Developer" },
+      { author: "Lewis Hamilton", authorRole: "Tech Lead" },
+      { author: "Max Verstappen", authorRole: "Software Architect" }
+    ];
+    
+    if (racingDrivers[index]) {
+      return {
+        ...post,
+        author: racingDrivers[index].author,
+        authorRole: racingDrivers[index].authorRole,
+        ...(racingDrivers[index].title && { title: racingDrivers[index].title })
+      };
+    }
+    return post;
+  }) : basePosts;
+  
+  const actualPosts = isMinimal ? minimalPosts : (isList ? listPosts : basePosts);
   const actualShowImages = isMinimal ? false : showImages;
   const actualGridColumns = (isMinimal || isReversed) ? "3" : gridColumns;
   const actualTaglineColor = taglineColor || `${textColor}CC`;
@@ -237,10 +193,10 @@ function BlogSection({
       {...props}
     >
       <div className="container-padding-x container mx-auto">
-        <div className={cn("flex flex-col gap-10 md:gap-12", isMinimal ? "items-start" : "items-center")}>
+        <div className={cn("flex flex-col gap-10 md:gap-12", (isMinimal || isList) ? "items-start" : "items-center")}>
           {/* Section Title - Hidden for featured variant */}
           {!isFeatured && (
-            <div className={cn("section-title-gap-lg flex max-w-xl flex-col", isMinimal ? "" : "mx-auto items-center text-center")}>
+            <div className={cn("section-title-gap-lg flex flex-col", (isMinimal || isList) ? "max-w-2xl" : "max-w-xl mx-auto items-center text-center")}>
               {/* Tagline */}
               <Tagline 
                 style={{ color: actualTaglineColor }}
@@ -266,7 +222,115 @@ function BlogSection({
           )}
 
           {/* Blog Grid */}
-          {isMinimal ? (
+          {isList ? (
+            <div className="flex w-full flex-col gap-10 md:gap-8" role="list">
+              {actualPosts.map((post) => (
+                <div
+                  key={post.id}
+                  className="group flex cursor-pointer flex-col gap-6 p-0 md:flex-row"
+                  role="listitem"
+                  style={{
+                    '--link-color': actualLinkColor,
+                    '--hover-link-color': actualHoverLinkColor,
+                  } as React.CSSProperties}
+                >
+                  {/* Image Container */}
+                  {actualShowImages && post.image && (
+                    <div className="w-full md:w-[200px]">
+                      <AspectRatio
+                        ratio={1 / 1}
+                        className="overflow-hidden rounded-xl"
+                      >
+                        <img
+                          src={post.image}
+                          alt={`${post.title} thumbnail`}
+                          loading="lazy"
+                          className={cn(
+                            "h-full w-full object-cover",
+                            hoverEffect && "transition-transform duration-200 group-hover:scale-105"
+                          )}
+                        />
+                      </AspectRatio>
+                    </div>
+                  )}
+
+                  {/* Post Content */}
+                  <div className="flex flex-1 flex-col justify-between p-0">
+                    {/* Post Info */}
+                    <div className="flex flex-col gap-3">
+                      {/* Post Meta */}
+                      <div className="flex items-center gap-2">
+                        <p 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.date}
+                        </p>
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          ·
+                        </span>
+                        <p 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.category}
+                        </p>
+                      </div>
+
+                      {/* Post Title */}
+                      <h3 
+                        className={cn(
+                          "text-base font-semibold transition-colors",
+                          "text-[--link-color]",
+                          hoverEffect && "group-hover:text-[--hover-link-color] group-hover:underline"
+                        )}
+                      >
+                        {post.title}
+                      </h3>
+
+                      {/* Post Description */}
+                      <p 
+                        className="line-clamp-2 text-sm"
+                        style={{ color: actualMetaTextColor }}
+                      >
+                        {post.description}
+                      </p>
+                    </div>
+
+                    {/* Author Info */}
+                    <div className="mt-6 flex items-center gap-4 md:mt-0">
+                      {/* Author Avatar */}
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage
+                          src={post.authorImage}
+                          alt={post.author}
+                        />
+                        <AvatarFallback>{post.author?.charAt(0) || 'A'}</AvatarFallback>
+                      </Avatar>
+                      {/* Author Details */}
+                      <div className="flex flex-col">
+                        <p 
+                          className="text-sm font-medium"
+                          style={{ color: textColor }}
+                        >
+                          {post.author}
+                        </p>
+                        <p 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.authorRole}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : isMinimal ? (
             <div
               className={cn(
                 "grid grid-cols-1",
@@ -331,34 +395,32 @@ function BlogSection({
                     </CardContent>
 
                     {/* Author Info */}
-                    {post.author && (
-                      <CardFooter className="flex items-center gap-2 p-0">
-                        {/* Author Avatar */}
-                        <Avatar className="size-10">
-                          <AvatarImage 
-                            src={post.authorImage} 
-                            alt={`${post.author} - ${post.authorRole}`}
-                          />
-                          <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
-                        </Avatar>
+                    <CardFooter className="flex items-center gap-2 p-0">
+                      {/* Author Avatar */}
+                      <Avatar className="size-10">
+                        <AvatarImage 
+                          src={post.authorImage} 
+                          alt={`${post.author} - ${post.authorRole}`}
+                        />
+                        <AvatarFallback>{post.author?.charAt(0) || 'A'}</AvatarFallback>
+                      </Avatar>
 
-                        {/* Author Details */}
-                        <div className="flex flex-1 flex-col items-start gap-0">
-                          <p 
-                            className="text-sm font-medium"
-                            style={{ color: textColor }}
-                          >
-                            {post.author}
-                          </p>
-                          <p 
-                            className="text-sm"
-                            style={{ color: actualMetaTextColor }}
-                          >
-                            {post.authorRole}
-                          </p>
-                        </div>
-                      </CardFooter>
-                    )}
+                      {/* Author Details */}
+                      <div className="flex flex-1 flex-col items-start gap-0">
+                        <p 
+                          className="text-sm font-medium"
+                          style={{ color: textColor }}
+                        >
+                          {post.author}
+                        </p>
+                        <p 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.authorRole}
+                        </p>
+                      </div>
+                    </CardFooter>
                   </Card>
                   {index < actualPosts.length - 1 && (
                     <Separator className="lg:hidden" />

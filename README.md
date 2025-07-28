@@ -101,6 +101,17 @@ Comprehensive article/blog component with multiple layout variants.
 - **Mobile-responsive layouts** optimized for all device types
 - **Ultra-luxury project imagery** reflecting high-end interior design work
 
+## 📰 Blog Section (`blog-section/`) ✅
+Flexible blog component with multiple layout variants for showcasing articles and insights.
+
+**Features:**
+- **5 Layout Variants**: Default, Minimal, Reversed, Featured, List
+- **Author integration** with avatars, names, and roles
+- **Customizable styling** with color controls and hover effects
+- **Responsive grid layouts** with configurable columns and spacing
+- **Image support** with aspect ratio controls
+- **Content management** with dates, categories, and descriptions
+
 **Available Slices (Components Only - No Storybook Stories Yet):**
 
 ## 🎠 Carousel Section (`carousel-section/`)

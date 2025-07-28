@@ -78,8 +78,8 @@ const meta: Meta<typeof BlogSection> = {
     },
     variant: {
       control: { type: "select" },
-      options: ["default", "minimal", "reversed", "featured"],
-      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info, 'reversed' with content-first layout and bottom images, 'featured' with two-column layout and button",
+      options: ["default", "minimal", "reversed", "featured", "list"],
+      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info, 'reversed' with content-first layout and bottom images, 'featured' with two-column layout and button, 'list' with vertical list layout and side images",
     },
     buttonText: {
       control: { type: "text" },
@@ -156,38 +156,6 @@ export const Minimal: Story = {
     tagline: "Design Insights",
     headline: "Expert Interior Design Articles & Tips",
     description: "Discover professional insights and expert advice from our award-winning interior design team. Learn about the latest trends, material selections, and design processes that create stunning luxury homes.",
-    posts: [
-      {
-        id: 1,
-        title: "Luxury Interior Design Consultation Process",
-        description: "Learn how to set up and maximize your consultation experience with Eminent Interior Design's comprehensive approach to transforming your space.",
-        date: "Mar 15, 2024",
-        category: "Design Process",
-        author: "Eminent Interior Design",
-        authorImage: "https://images.unsplash.com/photo-1494790108755-2616c8c1415e?w=100&h=100&fit=crop&crop=face&auto=format",
-        authorRole: "Interior Design Studio",
-      },
-      {
-        id: 2,
-        title: "Selecting Premium Materials for Luxury Homes",
-        description: "Implement sophisticated material choices in your luxury home renovation using premium finishes, custom millwork, and designer elements.",
-        date: "Mar 12, 2024",
-        category: "Material Selection",
-        author: "Sarah Mitchell",
-        authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&auto=format",
-        authorRole: "Senior Designer",
-      },
-      {
-        id: 3,
-        title: "Mastering Open-Concept Living Spaces",
-        description: "Deep dive into open-concept design principles and learn how they can transform your home's flow and entertainment capabilities.",
-        date: "Mar 8, 2024",
-        category: "Space Planning",
-        author: "Michael Chen",
-        authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format",
-        authorRole: "Design Director",
-      },
-    ],
     gridColumns: "3",
     cardGap: "medium",
     hoverEffect: true,
@@ -197,6 +165,9 @@ export const Minimal: Story = {
     gridColumns: { table: { disable: true } },
     showImages: { table: { disable: true } },
     imageAspectRatio: { table: { disable: true } },
+    buttonText: { table: { disable: true } },
+    showButton: { table: { disable: true } },
+    buttonVariant: { table: { disable: true } },
   },
 };
 
@@ -206,32 +177,6 @@ export const Reversed: Story = {
     tagline: "Design Portfolio",
     headline: "Featured Interior Design Projects & Showcase",
     description: "Browse our curated collection of luxury interior design transformations featuring award-winning projects and innovative space solutions for discerning clients.",
-    posts: [
-      {
-        id: 1,
-        title: "Contemporary Kitchen Design Trends for 2024",
-        description: "Explore the latest luxury kitchen design trends featuring premium materials, smart appliances, and sophisticated color palettes for modern homes.",
-        date: "Mar 15, 2024",
-        category: "Kitchen Design",
-        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
-      },
-      {
-        id: 2,
-        title: "Luxury Bathroom Spa Retreat Design",
-        description: "Transform your bathroom into a personal spa sanctuary with premium finishes, rainfall showers, and elegant lighting solutions.",
-        date: "Mar 12, 2024",
-        category: "Bathroom Design",
-        image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=600&fit=crop&auto=format",
-      },
-      {
-        id: 3,
-        title: "Open-Concept Living Room Elegance",
-        description: "Discover how to create sophisticated living spaces that seamlessly blend comfort, style, and functionality for modern entertaining.",
-        date: "Mar 8, 2024",
-        category: "Living Spaces",
-        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
-      },
-    ],
     gridColumns: "3",
     cardGap: "medium",
     hoverEffect: true,
@@ -240,50 +185,19 @@ export const Reversed: Story = {
   argTypes: {
     // Hide controls not used in Reversed layout
     gridColumns: { table: { disable: true } },
+    buttonText: { table: { disable: true } },
+    showButton: { table: { disable: true } },
+    buttonVariant: { table: { disable: true } },
   },
 };
 
 export const Featured: Story = {
   args: {
     variant: "featured",
-    tagline: "Luxury Estate Showcase",
-    headline: "Million Dollar Home Interior Transformations",
-    description: "Explore our exclusive portfolio of ultra-luxury interior design projects for discerning clients seeking unparalleled sophistication and bespoke craftsmanship in their most treasured spaces.",
-    posts: [
-      {
-        id: 1,
-        title: "Ultra-Luxury Estate Kitchen: Bespoke Italian Design",
-        description: "Exclusive showcase of a $2.8M custom kitchen featuring rare Calacatta marble, handcrafted Italian cabinetry, and museum-quality finishes for discerning collectors.",
-        date: "Mar 15, 2024",
-        category: "Estate Kitchens",
-        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
-      },
-      {
-        id: 2,
-        title: "Penthouse Master Suite: Manhattan Skyline Views",
-        description: "A breathtaking $1.5M master suite transformation featuring floor-to-ceiling windows, custom millwork, and the finest European textiles overlooking Central Park.",
-        date: "Mar 12, 2024",
-        category: "Master Suites",
-        image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
-      },
-      {
-        id: 3,
-        title: "Grand Salon: Museum-Quality Interior Architecture",
-        description: "An extraordinary $3.2M living space featuring 18th-century antiques, custom crystal chandeliers, and hand-painted silk wallcoverings in a historic mansion.",
-        date: "Mar 8, 2024",
-        category: "Grand Salons",
-        image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
-      },
-      {
-        id: 4,
-        title: "Wine Cellar & Tasting Room: Collector's Paradise",
-        description: "A sophisticated $800K wine cellar design featuring climate control systems, imported stone, and custom millwork for serious wine connoisseurs.",
-        date: "Mar 5, 2024",
-        category: "Wine Cellars",
-        image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop&auto=format",
-      },
-    ],
-    buttonText: "View luxury portfolio",
+    tagline: "Design Insights",
+    headline: "Featured Interior Design Projects & Showcase",
+    description: "Browse our curated collection of luxury interior design transformations featuring award-winning projects and innovative space solutions for discerning clients.",
+    buttonText: "View portfolio",
     showButton: true,
     buttonVariant: "outline",
     showImages: true,
@@ -294,6 +208,26 @@ export const Featured: Story = {
     // Hide controls not used in Featured layout
     gridColumns: { table: { disable: true } },
     cardGap: { table: { disable: true } },
+  },
+};
+
+export const List: Story = {
+  args: {
+    variant: "list",
+    tagline: "Design Insights",
+    headline: "Featured Interior Design Projects & Showcase",
+    description: "Browse our curated collection of luxury interior design transformations featuring award-winning projects and innovative space solutions for discerning clients.",
+    showImages: true,
+    hoverEffect: true,
+  },
+  argTypes: {
+    // Hide controls not used in List layout
+    gridColumns: { table: { disable: true } },
+    cardGap: { table: { disable: true } },
+    imageAspectRatio: { table: { disable: true } },
+    showButton: { table: { disable: true } },
+    buttonText: { table: { disable: true } },
+    buttonVariant: { table: { disable: true } },
   },
 };
 
