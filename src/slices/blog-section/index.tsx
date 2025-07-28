@@ -206,6 +206,10 @@ function BlogSection({
                     key={post.id}
                     className="group flex cursor-pointer flex-col justify-between gap-6 rounded-none border-none bg-transparent p-0 shadow-none"
                     role="listitem"
+                    style={{
+                      '--link-color': actualLinkColor,
+                      '--hover-link-color': actualHoverLinkColor,
+                    } as React.CSSProperties}
                   >
                     {/* Post Content */}
                     <CardContent className="flex flex-col gap-3 p-0">
@@ -232,15 +236,15 @@ function BlogSection({
                       </div>
 
                       {/* Post Title */}
-                      <h3 
+                      <h2 
                         className={cn(
                           "text-base font-semibold leading-normal transition-colors",
-                          hoverEffect && "group-hover:underline"
+                          "text-[--link-color]",
+                          hoverEffect && "group-hover:text-[--hover-link-color] group-hover:underline"
                         )}
-                        style={{ color: actualLinkColor }}
                       >
                         {post.title}
-                      </h3>
+                      </h2>
 
                       {/* Post Summary */}
                       <p 
@@ -256,7 +260,10 @@ function BlogSection({
                       <CardFooter className="flex items-center gap-2 p-0">
                         {/* Author Avatar */}
                         <Avatar className="size-10">
-                          <AvatarImage src={post.authorImage} />
+                          <AvatarImage 
+                            src={post.authorImage} 
+                            alt={`${post.author} - ${post.authorRole}`}
+                          />
                           <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
                         </Avatar>
 
