@@ -104,10 +104,42 @@ Comprehensive article/blog component with multiple layout variants.
 **Available Slices (Components Only - No Storybook Stories Yet):**
 
 ## 🎠 Carousel Section (`carousel-section/`)
-Image gallery carousel for showcasing interior design projects with 6 customizable project images, multiple size variants, and autoplay functionality.
+Image gallery carousel for showcasing interior design projects.
+
+**Features:**
+- **6 customizable project images** with drag-and-drop upload support
+- **Project overlay information** with hover effects and project titles
+- **Multiple size variants**: sm, md, lg, xl, full width options
+- **Visual variants**: default, dark, minimal themes
+- **Autoplay functionality** with manual controls
+- **Responsive design** that works on all devices
+- **Luxury project examples**: Kitchen remodels, bathroom transformations, living spaces
+
+**Default Projects Showcased:**
+- Contemporary Kitchen Remodel - Minnetonka
+- Luxury Bathroom Transformation - Wayzata  
+- Modern Living Space - Edina
+- Custom Millwork & Built-ins - Plymouth
+- Award-Winning Master Suite - Excelsior
+- Sophisticated Home Office - Orono
 
 ## 🎚️ Slider Section (`slider-section/`)
-Interactive before/after transformation slider for dramatic project reveals with drag control and smooth slider interaction.
+Before/after transformation slider for dramatic project reveals.
+
+**Features:**
+- **Interactive before/after slider** with drag control
+- **Visual transformation reveals** showing project progression
+- **Premium project examples** with before/after photography
+- **Smooth slider interaction** with position control
+- **Project information overlay** with studio branding
+- **Multiple size variants** for different layout needs
+- **Responsive design** that works across all devices
+
+**Perfect for showcasing:**
+- Kitchen transformations
+- Bathroom renovations
+- Living space makeovers
+- Any dramatic interior design transformation
 
 
 ## 🛠️ Development
