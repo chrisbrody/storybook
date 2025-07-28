@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 import { Tagline } from "@/components/ui/tagline";
 import { cn } from "@/lib/utils";
 
@@ -11,10 +14,14 @@ interface BlogPost {
   description: string;
   date: string;
   category: string;
-  image: string;
+  image?: string;
+  author?: string;
+  authorImage?: string;
+  authorRole?: string;
 }
 
 interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: "default" | "minimal";
   backgroundColor?: string;
   textColor?: string;
   taglineColor?: string;
@@ -67,8 +74,42 @@ const DEFAULT_POSTS: BlogPost[] = [
   },
 ];
 
+const MINIMAL_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Luxury Interior Design Consultation Process",
+    description: "Learn how to set up and maximize your consultation experience with Eminent Interior Design's comprehensive approach to transforming your space.",
+    date: "Mar 15, 2024",
+    category: "Design Process",
+    author: "Eminent Interior Design",
+    authorImage: "https://images.unsplash.com/photo-1494790108755-2616c8c1415e?w=100&h=100&fit=crop&crop=face&auto=format",
+    authorRole: "Interior Design Studio",
+  },
+  {
+    id: 2,
+    title: "Selecting Premium Materials for Luxury Homes",
+    description: "Implement sophisticated material choices in your luxury home renovation using premium finishes, custom millwork, and designer elements.",
+    date: "Mar 12, 2024",
+    category: "Material Selection",
+    author: "Sarah Mitchell",
+    authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&auto=format",
+    authorRole: "Senior Designer",
+  },
+  {
+    id: 3,
+    title: "Mastering Open-Concept Living Spaces",
+    description: "Deep dive into open-concept design principles and learn how they can transform your home's flow and entertainment capabilities.",
+    date: "Mar 8, 2024",
+    category: "Space Planning",
+    author: "Michael Chen",
+    authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format",
+    authorRole: "Design Director",
+  },
+];
+
 function BlogSection({
   className,
+  variant = "default",
   backgroundColor = "#ffffff",
   textColor = "#000000",
   taglineColor,
@@ -76,7 +117,7 @@ function BlogSection({
   tagline = "Interior Design Projects",
   headline = "Latest Design Transformations & Luxury Home Projects",
   description = "Explore our portfolio of award-winning interior design projects featuring contemporary kitchens, luxury bathrooms, and complete home transformations across the Twin Cities.",
-  posts = DEFAULT_POSTS,
+  posts,
   showImages = true,
   imageAspectRatio = 4/3,
   gridColumns = "4",
@@ -87,6 +128,14 @@ function BlogSection({
   style,
   ...props
 }: BlogSectionProps) {
+  // Set default posts based on variant
+  const defaultPosts = variant === "minimal" ? MINIMAL_POSTS : DEFAULT_POSTS;
+  const actualPosts = posts || defaultPosts;
+  
+  // Set variant-specific defaults
+  const isMinimal = variant === "minimal";
+  const actualShowImages = isMinimal ? false : showImages;
+  const actualGridColumns = isMinimal ? "3" : gridColumns;
   const actualTaglineColor = taglineColor || `${textColor}CC`;
   const actualMetaTextColor = metaTextColor || `${textColor}99`;
   const actualLinkColor = linkColor || textColor;
@@ -100,7 +149,7 @@ function BlogSection({
 
   const gridClasses = {
     "2": "md:grid-cols-2",
-    "3": "md:grid-cols-3", 
+    "3": isMinimal ? "lg:grid-cols-3" : "md:grid-cols-3", 
     "4": "md:grid-cols-2 lg:grid-cols-4"
   };
 
@@ -114,10 +163,10 @@ function BlogSection({
       aria-labelledby="blog-section-heading"
       {...props}
     >
-      <div className="container-padding-x container mx-auto gap-10 md:gap-12">
-        <div className="flex flex-col items-center gap-10 md:gap-12">
+      <div className="container-padding-x container mx-auto">
+        <div className={cn("flex flex-col gap-10 md:gap-12", isMinimal ? "items-start" : "items-center")}>
           {/* Section Title */}
-          <div className="section-title-gap-lg mx-auto flex max-w-xl flex-col items-center text-center">
+          <div className={cn("section-title-gap-lg flex max-w-xl flex-col", isMinimal ? "" : "mx-auto items-center text-center")}>
             {/* Tagline */}
             <Tagline 
               style={{ color: actualTaglineColor }}
@@ -142,14 +191,108 @@ function BlogSection({
           </div>
 
           {/* Blog Grid */}
-          <ul
-            className={cn(
-              "grid grid-cols-1",
-              gridClasses[gridColumns],
-              gapClasses[cardGap]
-            )}
-          >
-            {posts.map((post) => (
+          {isMinimal ? (
+            <div
+              className={cn(
+                "grid grid-cols-1",
+                gridClasses[actualGridColumns],
+                gapClasses[cardGap]
+              )}
+              role="list"
+            >
+              {actualPosts.map((post, index) => (
+                <>
+                  <Card
+                    key={post.id}
+                    className="group flex cursor-pointer flex-col justify-between gap-6 rounded-none border-none bg-transparent p-0 shadow-none"
+                    role="listitem"
+                  >
+                    {/* Post Content */}
+                    <CardContent className="flex flex-col gap-3 p-0">
+                      {/* Post Meta */}
+                      <div className="flex items-center gap-2 text-left">
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.date}
+                        </span>
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          ·
+                        </span>
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.category}
+                        </span>
+                      </div>
+
+                      {/* Post Title */}
+                      <h3 
+                        className={cn(
+                          "text-base font-semibold leading-normal transition-colors",
+                          hoverEffect && "group-hover:underline"
+                        )}
+                        style={{ color: actualLinkColor }}
+                      >
+                        {post.title}
+                      </h3>
+
+                      {/* Post Summary */}
+                      <p 
+                        className="text-sm leading-normal"
+                        style={{ color: actualMetaTextColor }}
+                      >
+                        {post.description}
+                      </p>
+                    </CardContent>
+
+                    {/* Author Info */}
+                    {post.author && (
+                      <CardFooter className="flex items-center gap-2 p-0">
+                        {/* Author Avatar */}
+                        <Avatar className="size-10">
+                          <AvatarImage src={post.authorImage} />
+                          <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
+                        </Avatar>
+
+                        {/* Author Details */}
+                        <div className="flex flex-1 flex-col items-start gap-0">
+                          <p 
+                            className="text-sm font-medium"
+                            style={{ color: textColor }}
+                          >
+                            {post.author}
+                          </p>
+                          <p 
+                            className="text-sm"
+                            style={{ color: actualMetaTextColor }}
+                          >
+                            {post.authorRole}
+                          </p>
+                        </div>
+                      </CardFooter>
+                    )}
+                  </Card>
+                  {index < actualPosts.length - 1 && (
+                    <Separator className="lg:hidden" />
+                  )}
+                </>
+              ))}
+            </div>
+          ) : (
+            <ul
+              className={cn(
+                "grid grid-cols-1",
+                gridClasses[actualGridColumns],
+                gapClasses[cardGap]
+              )}
+            >
+              {actualPosts.map((post) => (
               <li key={post.id}>
                 <a 
                   href="#" 
@@ -162,7 +305,7 @@ function BlogSection({
                   {/* Blog Card */}
                   <div className="flex flex-col gap-4 rounded-xl">
                     {/* Image Wrapper */}
-                    {showImages && (
+                    {actualShowImages && post.image && (
                       <AspectRatio
                         ratio={imageAspectRatio}
                         className="overflow-hidden rounded-xl"
@@ -227,6 +370,7 @@ function BlogSection({
               </li>
             ))}
           </ul>
+          )}
         </div>
       </div>
     </section>

@@ -42,6 +42,10 @@ const meta: Meta<typeof BlogSection> = {
       control: { type: "text" },
       description: "Description text below the headline",
     },
+    posts: {
+      control: { type: "object" },
+      description: "Array of blog post articles with customizable titles, descriptions, images, dates, and categories",
+    },
     showImages: {
       control: { type: "boolean" },
       description: "Show/hide blog post images",
@@ -72,6 +76,11 @@ const meta: Meta<typeof BlogSection> = {
       control: { type: "color" },
       description: "Color for blog post title links on hover (if not set, uses linkColor)",
     },
+    variant: {
+      control: { type: "select" },
+      options: ["default", "minimal"],
+      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info",
+    },
   },
   args: {
     backgroundColor: "#ffffff",
@@ -79,6 +88,40 @@ const meta: Meta<typeof BlogSection> = {
     tagline: "Interior Design Projects",
     headline: "Latest Design Transformations & Luxury Home Projects",
     description: "Explore our portfolio of award-winning interior design projects featuring contemporary kitchens, luxury bathrooms, and complete home transformations across the Twin Cities.",
+    posts: [
+      {
+        id: 1,
+        title: "Contemporary Kitchen Remodel - Minnetonka Estate",
+        description: "A stunning transformation of a traditional kitchen into a modern culinary space featuring premium quartz countertops, custom cabinetry, and high-end appliances.",
+        date: "Mar 15, 2024",
+        category: "Kitchen Design",
+        image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 2,
+        title: "Luxury Master Suite Renovation - Wayzata Residence",
+        description: "Complete bedroom and bathroom transformation featuring custom millwork, marble finishes, and sophisticated lighting design for ultimate comfort.",
+        date: "Mar 12, 2024",
+        category: "Bedroom Design",
+        image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 3,
+        title: "Award-Winning Living Space - Edina Home",
+        description: "An open-concept living area showcasing contemporary furniture, custom built-ins, and curated art pieces that create an elegant entertaining space.",
+        date: "Mar 8, 2024",
+        category: "Living Spaces",
+        image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 4,
+        title: "Custom Home Office Design - Plymouth Executive Home",
+        description: "A sophisticated home office featuring built-in shelving, premium hardwood flooring, and carefully selected furnishings for productivity and style.",
+        date: "Mar 5, 2024",
+        category: "Office Design",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
+      },
+    ],
     showImages: true,
     imageAspectRatio: 4/3,
     gridColumns: "4",
@@ -92,9 +135,49 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-  argTypes: {
-    // Hide controls not used in Default layout
-    posts: { table: { disable: true } },
+};
+
+export const Minimal: Story = {
+  args: {
+    variant: "minimal",
+    tagline: "Design Insights",
+    headline: "Expert Interior Design Articles & Tips",
+    description: "Discover professional insights and expert advice from our award-winning interior design team. Learn about the latest trends, material selections, and design processes that create stunning luxury homes.",
+    posts: [
+      {
+        id: 1,
+        title: "Luxury Interior Design Consultation Process",
+        description: "Learn how to set up and maximize your consultation experience with Eminent Interior Design's comprehensive approach to transforming your space.",
+        date: "Mar 15, 2024",
+        category: "Design Process",
+        author: "Eminent Interior Design",
+        authorImage: "https://images.unsplash.com/photo-1494790108755-2616c8c1415e?w=100&h=100&fit=crop&crop=face&auto=format",
+        authorRole: "Interior Design Studio",
+      },
+      {
+        id: 2,
+        title: "Selecting Premium Materials for Luxury Homes",
+        description: "Implement sophisticated material choices in your luxury home renovation using premium finishes, custom millwork, and designer elements.",
+        date: "Mar 12, 2024",
+        category: "Material Selection",
+        author: "Sarah Mitchell",
+        authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&auto=format",
+        authorRole: "Senior Designer",
+      },
+      {
+        id: 3,
+        title: "Mastering Open-Concept Living Spaces",
+        description: "Deep dive into open-concept design principles and learn how they can transform your home's flow and entertainment capabilities.",
+        date: "Mar 8, 2024",
+        category: "Space Planning",
+        author: "Michael Chen",
+        authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format",
+        authorRole: "Design Director",
+      },
+    ],
+    gridColumns: "3",
+    cardGap: "medium",
+    hoverEffect: true,
   },
 };
 

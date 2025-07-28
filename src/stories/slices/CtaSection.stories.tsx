@@ -166,6 +166,7 @@ export const WithImage: Story = {
     headline: "Transform Your Space with Award-Winning Design",
     description: "Our expert team creates stunning, functional spaces that reflect your unique style and enhance your daily life through thoughtful design and premium materials.",
     buttonText: "View Our Portfolio",
+    buttonVariant: "secondary",
     imageSrc: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=800&fit=crop&crop=center&q=80",
     imageAlt: "Luxury modern living room with custom millwork and premium finishes",
   },
