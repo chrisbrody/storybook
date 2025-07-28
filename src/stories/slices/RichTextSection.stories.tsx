@@ -16,7 +16,7 @@ const meta: Meta<typeof RichTextSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'with-carousel', 'with-sidebar'],
+      options: ['default', 'with-carousel', 'with-sidebar', 'article-toc'],
       description: 'Layout variant for the rich text section',
     },
     date: {
@@ -366,5 +366,125 @@ export const WithSidebar: Story = {
     carouselImage4: { table: { disable: true } },
     carouselImage5: { table: { disable: true } },
     carouselImage6: { table: { disable: true } },
+  },
+};
+
+export const ArticleToc: Story = {
+  args: {
+    variant: 'article-toc',
+    date: 'Nov 28, 2024',
+    category: 'Featured Projects',
+    title: 'Award-Winning Living Space Design - Edina',
+    description: 'This sophisticated living room transformation showcases our design philosophy of creating spaces that are both elegant and livable, perfectly suited for modern family life and entertaining.',
+    authorName: 'Eminent Interior Design',
+    authorRole: 'Interior Design Studio',
+    featuredImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'This award-winning living space design in Edina represents the perfect fusion of contemporary sophistication and family-friendly functionality. Our approach transformed a traditional formal living room into a dynamic space that serves multiple purposes while maintaining an atmosphere of refined elegance.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Design Philosophy & Vision',
+        id: 'design-philosophy-vision'
+      },
+      {
+        type: 'paragraph',
+        text: 'Our clients desired a living space that would accommodate their growing family while providing an impressive backdrop for entertaining. The challenge was creating a room that felt both grand and intimate, sophisticated yet comfortable enough for daily family life.'
+      },
+      {
+        type: 'image',
+        src: 'inline1',
+        alt: 'Before transformation - traditional formal living room layout'
+      },
+      {
+        type: 'blockquote',
+        text: 'We wanted a room that our teenagers would actually want to spend time in, but that would also impress our guests during dinner parties. The balance between family comfort and entertaining elegance was key.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Spatial Planning & Layout',
+        id: 'spatial-planning-layout'
+      },
+      {
+        type: 'paragraph',
+        text: 'The original layout felt rigid and unwelcoming. We reimagined the space with flexible seating arrangements that could adapt to different occasions:'
+      },
+      {
+        type: 'list',
+        items: [
+          'Central seating area with modular furniture for flexible arrangements',
+          'Built-in window seating with storage for casual family moments',
+          'Dedicated reading nook with optimal natural lighting',
+          'Entertainment zone with integrated technology and media storage',
+          'Multiple conversation areas to support both intimate and larger gatherings'
+        ]
+      },
+      {
+        type: 'paragraph',
+        text: 'The new layout creates natural traffic flow while defining distinct zones for different activities. Each area maintains visual connection to the others, ensuring the space feels cohesive and open.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Material Selection & Finishes',
+        id: 'material-selection-finishes'
+      },
+      {
+        type: 'paragraph',
+        text: 'Our material palette reflects the clients\' appreciation for both luxury and durability. We selected finishes that would age beautifully while standing up to the demands of active family life.'
+      },
+      {
+        type: 'image',
+        src: 'inline2',
+        alt: 'Detail of custom millwork and premium fabric selections'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Custom Elements & Craftsmanship',
+        id: 'custom-elements-craftsmanship'
+      },
+      {
+        type: 'paragraph',
+        text: 'The space features extensive custom millwork, including built-in bookcases, window seats, and entertainment cabinetry. Each piece was designed to complement the home\'s architectural character while providing modern functionality.'
+      },
+      {
+        type: 'paragraph',
+        text: 'The attention to detail in the craftsmanship is evident in every element, from the hand-selected hardware to the precisely mitered joints in the custom cabinetry. These details elevate the space from simply beautiful to truly exceptional.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lighting Design & Ambiance',
+        id: 'lighting-design-ambiance'
+      },
+      {
+        type: 'paragraph',
+        text: 'Strategic lighting design was crucial to the success of this multi-functional space. We implemented a layered lighting approach that supports everything from homework sessions to elegant dinner parties.'
+      },
+      {
+        type: 'paragraph',
+        text: 'The result is a living space that has become the true heart of this Edina home. The design successfully balances the clients\' desire for sophistication with their need for practical family living, creating a room that is both impressive and inviting.'
+      }
+    ],
+  },
+  argTypes: {
+    // Hide carousel-specific controls for article-toc variant
+    carouselImages: { table: { disable: true } },
+    carouselImage1: { table: { disable: true } },
+    carouselImage2: { table: { disable: true } },
+    carouselImage3: { table: { disable: true } },
+    carouselImage4: { table: { disable: true } },
+    carouselImage5: { table: { disable: true } },
+    carouselImage6: { table: { disable: true } },
+    beforeImage: { table: { disable: true } },
+    afterImage: { table: { disable: true } },
+    authorAvatar: { table: { disable: true } },
+    authorName: { table: { disable: true } },
+    authorRole: { table: { disable: true } },
   },
 };

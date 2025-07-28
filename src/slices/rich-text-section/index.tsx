@@ -8,7 +8,7 @@ import { SliderSection } from "../slider-section";
 import { cn } from "@/lib/utils";
 
 export interface RichTextSectionProps {
-  variant?: 'default' | 'with-carousel' | 'with-sidebar';
+  variant?: 'default' | 'with-carousel' | 'with-sidebar' | 'article-toc';
   date?: string;
   category?: string;
   title?: string;
@@ -574,6 +574,182 @@ export function RichTextSection({
                           }
                         }}
                         className="block text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                        style={fontStyle}
+                      >
+                        {item.text}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (variant === 'article-toc') {
+    // Extract headings for sidebar navigation
+    const tableOfContents = content.filter(item => item.type === 'heading' && item.id).map(item => ({
+      id: item.id!,
+      text: item.text || '',
+      level: item.level || 2
+    }));
+
+    const handleScroll = (
+      e: React.MouseEvent<HTMLAnchorElement>,
+      href: string,
+    ) => {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    const renderContentWithIds = () => {
+      return content.map((item, index) => {
+        const key = `content-${index}`;
+        
+        switch (item.type) {
+          case 'paragraph':
+            return (
+              <p key={key} className="leading-7 break-words text-base" style={fontStyle}>
+                {item.text}
+              </p>
+            );
+          
+          case 'heading':
+            if (item.level === 2) {
+              return (
+                <h2
+                  key={key}
+                  id={item.id}
+                  className="scroll-mt-20 border-b pb-2 text-3xl font-semibold tracking-tight"
+                  style={fontStyle}
+                >
+                  {item.text}
+                </h2>
+              );
+            } else if (item.level === 3) {
+              return (
+                <h3
+                  key={key}
+                  id={item.id}
+                  className="scroll-mt-20 mt-8 text-2xl font-semibold tracking-tight"
+                  style={fontStyle}
+                >
+                  {item.text}
+                </h3>
+              );
+            }
+            break;
+            
+          case 'blockquote':
+            return (
+              <blockquote key={key} className="border-l-2 pl-6 italic break-words text-muted-foreground" style={fontStyle}>
+                {item.text}
+              </blockquote>
+            );
+            
+          case 'list':
+            return (
+              <ul
+                key={key}
+                className="ml-6 list-disc space-y-2"
+                style={fontStyle}
+              >
+                {item.items?.map((listItem, listIndex) => (
+                  <li key={`${key}-item-${listIndex}`}>{listItem}</li>
+                ))}
+              </ul>
+            );
+
+          case 'image':
+            const imageIndex = parseInt(item.src?.replace('inline', '') || '1');
+            const imageSrc = imageIndex === 1 ? inlineImage1 : imageIndex === 2 ? inlineImage2 : item.src;
+            return (
+              <AspectRatio key={key} ratio={16 / 10} className="my-6">
+                <img
+                  src={imageSrc || 'https://ui.shadcn.com/placeholder.svg'}
+                  alt={item.alt || 'Inline content image'}
+                  className="h-full w-full rounded-lg object-cover"
+                />
+              </AspectRatio>
+            );
+
+          case 'slider':
+            return (
+              <div key={key} className="my-8">
+                <SliderSection 
+                  beforeImage={beforeImage}
+                  afterImage={afterImage}
+                  projectTitle="Kitchen Transformation - Minnetonka"
+                  variant="minimal"
+                  size="full"
+                />  
+              </div>
+            );
+            
+          default:
+            return null;
+        }
+      });
+    };
+
+    return (
+      <section
+        className={cn("bg-background py-16 md:py-24", className)}
+        aria-labelledby="article-title"
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col gap-12 md:gap-16">
+            {/* Centered Header */}
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center md:gap-6">
+              <h1 id="article-title" className="heading-xl" style={fontStyle}>
+                {title}
+              </h1>
+              <p className="text-muted-foreground text-lg" style={fontStyle}>
+                {description}
+              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-muted-foreground text-sm" style={fontStyle}>{date}</p>
+                <span className="text-muted-foreground text-sm">·</span>
+                <p className="text-muted-foreground text-sm" style={fontStyle}>{category}</p>
+              </div>
+            </div>
+
+            {/* Two Column Layout: Content + Sidebar */}
+            <div className="flex flex-row gap-12">
+              {/* Main Content */}
+              <article className="flex max-w-3xl flex-col gap-8">
+                <AspectRatio ratio={16 / 10}>
+                  <img
+                    src={featuredImage}
+                    alt="Article cover image"
+                    className="h-full w-full rounded-xl object-cover"
+                  />
+                </AspectRatio>
+
+                <div className="flex flex-col gap-6">
+                  {renderContentWithIds()}
+                </div>
+              </article>
+
+              {/* Sidebar Navigation - Now outside article for accessibility */}
+              <div className="hidden lg:flex lg:flex-col lg:gap-5">
+                <div className="sticky top-8">
+                  <span className="text-foreground text-sm font-medium" style={fontStyle}>
+                    On this page
+                  </span>
+                  <nav className="flex flex-col gap-3 mt-3">
+                    {tableOfContents.map((item) => (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        onClick={(e) => handleScroll(e, `#${item.id}`)}
+                        className="text-muted-foreground hover:text-foreground text-sm cursor-pointer transition-colors"
                         style={fontStyle}
                       >
                         {item.text}
