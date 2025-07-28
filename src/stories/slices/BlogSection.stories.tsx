@@ -78,8 +78,8 @@ const meta: Meta<typeof BlogSection> = {
     },
     variant: {
       control: { type: "select" },
-      options: ["default", "minimal"],
-      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info",
+      options: ["default", "minimal", "reversed"],
+      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info, 'reversed' with content-first layout and bottom images",
     },
   },
   args: {
@@ -184,6 +184,49 @@ export const Minimal: Story = {
     gridColumns: { table: { disable: true } },
     showImages: { table: { disable: true } },
     imageAspectRatio: { table: { disable: true } },
+  },
+};
+
+export const Reversed: Story = {
+  args: {
+    variant: "reversed",
+    tagline: "Design Portfolio",
+    headline: "Featured Interior Design Projects & Showcase",
+    description: "Browse our curated collection of luxury interior design transformations featuring award-winning projects and innovative space solutions for discerning clients.",
+    posts: [
+      {
+        id: 1,
+        title: "Contemporary Kitchen Design Trends for 2024",
+        description: "Explore the latest luxury kitchen design trends featuring premium materials, smart appliances, and sophisticated color palettes for modern homes.",
+        date: "Mar 15, 2024",
+        category: "Kitchen Design",
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 2,
+        title: "Luxury Bathroom Spa Retreat Design",
+        description: "Transform your bathroom into a personal spa sanctuary with premium finishes, rainfall showers, and elegant lighting solutions.",
+        date: "Mar 12, 2024",
+        category: "Bathroom Design",
+        image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 3,
+        title: "Open-Concept Living Room Elegance",
+        description: "Discover how to create sophisticated living spaces that seamlessly blend comfort, style, and functionality for modern entertaining.",
+        date: "Mar 8, 2024",
+        category: "Living Spaces",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
+      },
+    ],
+    gridColumns: "3",
+    cardGap: "medium",
+    hoverEffect: true,
+    imageAspectRatio: 4/3,
+  },
+  argTypes: {
+    // Hide controls not used in Reversed layout
+    gridColumns: { table: { disable: true } },
   },
 };
 

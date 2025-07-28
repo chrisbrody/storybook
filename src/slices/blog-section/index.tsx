@@ -21,7 +21,7 @@ interface BlogPost {
 }
 
 interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
-  variant?: "default" | "minimal";
+  variant?: "default" | "minimal" | "reversed";
   backgroundColor?: string;
   textColor?: string;
   taglineColor?: string;
@@ -107,6 +107,33 @@ const MINIMAL_POSTS: BlogPost[] = [
   },
 ];
 
+const REVERSED_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Contemporary Kitchen Design Trends for 2024",
+    description: "Explore the latest luxury kitchen design trends featuring premium materials, smart appliances, and sophisticated color palettes for modern homes.",
+    date: "Mar 15, 2024",
+    category: "Kitchen Design",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
+  },
+  {
+    id: 2,
+    title: "Luxury Bathroom Spa Retreat Design",
+    description: "Transform your bathroom into a personal spa sanctuary with premium finishes, rainfall showers, and elegant lighting solutions.",
+    date: "Mar 12, 2024",
+    category: "Bathroom Design",
+    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=600&fit=crop&auto=format",
+  },
+  {
+    id: 3,
+    title: "Open-Concept Living Room Elegance",
+    description: "Discover how to create sophisticated living spaces that seamlessly blend comfort, style, and functionality for modern entertaining.",
+    date: "Mar 8, 2024",
+    category: "Living Spaces",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format",
+  },
+];
+
 function BlogSection({
   className,
   variant = "default",
@@ -129,13 +156,15 @@ function BlogSection({
   ...props
 }: BlogSectionProps) {
   // Set default posts based on variant
-  const defaultPosts = variant === "minimal" ? MINIMAL_POSTS : DEFAULT_POSTS;
+  const defaultPosts = variant === "minimal" ? MINIMAL_POSTS : 
+                      variant === "reversed" ? REVERSED_POSTS : DEFAULT_POSTS;
   const actualPosts = posts || defaultPosts;
   
   // Set variant-specific defaults
   const isMinimal = variant === "minimal";
+  const isReversed = variant === "reversed";
   const actualShowImages = isMinimal ? false : showImages;
-  const actualGridColumns = isMinimal ? "3" : gridColumns;
+  const actualGridColumns = (isMinimal || isReversed) ? "3" : gridColumns;
   const actualTaglineColor = taglineColor || `${textColor}CC`;
   const actualMetaTextColor = metaTextColor || `${textColor}99`;
   const actualLinkColor = linkColor || textColor;
@@ -149,7 +178,7 @@ function BlogSection({
 
   const gridClasses = {
     "2": "md:grid-cols-2",
-    "3": isMinimal ? "lg:grid-cols-3" : "md:grid-cols-3", 
+    "3": (isMinimal || isReversed) ? "lg:grid-cols-3" : "md:grid-cols-3", 
     "4": "md:grid-cols-2 lg:grid-cols-4"
   };
 
@@ -289,6 +318,92 @@ function BlogSection({
                     <Separator className="lg:hidden" />
                   )}
                 </>
+              ))}
+            </div>
+          ) : isReversed ? (
+            <div
+              className={cn(
+                "grid grid-cols-1",
+                gridClasses[actualGridColumns],
+                gapClasses[cardGap]
+              )}
+              role="list"
+            >
+              {actualPosts.map((post) => (
+                <React.Fragment key={post.id}>
+                  <Card
+                    className="group flex cursor-pointer flex-col justify-between gap-6 rounded-none border-none bg-transparent p-0 shadow-none"
+                    role="listitem"
+                    style={{
+                      '--link-color': actualLinkColor,
+                      '--hover-link-color': actualHoverLinkColor,
+                    } as React.CSSProperties}
+                  >
+                    {/* Post Content */}
+                    <CardContent className="flex flex-col gap-3 p-0">
+                      {/* Post Meta */}
+                      <div className="flex items-center gap-2 text-left">
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.date}
+                        </span>
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          ·
+                        </span>
+                        <span 
+                          className="text-sm"
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.category}
+                        </span>
+                      </div>
+
+                      {/* Post Title */}
+                      <h2 
+                        className={cn(
+                          "text-base font-semibold leading-normal transition-colors",
+                          "text-[--link-color]",
+                          hoverEffect && "group-hover:text-[--hover-link-color] group-hover:underline"
+                        )}
+                      >
+                        {post.title}
+                      </h2>
+
+                      {/* Post Summary */}
+                      <p 
+                        className="text-sm leading-normal line-clamp-2"
+                        style={{ color: actualMetaTextColor }}
+                      >
+                        {post.description}
+                      </p>
+                    </CardContent>
+
+                    {/* Image Container */}
+                    <CardFooter className="p-0">
+                      {post.image && (
+                        <AspectRatio
+                          ratio={imageAspectRatio}
+                          className="w-full overflow-hidden rounded-xl"
+                        >
+                          <img
+                            src={post.image}
+                            alt={`${post.title} - Interior design project showcase`}
+                            loading="lazy"
+                            className={cn(
+                              "h-full w-full object-cover",
+                              hoverEffect && "transition-transform duration-200 group-hover:scale-105"
+                            )}
+                          />
+                        </AspectRatio>
+                      )}
+                    </CardFooter>
+                  </Card>
+                </React.Fragment>
               ))}
             </div>
           ) : (
