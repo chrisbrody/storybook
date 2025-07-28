@@ -40,8 +40,8 @@ function CtaSection({
   layout = "vertical",
   imageSrc,
   imageAlt = "Luxury interior design showcase",
-  emailPlaceholder = "Email",
-  formButtonText = "Start for free",
+  emailPlaceholder = "Enter your email",
+  formButtonText = "Schedule Consultation",
   showEmailForm = true,
   style,
   ...props
