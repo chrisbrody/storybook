@@ -17,13 +17,16 @@ interface CtaSectionProps extends React.HTMLAttributes<HTMLElement> {
   description?: string;
   buttonText?: string;
   buttonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
+  primaryButtonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
+  secondaryButtonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
   showArrow?: boolean;
-  layout?: "vertical" | "horizontal" | "with-image" | "with-form" | "split-screen";
+  layout?: "vertical" | "horizontal" | "horizontal-with-paragraph" | "with-image" | "with-form" | "split-screen";
   imageSrc?: string;
   imageAlt?: string;
   emailPlaceholder?: string;
   formButtonText?: string;
   showEmailForm?: boolean;
+  paragraph?: string;
 }
 
 function CtaSection({
@@ -36,6 +39,8 @@ function CtaSection({
   description = "Experience luxury interior design that reflects your unique style and enhances your daily life. Our award-winning team creates stunning, functional spaces that exceed expectations.",
   buttonText = "Schedule Consultation",
   buttonVariant = "default",
+  primaryButtonVariant = "secondary",
+  secondaryButtonVariant = "default",
   showArrow = true,
   layout = "vertical",
   imageSrc,
@@ -43,6 +48,7 @@ function CtaSection({
   emailPlaceholder = "Enter your email",
   formButtonText = "Schedule Consultation",
   showEmailForm = true,
+  paragraph = "Add one or two compelling sentences that reinforce your main value proposition and overcome final objections.",
   style,
   ...props
 }: CtaSectionProps) {
@@ -79,6 +85,57 @@ function CtaSection({
     );
   };
 
+  if (layout === "horizontal-with-paragraph") {
+    return (
+      <section
+        className={cn("bg-background", className)}
+        style={style}
+        aria-labelledby="cta-heading"
+        {...props}
+      >
+        <div className="container mx-auto">
+          <div 
+            className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
+            style={{ backgroundColor }}
+          >
+            <div className="flex w-full flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
+              <div className="section-title-gap-sm flex max-w-xl flex-col">
+                <h2
+                  id="cta-heading"
+                  className="heading-sm text-primary-foreground"
+                  style={{ color: textColor }}
+                >
+                  {headline}
+                </h2>
+                <p 
+                  className="text-primary-foreground/80 pt-5"
+                  style={{ color: `${textColor}CC` }}
+                >
+                  {paragraph}
+                </p>
+              </div>
+              <div className="align-right flex flex-col gap-3 md:flex-row">
+                <Button
+                  variant={primaryButtonVariant}
+                  aria-label={`${buttonText} with our service`}
+                >
+                  {buttonText}
+                  {showArrow && <ArrowRight />}
+                </Button>
+                <Button
+                  variant={secondaryButtonVariant}
+                  aria-label="Learn more about our service"
+                >
+                  Learn more
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (layout === "horizontal") {
     return (
       <section
@@ -108,7 +165,7 @@ function CtaSection({
             {/* Right Buttons */}
             <div className="flex items-center gap-4 shrink-0">
               <Button
-                variant="outline"
+                variant={secondaryButtonVariant}
                 className="text-sm bg-transparent hover:bg-white/10"
                 style={{ 
                   color: learnMoreColor, 
@@ -119,7 +176,7 @@ function CtaSection({
                 Learn more
               </Button>
               <Button
-                variant={buttonVariant}
+                variant={primaryButtonVariant}
                 aria-label={`${buttonText} with our service`}
               >
                 {buttonText}
@@ -140,7 +197,7 @@ function CtaSection({
 
             {/* Learn More Link */}
             <Button
-                variant="outline"
+                variant={secondaryButtonVariant}
                 className="text-sm bg-transparent hover:bg-white/10"
                 style={{ 
                   color: learnMoreColor, 
@@ -153,7 +210,7 @@ function CtaSection({
             
             {/* Primary Button */}
             <Button
-              variant={buttonVariant}
+              variant={primaryButtonVariant}
               aria-label={`${buttonText} with our service`}
               className="w-auto"
             >
