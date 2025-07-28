@@ -52,8 +52,8 @@ const meta: Meta<typeof CtaSection> = {
     },
     layout: {
       control: { type: "select" },
-      options: ["vertical", "horizontal", "with-image"],
-      description: "Layout variant - vertical (centered), horizontal (side-by-side), or with-image (image + content)",
+      options: ["vertical", "horizontal", "with-image", "with-form"],
+      description: "Layout variant - vertical (centered), horizontal (side-by-side), with-image (image + content), or with-form (content + form + image)",
     },
     imageSrc: {
       control: { type: "file", accept: ".jpg,.jpeg,.png,.gif,.webp" },
@@ -61,7 +61,19 @@ const meta: Meta<typeof CtaSection> = {
     },
     imageAlt: {
       control: { type: "text" },
-      description: "Alt text for the image (with-image layout only)",
+      description: "Alt text for the image (with-image and with-form layouts)",
+    },
+    emailPlaceholder: {
+      control: { type: "text" },
+      description: "Placeholder text for email input (with-form layout only)",
+    },
+    formButtonText: {
+      control: { type: "text" },
+      description: "Text for the form submit button (with-form layout only)",
+    },
+    showEmailForm: {
+      control: { type: "boolean" },
+      description: "Show email form instead of regular button (with-form layout only)",
     },
   },
   args: {
@@ -77,6 +89,9 @@ const meta: Meta<typeof CtaSection> = {
     layout: "vertical",
     imageSrc: undefined,
     imageAlt: "Luxury interior design showcase",
+    emailPlaceholder: "Email",
+    formButtonText: "Start for free",
+    showEmailForm: true,
   },
 };
 
@@ -101,6 +116,23 @@ export const WithImage: Story = {
     buttonText: "Schedule Consultation",
     buttonVariant: "ghost",
     showArrow: true,
+    imageSrc: undefined,
+  },
+};
+
+export const WithForm: Story = {
+  args: {
+    layout: "with-form",
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+    tagline: "Interior Design Studio",
+    headline: "Action-driving headline that creates urgency",
+    description: "Add one or two compelling sentences that reinforce your main value proposition and overcome final objections. End with a clear reason to act now. Align this copy with your CTA button text.",
+    emailPlaceholder: "Email",
+    formButtonText: "Start for free",
+    buttonVariant: "default",
+    showArrow: false,
+    showEmailForm: true,
     imageSrc: undefined,
   },
 };

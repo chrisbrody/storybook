@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { Tagline } from "@/components/ui/tagline";
 import { cn } from "@/lib/utils";
@@ -17,9 +18,12 @@ interface CtaSectionProps extends React.HTMLAttributes<HTMLElement> {
   buttonText?: string;
   buttonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
   showArrow?: boolean;
-  layout?: "vertical" | "horizontal" | "with-image";
+  layout?: "vertical" | "horizontal" | "with-image" | "with-form";
   imageSrc?: string;
   imageAlt?: string;
+  emailPlaceholder?: string;
+  formButtonText?: string;
+  showEmailForm?: boolean;
 }
 
 function CtaSection({
@@ -36,6 +40,9 @@ function CtaSection({
   layout = "vertical",
   imageSrc,
   imageAlt = "Luxury interior design showcase",
+  emailPlaceholder = "Email",
+  formButtonText = "Start for free",
+  showEmailForm = true,
   style,
   ...props
 }: CtaSectionProps) {
@@ -217,6 +224,94 @@ function CtaSection({
                   {showArrow && <ArrowRight />}
                 </Button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (layout === "with-form") {
+    return (
+      <section
+        className={cn("bg-background section-padding-y", className)}
+        style={style}
+        aria-labelledby="cta-heading"
+        {...props}
+      >
+        <div className="container-padding-x container mx-auto">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+            {/* Left Column - Content */}
+            <div className="flex flex-1 flex-col gap-6 lg:gap-8">
+              {/* Section Header */}
+              <div className="section-title-gap-lg flex flex-col">
+                {/* Tagline */}
+                <Tagline 
+                  className="text-sm font-medium"
+                  style={{ color: `${textColor}CC` }}
+                >
+                  {tagline}
+                </Tagline>
+                {/* Main Heading */}
+                <h2 
+                  id="cta-heading" 
+                  className="heading-lg"
+                  style={{ color: textColor }}
+                >
+                  {headline}
+                </h2>
+                {/* Description */}
+                <p 
+                  className="text-base"
+                  style={{ color: `${textColor}CC` }}
+                >
+                  {description}
+                </p>
+              </div>
+              
+              {/* Email Form or Button */}
+              {showEmailForm ? (
+                <form
+                  className="flex w-full flex-col gap-3 md:max-w-sm md:flex-row"
+                  onSubmit={(e) => e.preventDefault()}
+                  aria-label="Email signup form"
+                >
+                  <Input
+                    placeholder={emailPlaceholder}
+                    type="email"
+                    required
+                    aria-required="true"
+                    aria-label="Enter your email"
+                    className="flex-1"
+                  />
+                  <Button 
+                    type="submit" 
+                    variant={buttonVariant}
+                    aria-label={`${formButtonText} with our service`}
+                  >
+                    {formButtonText}
+                    {showArrow && <ArrowRight />}
+                  </Button>
+                </form>
+              ) : (
+                <Button
+                  variant={buttonVariant}
+                  aria-label={`${buttonText} with our service`}
+                  className="w-fit"
+                >
+                  {buttonText}
+                  {showArrow && <ArrowRight />}
+                </Button>
+              )}
+            </div>
+            
+            {/* Right Column - Image */}
+            <div className="w-full flex-1">
+              <AspectRatio ratio={4/3}>
+                <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
+                  {renderImageOrPlaceholder()}
+                </div>
+              </AspectRatio>
             </div>
           </div>
         </div>
