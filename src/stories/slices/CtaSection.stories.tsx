@@ -24,6 +24,7 @@ const meta: Meta<typeof CtaSection> = {
     learnMoreColor: {
       control: { type: "color" },
       description: "Color for Learn more button text and border (horizontal layout only)",
+      if: { arg: 'layout', eq: 'horizontal' },
     },
     tagline: {
       control: { type: "text" },
@@ -52,8 +53,8 @@ const meta: Meta<typeof CtaSection> = {
     },
     layout: {
       control: { type: "select" },
-      options: ["vertical", "horizontal", "with-image", "with-form"],
-      description: "Layout variant - vertical (centered), horizontal (side-by-side), with-image (image + content), or with-form (content + form + image)",
+      options: ["vertical", "horizontal", "with-image", "with-form", "split-screen"],
+      description: "Layout variant - vertical (centered), horizontal (side-by-side), with-image (image + content), with-form (content + form + image), or split-screen (desktop/mobile preview)",
     },
     imageSrc: {
       control: { type: "file", accept: ".jpg,.jpeg,.png,.gif,.webp" },
@@ -66,14 +67,17 @@ const meta: Meta<typeof CtaSection> = {
     emailPlaceholder: {
       control: { type: "text" },
       description: "Placeholder text for email input (with-form layout only)",
+      if: { arg: 'layout', eq: 'with-form' },
     },
     formButtonText: {
       control: { type: "text" },
       description: "Text for the form submit button (with-form layout only)",
+      if: { arg: 'layout', eq: 'with-form' },
     },
     showEmailForm: {
       control: { type: "boolean" },
       description: "Show email form instead of regular button (with-form layout only)",
+      if: { arg: 'layout', eq: 'with-form' },
     },
   },
   args: {
@@ -136,5 +140,21 @@ export const WithForm: Story = {
     showEmailForm: true,
     imageSrc: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&crop=center&q=80",
     imageAlt: "Luxury kitchen with marble countertops and custom cabinetry",
+  },
+};
+
+export const SplitScreen: Story = {
+  args: {
+    layout: "split-screen",
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+    tagline: "Eminent Interior Design",
+    headline: "Transform Your Luxury Home with Expert Interior Design",
+    description: "Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life.",
+    buttonText: "Schedule Consultation",
+    buttonVariant: "ghost",
+    showArrow: true,
+    imageSrc: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&h=600&fit=crop&crop=center&q=80",
+    imageAlt: "Luxury interior design showcasing modern living space with premium finishes",
   },
 };

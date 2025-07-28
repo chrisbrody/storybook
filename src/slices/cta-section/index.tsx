@@ -18,7 +18,7 @@ interface CtaSectionProps extends React.HTMLAttributes<HTMLElement> {
   buttonText?: string;
   buttonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
   showArrow?: boolean;
-  layout?: "vertical" | "horizontal" | "with-image" | "with-form";
+  layout?: "vertical" | "horizontal" | "with-image" | "with-form" | "split-screen";
   imageSrc?: string;
   imageAlt?: string;
   emailPlaceholder?: string;
@@ -46,13 +46,13 @@ function CtaSection({
   style,
   ...props
 }: CtaSectionProps) {
-  const renderImageOrPlaceholder = () => {
+  const renderImageOrPlaceholder = (additionalClasses = "rounded-xl") => {
     if (imageSrc) {
       return (
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-full w-full object-cover"
+          className={`h-full w-full object-cover ${additionalClasses}`}
         />
       );
     }
@@ -316,6 +316,74 @@ function CtaSection({
                   {renderImageOrPlaceholder()}
                 </div>
               </AspectRatio>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (layout === "split-screen") {
+    return (
+      <section
+        className={cn("md:bg-background py-0 lg:py-24", className)}
+        style={{ backgroundColor: "#f5f5f5", ...style }}
+        aria-labelledby="cta-heading"
+        {...props}
+      >
+        <div className="md:container md:mx-auto">
+          <div 
+            className="w-full overflow-hidden pt-16 md:max-w-7xl md:rounded-xl lg:pl-16"
+            style={{ backgroundColor }}
+          >
+            <div className="flex flex-col gap-8 lg:flex-row lg:gap-12 lg:items-end">
+              {/* Left Column - Content */}
+              <div className="mx-auto flex max-w-xl flex-1 flex-col items-center justify-between gap-4 px-6 text-center lg:max-w-full lg:items-start lg:gap-8 lg:px-0 lg:pb-16 lg:text-left">
+                {/* Section Header */}
+                <div className="section-title-gap-lg flex flex-col items-center text-center lg:items-start lg:text-left">
+                  {/* Tagline */}
+                  <Tagline 
+                    className="text-sm font-medium"
+                    style={{ color: `${textColor}CC` }}
+                  >
+                    {tagline}
+                  </Tagline>
+                  {/* Main Heading */}
+                  <h2
+                    id="cta-heading"
+                    className="heading-lg"
+                    style={{ color: textColor }}
+                  >
+                    {headline}
+                  </h2>
+                </div>
+                {/* CTA Content */}
+                <div className="flex flex-col items-center gap-6 lg:items-start">
+                  {/* Description */}
+                  <p 
+                    className="text-base pt-5"
+                    style={{ color: `${textColor}CC` }}
+                  >
+                    {description}
+                  </p>
+                  {/* CTA Button */}
+                  <Button
+                    variant={buttonVariant}
+                    aria-label={`${buttonText} with our service`}
+                  >
+                    {buttonText}
+                    {showArrow && <ArrowRight />}
+                  </Button>
+                </div>
+              </div>
+              {/* Right Column - Image */}
+              <div className="w-full flex-1 pl-6 lg:pl-0">
+                <AspectRatio ratio={4/3}>
+                  <div className="h-full w-full rounded-tl-lg bg-muted flex items-center justify-center">
+                    {renderImageOrPlaceholder("rounded-tl-lg")}
+                  </div>
+                </AspectRatio>
+              </div>
             </div>
           </div>
         </div>
