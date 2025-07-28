@@ -285,7 +285,7 @@ function CtaSection({
                     required
                     aria-required="true"
                     aria-label="Enter your email"
-                    className="flex-1 min-w-0 h-10"
+                    className="flex-1 min-w-0 !h-[40px] md:py-2 py-2.5"
                   />
                   <Button 
                     type="submit" 
