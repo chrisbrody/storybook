@@ -385,7 +385,7 @@ function BlogSection({
 
                     {/* Image Container */}
                     <CardFooter className="p-0">
-                      {post.image && (
+                      {actualShowImages && post.image && (
                         <AspectRatio
                           ratio={imageAspectRatio}
                           className="w-full overflow-hidden rounded-xl"
