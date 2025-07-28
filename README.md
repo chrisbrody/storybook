@@ -2,21 +2,6 @@
 
 A comprehensive React-based UI component library for **Eminent Interior Design**, a luxury interior design studio. Built with Storybook for component development, documentation, and testing. All components are designed to reflect the sophisticated, premium aesthetic of high-end interior design work.
 
-## 🆕 Recent Updates
-
-### ✨ New CTA Section Component (Featured)
-- **7 comprehensive layout variants** for maximum flexibility
-- **Advanced form integration** with email capture capabilities
-- **Professional interior design messaging** throughout all variants
-- **Complete Storybook documentation** with interactive controls
-- **Full accessibility support** with ARIA labels and keyboard navigation
-
-### 🔧 Enhanced Components
-- **Improved button variant support** across all slice components
-- **Luxury interior design content** integrated throughout the library
-- **Mobile-responsive optimizations** for all layout variants
-- **Enhanced documentation** with usage examples and best practices
-
 ## 🏗️ Architecture
 
 This project follows a **slice-based architecture** where components are organized as reusable slices that can be composed into larger layouts. Components are built on **shadcn/ui** foundations and styled with Tailwind CSS for consistency and best practices.
@@ -52,25 +37,16 @@ This project follows a **slice-based architecture** where components are organiz
 
 ### Slice Components (`src/slices/`)
 
-**With Complete Storybook Documentation:**
+**With Storybook Documentation:**
 
-## 🎯 CTA Section (`cta-section/`) ✅ **FEATURED**
-Versatile call-to-action component with 7 layout variants for driving conversions.
+## 🎯 CTA Section (`cta-section/`) ✅
+Versatile call-to-action component with multiple layout variants for driving conversions.
 
 **Features:**
-- **7 Layout Variants**: Default, Horizontal, Horizontal-with-paragraph, With-image, Simple, With-form, Split-screen
-- **Advanced Button Controls**: Primary/secondary button variants with full shadcn/ui support
-- **Luxury Interior Design Content**: Professional messaging for high-end clientele
-- **Form Integration**: Email capture with validation for lead generation
-- **Image Support**: Project showcase with upload capabilities
-- **Responsive Design**: Optimized layouts for all devices
-- **Accessibility**: Full ARIA support and keyboard navigation
-
-**Perfect for:**
-- Service introductions and portfolio showcases
-- Lead generation and consultation requests
-- Final conversion points and announcements
-- Feature callouts with supporting visuals
+- Multiple layout variants (vertical, horizontal, with-image, with-form, simple, split-screen)
+- Form integration for email capture and lead generation
+- Customizable styling and content for luxury interior design
+- Responsive design optimized for all devices
 
 ## 🏠 Header Section (`header/`) ✅
 Complete website header with navigation and branding.
@@ -251,36 +227,12 @@ All components include comprehensive Storybook documentation with:
 
 ### CTA Section
 ```tsx
-// Simple variant for focused conversion
 <CtaSection
   layout="simple"
-  tagline="Luxury Interior Design"
   headline="Transform Your Space with Expert Design"
   buttonText="Schedule Consultation"
-  buttonVariant="secondary"
   backgroundColor="#000000"
   textColor="#ffffff"
-/>
-
-// With-image variant for portfolio showcase
-<CtaSection
-  layout="with-image"
-  tagline="Portfolio Showcase"
-  headline="Award-Winning Kitchen Transformation"
-  description="Experience sophisticated design that creates stunning, functional spaces."
-  imageSrc="path/to/project-image.jpg"
-  imageAlt="Luxury modern kitchen with custom millwork"
-  buttonText="View Full Project"
-/>
-
-// With-form variant for lead generation
-<CtaSection
-  layout="with-form"
-  headline="Start Your Design Journey Today"
-  description="Get a personalized consultation for your luxury interior design project."
-  emailPlaceholder="Enter your email"
-  formButtonText="Schedule Consultation"
-  showEmailForm={true}
 />
 ```
 
