@@ -8,10 +8,11 @@ const meta: Meta<typeof CtaSection> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "A call-to-action section component designed for luxury interior design websites. Built on shadcn/ui foundations with customizable backgrounds, text colors, and content for maximum flexibility.",
+        component: "A versatile CTA (Call-to-Action) section component designed for luxury interior design websites. Features multiple layout variants including vertical, horizontal, horizontal-with-paragraph, with-image, with-form, split-screen, and simple layouts. Built on shadcn/ui foundations with full accessibility support and customizable styling options perfect for driving conversions and showcasing interior design services.",
       },
     },
   },
+  tags: ['autodocs'],
   argTypes: {
     backgroundColor: {
       control: { type: "color" },
