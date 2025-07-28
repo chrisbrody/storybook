@@ -52,7 +52,7 @@ function CtaSection({
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-full w-full object-cover rounded-xl"
+          className="h-full w-full object-cover"
         />
       );
     }
@@ -234,8 +234,11 @@ function CtaSection({
   if (layout === "with-form") {
     return (
       <section
-        className={cn("bg-background section-padding-y", className)}
-        style={style}
+        className={cn("section-padding-y", className)}
+        style={{
+          backgroundColor,
+          ...style,
+        }}
         aria-labelledby="cta-heading"
         {...props}
       >
@@ -272,7 +275,7 @@ function CtaSection({
               {/* Email Form or Button */}
               {showEmailForm ? (
                 <form
-                  className="flex w-full flex-col gap-3 md:max-w-sm md:flex-row"
+                  className="flex w-full flex-col gap-3 md:max-w-md md:flex-row"
                   onSubmit={(e) => e.preventDefault()}
                   aria-label="Email signup form"
                 >
@@ -282,12 +285,13 @@ function CtaSection({
                     required
                     aria-required="true"
                     aria-label="Enter your email"
-                    className="flex-1"
+                    className="flex-1 min-w-0 h-10"
                   />
                   <Button 
                     type="submit" 
                     variant={buttonVariant}
                     aria-label={`${formButtonText} with our service`}
+                    className="h-10 whitespace-nowrap"
                   >
                     {formButtonText}
                     {showArrow && <ArrowRight />}
@@ -308,7 +312,7 @@ function CtaSection({
             {/* Right Column - Image */}
             <div className="w-full flex-1">
               <AspectRatio ratio={4/3}>
-                <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
+                <div className="h-full w-full bg-muted flex items-center justify-center">
                   {renderImageOrPlaceholder()}
                 </div>
               </AspectRatio>
