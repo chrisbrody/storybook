@@ -20,7 +20,7 @@ interface CtaSectionProps extends React.HTMLAttributes<HTMLElement> {
   primaryButtonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
   secondaryButtonVariant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
   showArrow?: boolean;
-  layout?: "vertical" | "horizontal" | "horizontal-with-paragraph" | "with-image" | "with-form" | "split-screen";
+  layout?: "vertical" | "horizontal" | "horizontal-with-paragraph" | "with-image" | "with-form" | "split-screen" | "simple";
   imageSrc?: string;
   imageAlt?: string;
   emailPlaceholder?: string;
@@ -281,6 +281,53 @@ function CtaSection({
                   {showArrow && <ArrowRight />}
                 </Button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (layout === "simple") {
+    return (
+      <section
+        className={cn("bg-background", className)}
+        style={style}
+        aria-labelledby="cta-heading"
+        {...props}
+      >
+        <div className="container mx-auto">
+          <div 
+            className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
+            style={{ backgroundColor }}
+          >
+            <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-8 text-center">
+              {/* Section Header */}
+              <div className="section-title-gap-lg flex flex-col items-center text-center">
+                {/* Category Tag */}
+                <Tagline 
+                  className="text-primary-foreground/80"
+                  style={{ color: `${textColor}CC` }}
+                >
+                  {tagline}
+                </Tagline>
+                {/* Main Title */}
+                <h2
+                  id="cta-heading"
+                  className="text-primary-foreground heading-lg"
+                  style={{ color: textColor }}
+                >
+                  {headline}
+                </h2>
+              </div>
+              {/* CTA Button */}
+              <Button
+                variant={buttonVariant}
+                aria-label={`${buttonText} with our service`}
+              >
+                {buttonText}
+                {showArrow && <ArrowRight />}
+              </Button>
             </div>
           </div>
         </div>

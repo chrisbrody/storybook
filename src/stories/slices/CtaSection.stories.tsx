@@ -52,8 +52,8 @@ const meta: Meta<typeof CtaSection> = {
     },
     layout: {
       control: { type: "select" },
-      options: ["vertical", "horizontal", "horizontal-with-paragraph", "with-image", "with-form", "split-screen"],
-      description: "Layout variant - vertical (centered), horizontal (side-by-side), horizontal-with-paragraph (horizontal with paragraph), with-image (image + content), with-form (content + form + image), or split-screen (desktop/mobile preview)",
+      options: ["vertical", "horizontal", "horizontal-with-paragraph", "with-image", "with-form", "split-screen", "simple"],
+      description: "Layout variant - vertical (centered), horizontal (side-by-side), horizontal-with-paragraph (horizontal with paragraph), with-image (image + content), with-form (content + form + image), split-screen (desktop/mobile preview), or simple (clean centered design)",
     },
     imageSrc: {
       control: { type: "file", accept: ".jpg,.jpeg,.png,.gif,.webp" },
@@ -159,11 +159,12 @@ export const Horizontal: Story = {
 export const WithImage: Story = {
   args: {
     layout: "with-image",
-    headline: "Transform Your Luxury Home with Expert Interior Design",
-    description: "Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life.",
-    buttonText: "Schedule Consultation",
-    buttonVariant: "ghost",
-    showArrow: true,
+    backgroundColor: "#1a1a1a",
+    textColor: "#ffffff",
+    tagline: "Luxury Interior Design",
+    headline: "Transform Your Space with Award-Winning Design",
+    description: "Our expert team creates stunning, functional spaces that reflect your unique style and enhance your daily life through thoughtful design and premium materials.",
+    buttonText: "View Our Portfolio",
     imageSrc: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=800&fit=crop&crop=center&q=80",
     imageAlt: "Luxury modern living room with custom millwork and premium finishes",
   },
@@ -253,5 +254,31 @@ export const SplitScreen: Story = {
     paragraph: { table: { disable: true } },
     primaryButtonVariant: { table: { disable: true } },
     secondaryButtonVariant: { table: { disable: true } },
+  },
+};
+
+export const Simple: Story = {
+  args: {
+    layout: "simple",
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+    tagline: "Luxury Interior Design",
+    headline: "Transform Your Space with Expert Design",
+    buttonText: "Schedule Consultation",
+    buttonVariant: "secondary",
+    showArrow: true,
+  },
+  argTypes: {
+    // Hide controls not used in Simple layout
+    description: { table: { disable: true } },
+    emailPlaceholder: { table: { disable: true } },
+    formButtonText: { table: { disable: true } },
+    showEmailForm: { table: { disable: true } },
+    learnMoreColor: { table: { disable: true } },
+    primaryButtonVariant: { table: { disable: true } },
+    secondaryButtonVariant: { table: { disable: true } },
+    paragraph: { table: { disable: true } },
+    imageSrc: { table: { disable: true } },
+    imageAlt: { table: { disable: true } },
   },
 };

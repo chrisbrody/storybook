@@ -1,0 +1,165 @@
+import { Meta, Canvas, Story, ArgsTable, Description } from '@storybook/blocks';
+import { CtaSection } from '../../slices/cta-section';
+import * as CtaSectionStories from './CtaSection.stories';
+
+<Meta title="Slices/CTA Section/Documentation" />
+
+# CTA Section
+
+The CTA (Call-to-Action) Section is a versatile component designed for luxury interior design websites. It provides multiple layout variants to showcase services, drive conversions, and engage potential clients with sophisticated design options.
+
+## Overview
+
+This component is built on **shadcn/ui** foundations and follows the slice-based architecture for maximum flexibility and reusability. Each variant is optimized for different use cases in luxury interior design marketing.
+
+## Layout Variants
+
+### Default (Vertical)
+The standard centered layout with tagline, headline, description, and call-to-action button.
+
+<Canvas of={CtaSectionStories.Default} />
+
+**Best for**: Landing page hero sections, service introductions, or any centered content showcase.
+
+### Horizontal
+Side-by-side layout optimized for desktop with responsive mobile stacking.
+
+<Canvas of={CtaSectionStories.Horizontal} />
+
+**Best for**: Header sections, featured service callouts, or when you need more horizontal space.
+
+### Horizontal with Paragraph
+Enhanced horizontal layout that includes a paragraph section below the headline.
+
+<Canvas of={CtaSectionStories.HorizontalWithParagraph} />
+
+**Best for**: Detailed service descriptions, value propositions, or when you need additional content context.
+
+### With Image
+Image and content side-by-side layout perfect for showcasing portfolio work.
+
+<Canvas of={CtaSectionStories.WithImage} />
+
+**Best for**: Portfolio showcases, featured project highlights, or service demonstrations with visual context.
+
+### Simple
+Clean, focused design with minimal elements - tagline, headline, and button only.
+
+<Canvas of={CtaSectionStories.Simple} />
+
+**Best for**: Final conversion points, simple announcements, or when you want maximum focus on the call-to-action.
+
+### With Form
+Email capture layout with integrated form and supporting image.
+
+<Canvas of={CtaSectionStories.WithForm} />
+
+**Best for**: Lead generation, newsletter signups, consultation requests, or contact forms.
+
+### Split Screen
+Advanced layout showcasing desktop and mobile views simultaneously.
+
+<Canvas of={CtaSectionStories.SplitScreen} />
+
+**Best for**: Service previews, app showcases, or demonstrating responsive design capabilities.
+
+## Design Guidelines
+
+### Content Requirements
+All content should reflect **Eminent Interior Design's** luxury brand:
+
+- **Tone**: Sophisticated, premium, professional, refined
+- **Services**: Interior design, space planning, custom furniture, material selection
+- **Projects**: Kitchen remodels, bathroom renovations, living spaces, commercial spaces
+- **Target Audience**: High-end clientele, luxury homeowners, premium commercial clients
+
+### Button Variants
+The component supports all shadcn/ui button variants:
+- `default` - Primary brand color
+- `secondary` - Subtle secondary styling  
+- `outline` - Bordered button style
+- `ghost` - Minimal, text-only appearance
+- `destructive` - Error/warning states
+- `link` - Link-styled button
+
+### Color Customization
+- **backgroundColor**: Controls the section background color
+- **textColor**: Controls headline and primary text color  
+- **learnMoreColor**: Controls secondary button color (horizontal layouts)
+
+### Accessibility Features
+- Semantic HTML structure with proper headings
+- ARIA labels and descriptions
+- Keyboard navigation support
+- Screen reader compatibility
+- Focus management
+
+## Usage Examples
+
+### Basic Implementation
+```tsx
+<CtaSection
+  tagline="Luxury Interior Design"
+  headline="Transform Your Space with Expert Design"
+  description="Experience sophisticated design that creates stunning, functional spaces."
+  buttonText="Schedule Consultation"
+  layout="vertical"
+/>
+```
+
+### With Custom Styling
+```tsx
+<CtaSection
+  layout="horizontal"
+  backgroundColor="#000000"
+  textColor="#ffffff"
+  learnMoreColor="#cccccc"
+  headline="Award-Winning Interior Design for Luxury Homes"
+  buttonText="View Portfolio"
+  buttonVariant="secondary"
+/>
+```
+
+### Image Showcase Variant
+```tsx
+<CtaSection
+  layout="with-image"
+  tagline="Portfolio Showcase"
+  headline="Contemporary Kitchen Transformation"
+  description="A stunning modern kitchen design featuring premium materials and expert craftsmanship."
+  imageSrc="path/to/kitchen-image.jpg"
+  imageAlt="Modern luxury kitchen with marble countertops"
+  buttonText="View Full Project"
+/>
+```
+
+## Props Reference
+
+<ArgsTable of={CtaSection} />
+
+## Best Practices
+
+### Content Guidelines
+1. **Headlines**: Keep concise but impactful (8-12 words ideal)
+2. **Descriptions**: Focus on benefits and value proposition (2-3 sentences)
+3. **Button Text**: Use action-oriented language ("Schedule", "Discover", "Transform")
+4. **Images**: Use high-quality project photos that showcase your work
+
+### Layout Selection
+- **Default/Vertical**: General-purpose sections, service introductions
+- **Horizontal**: Header areas, featured callouts
+- **With Image**: Portfolio showcases, project features
+- **Simple**: Final conversion points, focused actions
+- **With Form**: Lead generation, contact requests
+- **Split Screen**: Process demonstrations, service previews
+
+### Performance Considerations
+- Optimize images for web (WebP format recommended)
+- Use appropriate aspect ratios (1:1 for with-image, 4:3 for others)
+- Consider loading states for form submissions
+- Test responsive behavior across devices
+
+## Related Components
+- [Button](/?path=/docs/components-button--docs) - Core button component
+- [Tagline](/?path=/docs/components-tagline--docs) - Section taglines and labels
+- [Hero Section](/?path=/docs/slices-hero-section--docs) - Primary landing page sections
