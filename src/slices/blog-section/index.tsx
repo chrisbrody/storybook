@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -21,7 +22,7 @@ interface BlogPost {
 }
 
 interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
-  variant?: "default" | "minimal" | "reversed";
+  variant?: "default" | "minimal" | "reversed" | "featured";
   backgroundColor?: string;
   textColor?: string;
   taglineColor?: string;
@@ -37,6 +38,9 @@ interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {
   hoverEffect?: boolean;
   linkColor?: string;
   hoverLinkColor?: string;
+  buttonText?: string;
+  showButton?: boolean;
+  buttonVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
 }
 
 const DEFAULT_POSTS: BlogPost[] = [
@@ -134,6 +138,41 @@ const REVERSED_POSTS: BlogPost[] = [
   },
 ];
 
+const FEATURED_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Ultra-Luxury Estate Kitchen: Bespoke Italian Design",
+    description: "Exclusive showcase of a $2.8M custom kitchen featuring rare Calacatta marble, handcrafted Italian cabinetry, and museum-quality finishes for discerning collectors.",
+    date: "Mar 15, 2024",
+    category: "Estate Kitchens",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
+  },
+  {
+    id: 2,
+    title: "Penthouse Master Suite: Manhattan Skyline Views",
+    description: "A breathtaking $1.5M master suite transformation featuring floor-to-ceiling windows, custom millwork, and the finest European textiles overlooking Central Park.",
+    date: "Mar 12, 2024",
+    category: "Master Suites",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
+  },
+  {
+    id: 3,
+    title: "Grand Salon: Museum-Quality Interior Architecture",
+    description: "An extraordinary $3.2M living space featuring 18th-century antiques, custom crystal chandeliers, and hand-painted silk wallcoverings in a historic mansion.",
+    date: "Mar 8, 2024",
+    category: "Grand Salons",
+    image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
+  },
+  {
+    id: 4,
+    title: "Wine Cellar & Tasting Room: Collector's Paradise",
+    description: "A sophisticated $800K wine cellar design featuring climate control systems, imported stone, and custom millwork for serious wine connoisseurs.",
+    date: "Mar 5, 2024",
+    category: "Wine Cellars",
+    image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop&auto=format",
+  },
+];
+
 function BlogSection({
   className,
   variant = "default",
@@ -152,17 +191,22 @@ function BlogSection({
   hoverEffect = true,
   linkColor,
   hoverLinkColor,
+  buttonText = "View all articles",
+  showButton = true,
+  buttonVariant = "outline",
   style,
   ...props
 }: BlogSectionProps) {
   // Set default posts based on variant
   const defaultPosts = variant === "minimal" ? MINIMAL_POSTS : 
-                      variant === "reversed" ? REVERSED_POSTS : DEFAULT_POSTS;
+                      variant === "reversed" ? REVERSED_POSTS : 
+                      variant === "featured" ? FEATURED_POSTS : DEFAULT_POSTS;
   const actualPosts = posts || defaultPosts;
   
   // Set variant-specific defaults
   const isMinimal = variant === "minimal";
   const isReversed = variant === "reversed";
+  const isFeatured = variant === "featured";
   const actualShowImages = isMinimal ? false : showImages;
   const actualGridColumns = (isMinimal || isReversed) ? "3" : gridColumns;
   const actualTaglineColor = taglineColor || `${textColor}CC`;
@@ -405,6 +449,102 @@ function BlogSection({
                   </Card>
                 </React.Fragment>
               ))}
+            </div>
+          ) : isFeatured ? (
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+              {/* Left Column - Content */}
+              <div className="flex max-w-lg flex-col items-start gap-8">
+                <div className="section-title-gap-lg flex flex-col">
+                  <Tagline style={{ color: actualTaglineColor }}>
+                    {tagline}
+                  </Tagline>
+                  <h2 
+                    id="blog-section-heading" 
+                    className="heading-lg"
+                    style={{ color: textColor }}
+                  >
+                    {headline}
+                  </h2>
+                  <p 
+                    className="text-base"
+                    style={{ color: actualMetaTextColor }}
+                  >
+                    {description}
+                  </p>
+                </div>
+                {showButton && (
+                  <Button 
+                    variant={buttonVariant} 
+                    className="w-fit"
+                    style={{ 
+                      borderColor: actualLinkColor,
+                      color: actualLinkColor
+                    }}
+                  >
+                    {buttonText}
+                  </Button>
+                )}
+              </div>
+
+              {/* Right Column - Blog Grid */}
+              <div
+                className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+                role="list"
+              >
+                {actualPosts.map((post) => (
+                  <Card
+                    key={post.id}
+                    className="group cursor-pointer gap-0 overflow-hidden rounded-lg border p-0"
+                    role="listitem"
+                    style={{
+                      '--link-color': actualLinkColor,
+                      '--hover-link-color': actualHoverLinkColor,
+                    } as React.CSSProperties}
+                  >
+                    {actualShowImages && post.image && (
+                      <AspectRatio ratio={imageAspectRatio} className="overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={`${post.title} - Luxury interior design showcase`}
+                          loading="lazy"
+                          className={cn(
+                            "h-full w-full object-cover",
+                            hoverEffect && "transition-transform duration-200 group-hover:scale-105"
+                          )}
+                        />
+                      </AspectRatio>
+                    )}
+                    <CardContent className="flex flex-col justify-between gap-4 p-6">
+                      <h3 
+                        className={cn(
+                          "text-base font-semibold leading-normal transition-colors",
+                          "text-[--link-color]",
+                          hoverEffect && "group-hover:text-[--hover-link-color] group-hover:underline"
+                        )}
+                      >
+                        {post.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-2 text-sm leading-none">
+                        <span 
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.date}
+                        </span>
+                        <span 
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          ·
+                        </span>
+                        <span 
+                          style={{ color: actualMetaTextColor }}
+                        >
+                          {post.category}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           ) : (
             <ul

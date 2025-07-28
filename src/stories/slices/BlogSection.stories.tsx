@@ -78,8 +78,21 @@ const meta: Meta<typeof BlogSection> = {
     },
     variant: {
       control: { type: "select" },
-      options: ["default", "minimal", "reversed"],
-      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info, 'reversed' with content-first layout and bottom images",
+      options: ["default", "minimal", "reversed", "featured"],
+      description: "Layout variant: 'default' with images and 4-column grid, 'minimal' with text-only cards and author info, 'reversed' with content-first layout and bottom images, 'featured' with two-column layout and button",
+    },
+    buttonText: {
+      control: { type: "text" },
+      description: "Text for the button in featured variant",
+    },
+    showButton: {
+      control: { type: "boolean" },
+      description: "Show/hide the button in featured variant",
+    },
+    buttonVariant: {
+      control: { type: "select" },
+      options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+      description: "Button variant style",
     },
   },
   args: {
@@ -227,6 +240,60 @@ export const Reversed: Story = {
   argTypes: {
     // Hide controls not used in Reversed layout
     gridColumns: { table: { disable: true } },
+  },
+};
+
+export const Featured: Story = {
+  args: {
+    variant: "featured",
+    tagline: "Luxury Estate Showcase",
+    headline: "Million Dollar Home Interior Transformations",
+    description: "Explore our exclusive portfolio of ultra-luxury interior design projects for discerning clients seeking unparalleled sophistication and bespoke craftsmanship in their most treasured spaces.",
+    posts: [
+      {
+        id: 1,
+        title: "Ultra-Luxury Estate Kitchen: Bespoke Italian Design",
+        description: "Exclusive showcase of a $2.8M custom kitchen featuring rare Calacatta marble, handcrafted Italian cabinetry, and museum-quality finishes for discerning collectors.",
+        date: "Mar 15, 2024",
+        category: "Estate Kitchens",
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 2,
+        title: "Penthouse Master Suite: Manhattan Skyline Views",
+        description: "A breathtaking $1.5M master suite transformation featuring floor-to-ceiling windows, custom millwork, and the finest European textiles overlooking Central Park.",
+        date: "Mar 12, 2024",
+        category: "Master Suites",
+        image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 3,
+        title: "Grand Salon: Museum-Quality Interior Architecture",
+        description: "An extraordinary $3.2M living space featuring 18th-century antiques, custom crystal chandeliers, and hand-painted silk wallcoverings in a historic mansion.",
+        date: "Mar 8, 2024",
+        category: "Grand Salons",
+        image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop&auto=format",
+      },
+      {
+        id: 4,
+        title: "Wine Cellar & Tasting Room: Collector's Paradise",
+        description: "A sophisticated $800K wine cellar design featuring climate control systems, imported stone, and custom millwork for serious wine connoisseurs.",
+        date: "Mar 5, 2024",
+        category: "Wine Cellars",
+        image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop&auto=format",
+      },
+    ],
+    buttonText: "View luxury portfolio",
+    showButton: true,
+    buttonVariant: "outline",
+    showImages: true,
+    imageAspectRatio: 4/3,
+    hoverEffect: true,
+  },
+  argTypes: {
+    // Hide controls not used in Featured layout
+    gridColumns: { table: { disable: true } },
+    cardGap: { table: { disable: true } },
   },
 };
 
