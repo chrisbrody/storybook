@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Input, type InputProps } from './input'
+import { Input, type InputProps } from '../../components/ui/input'
 
 interface StoryArgs extends Omit<InputProps, 'customColors'> {
   borderColor?: string
