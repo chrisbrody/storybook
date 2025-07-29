@@ -17,39 +17,78 @@ const meta: Meta<typeof HeaderSection> = {
     tagline: {
       control: 'text',
       description: 'The small text displayed above the main heading',
+      table: { category: 'Content', subcategory: '1. Tagline' },
+    },
+    taglineFont: {
+      control: { type: 'select' },
+      options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
+      description: 'Font family for the tagline',
+      table: { category: 'Content', subcategory: '1. Tagline' },
+    },
+    taglineColor: {
+      control: { type: 'color' },
+      description: 'Color for the tagline text',
+      table: { category: 'Content', subcategory: '1. Tagline' },
     },
     heading: {
       control: 'text',
       description: 'The main headline text',
+      table: { category: 'Content', subcategory: '2. Heading' },
+    },
+    headlineFont: {
+      control: { type: 'select' },
+      options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
+      description: 'Font family for the headline',
+      table: { category: 'Content', subcategory: '2. Heading' },
+    },
+    headlineColor: {
+      control: { type: 'color' },
+      description: 'Color for the headline text',
+      table: { category: 'Content', subcategory: '2. Heading' },
     },
     description: {
       control: 'text',
       description: 'The descriptive text below the heading',
+      table: { category: 'Content', subcategory: '3. Description' },
     },
-    taglineVariant: {
+    descriptionFont: {
       control: { type: 'select' },
-      options: ['default', 'ghost', 'white'],
-      description: 'Visual style of the tagline component',
+      options: ['Inter', 'Roboto', 'Open Sans', 'Playfair Display', 'Source Code Pro'],
+      description: 'Font family for the description',
+      table: { category: 'Content', subcategory: '3. Description' },
+    },
+    descriptionColor: {
+      control: { type: 'color' },
+      description: 'Color for the description text',
+      table: { category: 'Content', subcategory: '3. Description' },
     },
     alignment: {
       control: { type: 'select' },
       options: ['center', 'left'],
       description: 'Text alignment - center always centers, left centers on mobile but left-aligns on desktop',
+      table: { category: 'Layout & Styling' },
     },
     background: {
       control: { type: 'select' },
       options: ['default', 'muted', 'accent'],
       description: 'Background color variant',
+      table: { category: 'Layout & Styling' },
+    },
+    backgroundColor: {
+      control: { type: 'color' },
+      description: 'Background color of the section',
+      table: { category: 'Layout & Styling' },
     },
     className: {
       control: 'text',
       description: 'Additional CSS classes to apply',
+      table: { category: 'Advanced' },
     },
   },
   args: {
-    tagline: 'Header section',
-    heading: 'Short engaging headline',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit interdum hendrerit ex vitae sodales.',
+    tagline: 'Interior Design Studio',
+    heading: 'Transform Your Space with Expert Interior Design',
+    description: 'Eminent Interior Design creates sophisticated, luxury spaces that reflect your personal style and enhance your daily living experience.',
     taglineVariant: 'ghost',
     alignment: 'center',
     background: 'default',
@@ -61,62 +100,8 @@ type Story = StoryObj<typeof HeaderSection>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const LeftAligned: Story = {
-  args: {
-    alignment: 'left',
-    tagline: 'Welcome to our platform',
-    heading: 'Build amazing experiences with our tools',
-    description: 'Our comprehensive suite of tools helps you create, deploy, and scale your applications with confidence.',
-  },
-};
-
-export const WithDefaultTagline: Story = {
-  args: {
-    taglineVariant: 'default',
-    tagline: 'New Feature',
-    heading: 'Introducing our latest innovation',
-    description: 'Discover how our new feature can transform your workflow and boost productivity.',
-  },
-};
-
-export const WhiteTagline: Story = {
-  args: {
-    taglineVariant: 'white',
-    background: 'accent',
-    tagline: 'Premium',
-    heading: 'Unlock advanced features',
-    description: 'Take your experience to the next level with our premium tier and advanced capabilities.',
-  },
-};
-
-export const MutedBackground: Story = {
-  args: {
-    background: 'muted',
-    tagline: 'Getting Started',
-    heading: 'Your journey begins here',
-    description: 'Follow our step-by-step guide to get up and running in minutes.',
-  },
-};
-
-export const Marketing: Story = {
-  args: {
-    tagline: 'Join thousands of users',
-    heading: 'The platform that scales with you',
-    description: 'From startup to enterprise, our platform grows with your business needs and adapts to your workflow.',
-    alignment: 'center',
-    taglineVariant: 'default',
-  },
-};
-
-export const Product: Story = {
-  args: {
-    tagline: 'Product Overview',
-    heading: 'Everything you need in one place',
-    description: 'Streamline your operations with our comprehensive suite of integrated tools and features.',
-    alignment: 'left',
-    taglineVariant: 'ghost',
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
   },
 };
 
@@ -126,6 +111,8 @@ export const CustomStyling: Story = {
     heading: 'Tailored to your brand',
     description: 'Customize every aspect of your experience to match your unique brand identity.',
     className: 'border-t-4 border-blue-500',
-    taglineVariant: 'default',
+    taglineVariant: "ghost",
+    taglineColor: "#1f1f1f",
+    headlineColor: "#1f1f1f"
   },
 };
