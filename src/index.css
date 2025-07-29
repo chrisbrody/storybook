@@ -112,7 +112,7 @@ button:focus-visible {
     
     /* Custom button variables */
     --border-radius-rounded-md: 8px;
-    --base-primary: #000000;
+    --base-primary: #1a1a1a;
     --shadow-xs-offset-x: 0px;
     --shadow-xs-offset-y: 1px;
     --shadow-xs-blur-radius: 2px;

@@ -92,9 +92,9 @@ const meta: Meta<typeof CtaSection> = {
     },
   },
   args: {
-    backgroundColor: "#000000",
-    textColor: "#ffffff",
-    learnMoreColor: "#ffffff",
+    backgroundColor: "#1a1a1a",
+    textColor: "#fafafa",
+    learnMoreColor: "#fafafa",
     tagline: "Interior Design Studio",
     headline: "Transform Your Space with Expert Interior Design",
     description: "Experience luxury interior design that reflects your unique style and enhances your daily life. Our award-winning team creates stunning, functional spaces that exceed expectations.",
@@ -161,7 +161,7 @@ export const WithImage: Story = {
   args: {
     layout: "with-image",
     backgroundColor: "#1a1a1a",
-    textColor: "#ffffff",
+    textColor: "#fafafa",
     tagline: "Luxury Interior Design",
     headline: "Transform Your Space with Award-Winning Design",
     description: "Our expert team creates stunning, functional spaces that reflect your unique style and enhance your daily life through thoughtful design and premium materials.",
@@ -186,7 +186,7 @@ export const WithForm: Story = {
   args: {
     layout: "with-form",
     backgroundColor: "#ffffff",
-    textColor: "#000000",
+    textColor: "#1a1a1a",
     tagline: "Eminent Interior Design",
     headline: "Transform Your Luxury Home with Award-Winning Interior Design",
     description: "Experience sophisticated design that creates stunning, functional spaces reflecting your unique style. Our expert team specializes in high-end residential and commercial projects that exceed expectations.",
@@ -211,8 +211,8 @@ export const WithForm: Story = {
 export const HorizontalWithParagraph: Story = {
   args: {
     layout: "horizontal-with-paragraph",
-    backgroundColor: "#000000",
-    textColor: "#ffffff",
+    backgroundColor: "#1a1a1a",
+    textColor: "#fafafa",
     headline: "Transform Your Space with Expert Interior Design",
     paragraph: "Experience luxury interior design that reflects your unique style and enhances your daily life. Our award-winning team creates stunning, functional spaces.",
     buttonText: "Schedule Consultation",
@@ -236,8 +236,8 @@ export const HorizontalWithParagraph: Story = {
 export const SplitScreen: Story = {
   args: {
     layout: "split-screen",
-    backgroundColor: "#000000",
-    textColor: "#ffffff",
+    backgroundColor: "#1a1a1a",
+    textColor: "#fafafa",
     tagline: "Eminent Interior Design",
     headline: "Transform Your Luxury Home with Expert Interior Design",
     description: "Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life.",
@@ -262,8 +262,8 @@ export const SplitScreen: Story = {
 export const Simple: Story = {
   args: {
     layout: "simple",
-    backgroundColor: "#000000",
-    textColor: "#ffffff",
+    backgroundColor: "#1a1a1a",
+    textColor: "#fafafa",
     tagline: "Luxury Interior Design",
     headline: "Transform Your Space with Expert Design",
     buttonText: "Schedule Consultation",
