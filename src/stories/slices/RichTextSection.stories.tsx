@@ -16,7 +16,7 @@ const meta: Meta<typeof RichTextSection> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'with-carousel', 'with-sidebar', 'article-toc'],
+      options: ['default', 'with-carousel', 'with-sidebar', 'article-toc', 'two-column-sidebar'],
       description: 'Layout variant for the rich text section',
     },
     date: {
@@ -486,5 +486,107 @@ export const ArticleToc: Story = {
     authorAvatar: { table: { disable: true } },
     authorName: { table: { disable: true } },
     authorRole: { table: { disable: true } },
+  },
+};
+
+export const TwoColumnSidebar: Story = {
+  args: {
+    variant: 'two-column-sidebar',
+    date: 'Dec 10, 2024',
+    category: 'Design Process',
+    title: 'Luxury Master Suite Renovation - Excelsior',
+    description: 'This comprehensive master suite renovation showcases our holistic design approach, transforming a dated bedroom and bathroom into a sophisticated retreat that perfectly balances luxury and comfort.',
+    authorName: 'Eminent Interior Design',
+    authorRole: 'Interior Design Studio',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'This Excelsior master suite renovation represents the culmination of thoughtful design and meticulous craftsmanship. Our clients desired a private sanctuary that would serve as a peaceful retreat from their busy lives while reflecting their sophisticated aesthetic preferences.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Design Vision & Concept',
+        id: 'design-vision-concept'
+      },
+      {
+        type: 'paragraph',
+        text: 'The original master suite felt disconnected and dated, with small rooms that didn\'t take advantage of the home\'s beautiful lake views. Our design approach focused on creating a cohesive suite that maximizes natural light and creates seamless flow between sleeping, dressing, and bathing areas.'
+      },
+      {
+        type: 'image',
+        src: 'inline1',
+        alt: 'Before renovation - original master bedroom layout'
+      },
+      {
+        type: 'blockquote',
+        text: 'We wanted our bedroom to feel like a luxury hotel suite, but completely personal to our style. The goal was creating a space where we could truly unwind and recharge.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Space Planning & Layout',
+        id: 'space-planning-layout'
+      },
+      {
+        type: 'paragraph',
+        text: 'The renovation involved reconfiguring the entire suite to create better flow and functionality:'
+      },
+      {
+        type: 'list',
+        items: [
+          'Enlarged bedroom with seating area overlooking the lake',
+          'Walk-in closet with custom organizational systems',
+          'Spa-like bathroom with freestanding tub and separate shower',
+          'Private sitting area with fireplace for quiet mornings',
+          'Built-in millwork for storage and display throughout'
+        ]
+      },
+      {
+        type: 'paragraph',
+        text: 'The new layout creates distinct zones for different activities while maintaining visual connection throughout the suite. Natural light flows freely through the space, enhanced by carefully placed mirrors and light-colored finishes.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Material Selection & Finishes',
+        id: 'material-selection-finishes'
+      },
+      {
+        type: 'paragraph',
+        text: 'Our material palette reflects the serene lakeside setting while maintaining the luxury and sophistication our clients desired. We selected finishes that would create a timeless backdrop for both relaxation and entertaining.'
+      },
+      {
+        type: 'image',
+        src: 'inline2',
+        alt: 'Custom millwork and luxury finishes in the completed suite'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Custom Elements & Details',
+        id: 'custom-elements-details'
+      },
+      {
+        type: 'paragraph',
+        text: 'Every element in the suite was carefully considered and many were custom-designed specifically for this project. The built-in window seat with storage, custom headboard with integrated lighting, and bespoke closet system all contribute to the suite\'s unique character and functionality.'
+      },
+      {
+        type: 'paragraph',
+        text: 'The completed master suite has exceeded our clients\' expectations, creating a true sanctuary that perfectly balances luxury and livability. This project demonstrates our commitment to creating spaces that enhance daily life while reflecting our clients\' personal style and sophisticated taste.'
+      }
+    ],
+  },
+  argTypes: {
+    // Hide carousel-specific controls for two-column-sidebar variant
+    carouselImages: { table: { disable: true } },
+    carouselImage1: { table: { disable: true } },
+    carouselImage2: { table: { disable: true } },
+    carouselImage3: { table: { disable: true } },
+    carouselImage4: { table: { disable: true } },
+    carouselImage5: { table: { disable: true } },
+    carouselImage6: { table: { disable: true } },
+    beforeImage: { table: { disable: true } },
+    afterImage: { table: { disable: true } },
   },
 };
