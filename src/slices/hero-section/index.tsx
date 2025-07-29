@@ -24,18 +24,18 @@ export interface HeroSectionProps {
 
 export function HeroSection({
   variant = 'default',
-  tagline = 'Hero Section',
-  heading = 'Headline that solves user\'s main problem',
-  description = 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-  primaryButtonText = 'Get started',
+  tagline = 'Interior Design Studio',
+  heading = 'Transform Your Space with Expert Interior Design',
+  description = 'Create stunning, functional interiors that reflect your unique style and enhance your daily living. Our award-winning team specializes in luxury residential and commercial design projects.',
+  primaryButtonText = 'Schedule Consultation',
   primaryButtonVariant = 'default',
-  secondaryButtonText = 'Explore',
+  secondaryButtonText = 'View Portfolio',
   secondaryButtonVariant = 'outline',
-  checklistItems = ['Benefit drives feature one', 'Benefit drives feature two', 'Benefit drives feature three'],
-  socialProofText = 'Loved by 500+ Home Owner',
+  checklistItems = ['Award-winning design expertise', 'Full-service project management', 'Premium material selection'],
+  socialProofText = 'Trusted by 500+ discerning homeowners',
   className,
   fontFamily = 'Inter',
-  heroImage,
+  heroImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop',
 }: HeroSectionProps = {}) {
   const fontFamilyMap = {
     'Inter': '"Inter", sans-serif',
@@ -52,7 +52,7 @@ export function HeroSection({
       return (
         <img
           src={heroImage}
-          alt="Hero section image"
+          alt="Luxury interior design showcase - modern living space"
           className="h-full w-full object-cover rounded-xl"
         />
       );
@@ -223,7 +223,7 @@ export function HeroSection({
                     <>
                       <img
                         src={heroImage}
-                        alt="Hero section video thumbnail"
+                        alt="Interior design process video - luxury home transformation"
                         className="h-full w-full object-cover rounded-xl"
                       />
                       <div className="absolute inset-0 flex items-center justify-center">

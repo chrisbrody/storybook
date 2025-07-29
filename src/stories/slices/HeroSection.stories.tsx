@@ -73,17 +73,17 @@ const meta: Meta<typeof HeroSection> = {
   },
   args: {
     variant: 'default',
-    tagline: 'Hero Section',
-    heading: 'Headline that solves user\'s main problem',
-    description: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-    primaryButtonText: 'Get started',
+    tagline: 'Interior Design Studio',
+    heading: 'Transform Your Space with Expert Interior Design',
+    description: 'Create stunning, functional interiors that reflect your unique style and enhance your daily living. Our award-winning team specializes in luxury residential and commercial design projects.',
+    primaryButtonText: 'Schedule Consultation',
     primaryButtonVariant: 'default',
-    secondaryButtonText: 'Explore',
+    secondaryButtonText: 'View Portfolio',
     secondaryButtonVariant: 'outline',
-    checklistItems: ['Benefit drives feature one', 'Benefit drives feature two', 'Benefit drives feature three'],
-    socialProofText: 'Loved by 500+ Home Owners',
+    checklistItems: ['Award-winning design expertise', 'Full-service project management', 'Premium material selection'],
+    socialProofText: 'Trusted by 500+ discerning homeowners',
     fontFamily: 'Inter',
-    heroImage: undefined,
+    heroImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop',
   },
 };
 
@@ -93,55 +93,87 @@ type Story = StoryObj<typeof HeroSection>;
 export const Default: Story = {
   args: {
     variant: 'default',
+    heroImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop',
   },
+  argTypes: {
+    // Hide controls not used in Default layout
+    socialProofText: { table: { disable: true } },
+  }
 };
 
 export const Checklist: Story = {
   args: {
     variant: 'checklist',
-    tagline: 'Hero Section',
-    heading: 'Headline that solves user\'s main problem',
-    description: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-    checklistItems: ['Benefit drives feature one', 'Benefit drives feature two', 'Benefit drives feature three'],
+    tagline: 'Interior Design Studio',
+    heading: 'Luxury Interior Design for Discerning Homeowners',
+    description: 'From initial concept to final installation, we create sophisticated interiors that perfectly balance aesthetics and functionality for modern living.',
+    checklistItems: ['Custom space planning and design', 'Premium material sourcing and selection', 'Full project management and installation'],
+    heroImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
   },
+  argTypes: {
+    // Hide controls not used in Checklist layout
+    socialProofText: { table: { disable: true } },
+  }
 };
 
 export const Centered: Story = {
   args: {
     variant: 'centered',
-    tagline: 'Hero Section',
-    heading: 'Headline that solves user\'s main problem',
-    description: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-    socialProofText: 'Loved by 500+ Home Owners',
+    tagline: 'Award-Winning Design',
+    heading: 'Creating Exceptional Interiors Since 2010',
+    description: 'Our sophisticated approach to interior design transforms ordinary spaces into extraordinary environments that enhance your lifestyle and reflect your personal aesthetic.',
+    socialProofText: 'Trusted by 500+ luxury homeowners',
   },
+  argTypes: {
+    // Hide controls not used in Centered layout
+    heroImage: { table: { disable: true } },
+  }
 };
 
 export const Video: Story = {
   args: {
     variant: 'video',
-    tagline: 'Hero Section',
-    heading: 'Headline that solves user\'s main problem',
-    description: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-    secondaryButtonText: 'Play video',
+    tagline: 'Design Process',
+    heading: 'See Our Interior Design Process in Action',
+    description: 'Discover how we transform spaces from concept to completion with our comprehensive design approach, premium materials, and meticulous attention to detail.',
+    secondaryButtonText: 'Watch design process',
+    heroImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop',
   },
+  argTypes: {
+    // Hide controls not used in Video layout
+    socialProofText: { table: { disable: true } },
+    secondaryButtonVariant: { table: { disable: true } },
+  }
 };
 
 export const Minimal: Story = {
   args: {
     variant: 'minimal',
-    heading: 'Headline that solves user\'s main problem',
-    description: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
+    heading: 'Sophisticated Interiors That Inspire Daily Living',
+    description: 'We specialize in creating timeless, elegant spaces that seamlessly blend luxury with functionality, transforming houses into homes that truly reflect your lifestyle and taste.',
+    heroImage: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=500&fit=crop',
   },
+  argTypes: {
+    // Hide controls not used in Minimal layout
+    tagline: { table: { disable: true } },
+    socialProofText: { table: { disable: true } },
+  }
 };
 
 export const CustomContent: Story = {
   args: {
     variant: 'checklist',
-    tagline: 'Product Launch',
-    heading: 'Transform your business with our innovative solution',
-    description: 'Our cutting-edge platform helps companies scale efficiently while maintaining quality and reducing costs.',
-    primaryButtonText: 'Start Free Trial',
-    secondaryButtonText: 'Watch Demo',
-    checklistItems: ['Increase efficiency by 40%', 'Reduce operational costs', 'Scale without limits', '24/7 expert support'],
+    tagline: 'Featured Project',
+    heading: 'Contemporary Kitchen Remodel - Minnetonka',
+    description: 'A stunning transformation that perfectly balances modern sophistication with family-friendly functionality, creating the heart of this luxury home.',
+    primaryButtonText: 'Schedule Consultation',
+    secondaryButtonText: 'View Gallery',
+    checklistItems: ['Open floor plan with custom island', 'Premium materials and finishes', 'Integrated high-end appliances', 'Strategic lighting design'],
+    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop',
   },
+  argTypes: {
+    // Hide controls not used in CustomContent layout
+    socialProofText: { table: { disable: true } },
+  }
+
 };
