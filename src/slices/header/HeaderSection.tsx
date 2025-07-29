@@ -1,6 +1,19 @@
 "use client";
 
 import { Tagline } from "@/components/ui/tagline";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+interface HeaderBreadcrumbItem {
+  label: string;
+  href?: string;
+}
 
 interface HeaderSectionProps {
   /** The tagline text displayed above the heading */
@@ -28,7 +41,9 @@ interface HeaderSectionProps {
   /** Background color variant */
   background?: "default" | "muted" | "accent";
   /** Layout variant */
-  layout?: "default" | "left-aligned" | "hero" | "hero-left-aligned" | "minimal" | "split";
+  layout?: "default" | "left-aligned" | "left-breadcrumbs" | "hero" | "hero-left-aligned" | "hero-breadcrumbs" | "minimal" | "split";
+  /** Breadcrumb items for breadcrumb layouts */
+  breadcrumbs?: HeaderBreadcrumbItem[];
   /** Custom CSS classes */
   className?: string;
   /** Background color of the section */
@@ -49,6 +64,11 @@ export function HeaderSection({
   alignment = "center",
   background = "default",
   layout = "default",
+  breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Header Sections", href: "/header-sections" },
+    { label: "Header Section Five" }
+  ],
   className = "",
   backgroundColor
 }: HeaderSectionProps) {
@@ -80,6 +100,38 @@ export function HeaderSection({
   const descriptionStyle = {
     color: descriptionColor || undefined,
     fontFamily: descriptionFont || undefined,
+  };
+
+  const renderBreadcrumbs = (isDarkBackground = false) => {
+    if (!breadcrumbs || breadcrumbs.length === 0) return null;
+
+    return (
+      <Breadcrumb>
+        <BreadcrumbList>
+          {breadcrumbs.map((item, index) => (
+            <BreadcrumbItem key={index}>
+              {index === breadcrumbs.length - 1 ? (
+                <BreadcrumbPage 
+                  className={isDarkBackground ? "text-white" : ""}
+                >
+                  {item.label}
+                </BreadcrumbPage>
+              ) : (
+                <>
+                  <BreadcrumbLink 
+                    href={item.href || "#"}
+                    className={isDarkBackground ? "text-white" : "text-muted-foreground"}
+                  >
+                    {item.label}
+                  </BreadcrumbLink>
+                  <BreadcrumbSeparator className={isDarkBackground ? "text-white" : "text-muted-foreground"} />
+                </>
+              )}
+            </BreadcrumbItem>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
   };
 
   // Hero layout - Large centered text with dramatic styling
@@ -158,6 +210,49 @@ export function HeaderSection({
     );
   }
 
+  // Hero layout with breadcrumbs - Left-aligned hero text with breadcrumb navigation
+  if (layout === "hero-breadcrumbs") {
+    const isDarkBackground = backgroundColor === '#1a1a1a' || background === 'accent';
+    
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="flex max-w-4xl flex-col gap-16 text-left">
+              {renderBreadcrumbs(isDarkBackground)}
+              <div className="flex flex-col gap-6">
+                <Tagline 
+                  variant={taglineVariant}
+                  style={taglineStyle}
+                >
+                  {tagline}
+                </Tagline>
+                <h1 
+                  id="page-heading" 
+                  className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-foreground" 
+                  style={headlineStyle}
+                >
+                  {heading}
+                </h1>
+                <p
+                  className="text-muted-foreground text-lg sm:text-xl max-w-2xl"
+                  style={descriptionStyle}
+                  aria-description="page description"
+                >
+                  {description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   // Minimal layout - Clean and simple
   if (layout === "minimal") {
     return (
@@ -221,6 +316,47 @@ export function HeaderSection({
               >
                 {description}
               </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Left-aligned layout with breadcrumbs
+  if (layout === "left-breadcrumbs") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="flex max-w-4xl flex-col gap-16 text-left">
+              {renderBreadcrumbs()}
+              <div className="flex flex-col gap-6">
+                <Tagline 
+                  variant={taglineVariant}
+                  style={taglineStyle}
+                >
+                  {tagline}
+                </Tagline>
+                <h1 
+                  id="page-heading" 
+                  className="heading-xl text-foreground" 
+                  style={headlineStyle}
+                >
+                  {heading}
+                </h1>
+                <p
+                  className="text-muted-foreground text-base lg:text-lg max-w-2xl"
+                  style={descriptionStyle}
+                  aria-description="page description"
+                >
+                  {description}
+                </p>
+              </div>
             </div>
           </div>
         </section>

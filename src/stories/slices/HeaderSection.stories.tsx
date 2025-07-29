@@ -64,8 +64,13 @@ const meta: Meta<typeof HeaderSection> = {
     },
     layout: {
       control: { type: 'select' },
-      options: ['default', 'centered', 'left-aligned', 'hero', 'minimal', 'split'],
+      options: ['default', 'centered', 'left-aligned', 'left-breadcrumbs', 'hero', 'hero-breadcrumbs', 'minimal', 'split'],
       description: 'Layout variant - different structural layouts for various use cases',
+      table: { category: 'Layout & Styling' },
+    },
+    breadcrumbs: {
+      control: { type: 'object' },
+      description: 'Array of breadcrumb items for breadcrumb layouts',
       table: { category: 'Layout & Styling' },
     },
     alignment: {
@@ -109,6 +114,7 @@ export const Default: Story = {
   argTypes: {
     taglineVariant: { table: { disable: true } },
     alignment: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
   },
 };
 
@@ -118,6 +124,25 @@ export const LeftAligned: Story = {
     tagline: 'Eminent Interior Design',
     heading: 'Creating Exceptional Spaces for Luxury Living',
     description: 'Our expert team specializes in high-end residential and commercial interior design, delivering stunning results that exceed expectations while maintaining functionality and timeless appeal.',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
+  },
+};
+
+export const LeftBreadCrumbs: Story = {
+  args: {
+    layout: 'left-breadcrumbs',
+    tagline: 'Eminent Interior Design',
+    heading: 'Creating Exceptional Spaces for Luxury Living',
+    description: 'Our expert team specializes in high-end residential and commercial interior design, delivering stunning results that exceed expectations while maintaining functionality and timeless appeal.',
+    breadcrumbs: [
+      { label: "Home", href: "/" },
+      { label: "Header Sections", href: "/header-sections" },
+      { label: "Header Section Five" }
+    ],
   },
   argTypes: {
     taglineVariant: { table: { disable: true } },
@@ -139,6 +164,7 @@ export const Hero: Story = {
   argTypes: {
     taglineVariant: { table: { disable: true } },
     alignment: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
   },
 };
 
@@ -159,6 +185,29 @@ export const HeroLeftAligned: Story = {
   },
 };
 
+export const HeroBreadcrumbs: Story = {
+  args: {
+    layout: 'hero-breadcrumbs',
+    tagline: 'Luxury Interior Design Studio',
+    heading: 'Transform Your Home Into a Masterpiece',
+    description: 'Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life through sophisticated design solutions.',
+    backgroundColor: '#1a1a1a',
+    taglineColor: '#fafafa',
+    headlineColor: '#fafafa',
+    descriptionColor: '#fafafa',
+    breadcrumbs: [
+      { label: "Home", href: "/" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Luxury Projects", href: "/luxury-projects" },
+      { label: "Modern Living Spaces" }
+    ],
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+  },
+};
+
 export const Minimal: Story = {
   args: {
     layout: 'minimal',
@@ -169,6 +218,7 @@ export const Minimal: Story = {
     taglineVariant: { table: { disable: true } },
     alignment: { table: { disable: true } },
     tagline: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
   },
 };
 
@@ -182,6 +232,7 @@ export const Split: Story = {
   argTypes: {
     taglineVariant: { table: { disable: true } },
     alignment: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
   },
 };
 
@@ -198,5 +249,6 @@ export const CustomStyling: Story = {
   },
   argTypes: {
     taglineVariant: { table: { disable: true } },
+    breadcrumbs: { table: { disable: true } },
   },
 };
