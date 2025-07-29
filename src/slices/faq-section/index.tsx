@@ -28,7 +28,7 @@ export interface FaqSectionProps {
   defaultOpenItem?: string;
   className?: string;
   fontFamily?: 'Inter' | 'Roboto' | 'Open Sans' | 'Playfair Display' | 'Source Code Pro';
-  variant?: 'default' | 'sidebar' | 'side-by-side' | 'three-column';
+  variant?: 'default' | 'sidebar' | 'side-by-side' | 'grid';
 }
 
 export function FaqSection({
@@ -86,7 +86,7 @@ export function FaqSection({
 
   const fontStyle = { fontFamily: fontFamilyMap[fontFamily] };
 
-  if (variant === 'three-column') {
+  if (variant === 'grid') {
     return (
       <section
         className={cn("bg-background section-padding-y", className)}

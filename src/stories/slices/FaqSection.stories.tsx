@@ -56,7 +56,7 @@ const meta: Meta<typeof FaqSection> = {
     },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'sidebar', 'side-by-side', 'three-column'],
+      options: ['default', 'sidebar', 'side-by-side', 'grid'],
       description: 'Layout variant for the FAQ section',
     },
     fontFamily: {
@@ -159,6 +159,13 @@ export const SidebarLayout: Story = {
     ],
     defaultOpenItem: 'item-1',
   },
+  argTypes: {
+    // Hide controls not used in SidebarLayout layout
+    ctaHeading: { table: { disable: true } },
+    ctaDescription: { table: { disable: true } },
+    ctaButtonText: { table: { disable: true } },
+    defaultOpenItem: { table: { disable: true } },
+  },
 };
 
 export const SideBySideLayout: Story = {
@@ -205,11 +212,18 @@ export const SideBySideLayout: Story = {
     ctaButtonText: 'Contact us',
     defaultOpenItem: 'item-1',
   },
+  argTypes: {
+    // Hide controls not used in SideBySideLayout layout
+    ctaHeading: { table: { disable: true } },
+    ctaDescription: { table: { disable: true } },
+    ctaButtonText: { table: { disable: true } },
+    defaultOpenItem: { table: { disable: true } },
+  },
 };
 
 export const GridLayout: Story = {
   args: {
-    variant: 'three-column',
+    variant: 'grid',
     tagline: 'FAQ section',
     heading: 'Frequently asked questions',
     description: "We've compiled the most important information to help you get the most out of your experience. Can't find what you're looking for?",
@@ -247,5 +261,12 @@ export const GridLayout: Story = {
       }
     ],
     defaultOpenItem: 'item-1',
+  },
+  argTypes: {
+    // Hide controls not used in GridLayout layout
+    ctaHeading: { table: { disable: true } },
+    ctaDescription: { table: { disable: true } },
+    ctaButtonText: { table: { disable: true } },
+    defaultOpenItem: { table: { disable: true } },
   },
 };
