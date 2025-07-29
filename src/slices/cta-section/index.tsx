@@ -52,7 +52,7 @@ function CtaSection({
   style,
   ...props
 }: CtaSectionProps) {
-  const renderImageOrPlaceholder = (additionalClasses = "rounded-xl") => {
+  const renderImageOrPlaceholder = (additionalClasses = "") => {
     if (imageSrc) {
       return (
         <img
@@ -87,34 +87,95 @@ function CtaSection({
 
   if (layout === "horizontal-with-paragraph") {
     return (
-      <section
-        className={cn("bg-background", className)}
-        style={style}
-        aria-labelledby="cta-heading"
-        {...props}
-      >
-        <div className="container mx-auto">
-          <div 
-            className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
-            style={{ backgroundColor }}
-          >
-            <div className="flex w-full flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
-              <div className="section-title-gap-sm flex max-w-xl flex-col">
-                <h2
-                  id="cta-heading"
-                  className="heading-sm text-primary-foreground"
+      <div className="w-screen">
+
+        <section
+          className={cn("bg-background", className)}
+          style={style}
+          aria-labelledby="cta-heading"
+          {...props}
+        >
+          <div className="md:container md:mx-auto md:pb-16">
+            <div 
+              className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
+              style={{ backgroundColor }}
+            >
+              <div className="flex w-full flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
+                <div className="section-title-gap-sm flex max-w-xl flex-col">
+                  <h2
+                    id="cta-heading"
+                    className="heading-sm text-primary-foreground"
+                    style={{ color: textColor }}
+                  >
+                    {headline}
+                  </h2>
+                  <p 
+                    className="text-primary-foreground/80 pt-5"
+                    style={{ color: `${textColor}CC` }}
+                  >
+                    {paragraph}
+                  </p>
+                </div>
+                <div className="align-right flex flex-col gap-3 md:flex-row">
+                  <Button
+                    variant={primaryButtonVariant}
+                    aria-label={`${buttonText} with our service`}
+                  >
+                    {buttonText}
+                    {showArrow && <ArrowRight />}
+                  </Button>
+                  <Button
+                    variant={secondaryButtonVariant}
+                    aria-label="Learn more about our service"
+                  >
+                    Learn more
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      
+    );
+  }
+
+  if (layout === "horizontal") {
+    return (
+      <div className="w-screen"> 
+        <section
+          className={cn("section-padding-y", className)}
+          style={{
+            backgroundColor,
+            ...style,
+          }}
+          aria-labelledby="cta-heading"
+          {...props}
+        >
+          <div className="container mx-auto">
+            {/* Desktop Layout */}
+            <div className="hidden md:flex items-center justify-between gap-8 md:gap-12">
+              {/* Left Content */}
+              <div className="flex flex-col gap-4 max-w-2xl">
+                {/* Main Heading */}
+                <h2 
+                  id="cta-heading" 
+                  className="heading-lg"
                   style={{ color: textColor }}
                 >
                   {headline}
                 </h2>
-                <p 
-                  className="text-primary-foreground/80 pt-5"
-                  style={{ color: `${textColor}CC` }}
-                >
-                  {paragraph}
-                </p>
               </div>
-              <div className="align-right flex flex-col gap-3 md:flex-row">
+
+              {/* Right Buttons */}
+              <div className="flex items-center gap-4 shrink-0">
+                <Button
+                  variant={secondaryButtonVariant}
+                  className="text-sm"
+                >
+                  Learn more
+                </Button>
                 <Button
                   variant={primaryButtonVariant}
                   aria-label={`${buttonText} with our service`}
@@ -122,155 +183,146 @@ function CtaSection({
                   {buttonText}
                   {showArrow && <ArrowRight />}
                 </Button>
-                <Button
-                  variant={secondaryButtonVariant}
-                  aria-label="Learn more about our service"
-                >
-                  Learn more
-                </Button>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
-  if (layout === "horizontal") {
-    return (
-      <section
-        className={cn("section-padding-y", className)}
-        style={{
-          backgroundColor,
-          ...style,
-        }}
-        aria-labelledby="cta-heading"
-        {...props}
-      >
-        <div className="container-padding-x container mx-auto">
-          {/* Desktop Layout */}
-          <div className="hidden md:flex items-center justify-between gap-8 md:gap-12">
-            {/* Left Content */}
-            <div className="flex flex-col gap-4 max-w-2xl">
+            {/* Mobile Layout - Stack vertically centered like the image */}
+            <div className="md:hidden flex flex-col items-center text-center gap-6">
               {/* Main Heading */}
               <h2 
-                id="cta-heading" 
-                className="heading-lg"
+                className="heading-lg max-w-sm"
                 style={{ color: textColor }}
               >
                 {headline}
               </h2>
-            </div>
 
-            {/* Right Buttons */}
-            <div className="flex items-center gap-4 shrink-0">
+              {/* Learn More Link */}
               <Button
-                variant={secondaryButtonVariant}
-                className="text-sm bg-transparent hover:bg-white/10"
-                style={{ 
-                  color: learnMoreColor, 
-                  borderColor: learnMoreColor,
-                  '--hover-bg': `${learnMoreColor}1A` // 10% opacity
-                }}
-              >
-                Learn more
-              </Button>
+                  variant={secondaryButtonVariant}
+                  className="text-sm"
+                >
+                  Learn more
+                </Button>
+              
+              {/* Primary Button */}
               <Button
                 variant={primaryButtonVariant}
                 aria-label={`${buttonText} with our service`}
+                className="w-auto"
               >
                 {buttonText}
                 {showArrow && <ArrowRight />}
               </Button>
             </div>
           </div>
-
-          {/* Mobile Layout - Stack vertically centered like the image */}
-          <div className="md:hidden flex flex-col items-center text-center gap-6">
-            {/* Main Heading */}
-            <h2 
-              className="heading-lg max-w-sm"
-              style={{ color: textColor }}
-            >
-              {headline}
-            </h2>
-
-            {/* Learn More Link */}
-            <Button
-                variant={secondaryButtonVariant}
-                className="text-sm bg-transparent hover:bg-white/10"
-                style={{ 
-                  color: learnMoreColor, 
-                  borderColor: learnMoreColor,
-                  '--hover-bg': `${learnMoreColor}1A` // 10% opacity
-                }}
-              >
-                Learn more
-              </Button>
-            
-            {/* Primary Button */}
-            <Button
-              variant={primaryButtonVariant}
-              aria-label={`${buttonText} with our service`}
-              className="w-auto"
-            >
-              {buttonText}
-              {showArrow && <ArrowRight />}
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
+      
     );
   }
 
   if (layout === "with-image") {
     return (
-      <section
-        className={cn("md:bg-background", className)}
-        style={style}
-        aria-labelledby="cta-heading"
-        {...props}
-      >
-        <div className="md:container-padding-x md:container md:mx-auto md:py-16">
-          <div 
-            className="md:rounded-xl p-8 md:p-16"
-            style={{ backgroundColor }}
-          >
-            <div className="mx-auto flex max-w-xl flex-col items-center gap-8 md:max-w-full lg:flex-row lg:gap-16">
-              {/* Left Column - Image */}
-              <div className="w-full flex-1">
-                <AspectRatio ratio={1}>
-                  <div className="h-full w-full rounded-xl bg-muted flex items-center justify-center">
-                    {renderImageOrPlaceholder()}
+      <div className="w-screen">
+
+        <section
+          className={cn("md:bg-background", className)}
+          style={style}
+          aria-labelledby="cta-heading"
+          {...props}
+        >
+          <div className="md:container md:mx-auto md:pb-16">
+            <div 
+              className="md:rounded-xl p-8 md:p-16"
+              style={{ backgroundColor }}
+            >
+              <div className="mx-auto flex max-w-xl flex-col items-center gap-8 md:max-w-full lg:flex-row lg:gap-16">
+                {/* Left Column - Image */}
+                <div className="w-full flex-1 max-w-[512px]">
+                  <AspectRatio ratio={4/3}>
+                    <div className="h-full w-full bg-muted flex items-center justify-center">
+                      {renderImageOrPlaceholder()}
+                    </div>
+                  </AspectRatio>
+                </div>
+                {/* Right Column - Content */}
+                <div className="flex flex-1 flex-col items-center gap-8 md:gap-10 lg:items-start">
+                  {/* Section Title */}
+                  <div className="section-title-gap-lg mx-auto flex flex-col items-center text-center lg:items-start lg:text-left">
+                    {/* Tagline */}
+                    <Tagline 
+                      className="text-sm font-medium"
+                      style={{ color: `${textColor}CC` }}
+                    >
+                      {tagline}
+                    </Tagline>
+                    {/* Main Heading */}
+                    <h2
+                      id="cta-heading"
+                      className="heading-lg"
+                      style={{ color: textColor }}
+                    >
+                      {headline}
+                    </h2>
+                    {/* Description */}
+                    <p 
+                      className="text-base"
+                      style={{ color: `${textColor}CC` }}
+                    >
+                      {description}
+                    </p>
                   </div>
-                </AspectRatio>
+                  {/* CTA Button */}
+                  <Button
+                    variant={buttonVariant}
+                    aria-label={`${buttonText} with our service`}
+                  >
+                    {buttonText}
+                    {showArrow && <ArrowRight />}
+                  </Button>
+                </div>
               </div>
-              {/* Right Column - Content */}
-              <div className="flex flex-1 flex-col items-center gap-8 md:gap-10 lg:items-start">
-                {/* Section Title */}
-                <div className="section-title-gap-lg mx-auto flex flex-col items-center text-center lg:items-start lg:text-left">
-                  {/* Tagline */}
+            </div>
+          </div>
+        </section>
+
+      </div>
+    );
+  }
+
+  if (layout === "simple") {
+    return (
+      <div className="w-screen">
+
+        <section
+          className={cn("bg-background", className)}
+          style={style}
+          aria-labelledby="cta-heading"
+          {...props}
+        >
+          <div className="md:container md:mx-auto">
+            <div 
+              className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
+              style={{ backgroundColor }}
+            >
+              <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-8 text-center">
+                {/* Section Header */}
+                <div className="section-title-gap-lg flex flex-col items-center text-center">
+                  {/* Category Tag */}
                   <Tagline 
-                    className="text-sm font-medium"
+                    className="text-primary-foreground/80"
                     style={{ color: `${textColor}CC` }}
                   >
                     {tagline}
                   </Tagline>
-                  {/* Main Heading */}
+                  {/* Main Title */}
                   <h2
                     id="cta-heading"
-                    className="heading-lg"
+                    className="text-primary-foreground heading-lg"
                     style={{ color: textColor }}
                   >
                     {headline}
                   </h2>
-                  {/* Description */}
-                  <p 
-                    className="text-base"
-                    style={{ color: `${textColor}CC` }}
-                  >
-                    {description}
-                  </p>
                 </div>
                 {/* CTA Button */}
                 <Button
@@ -283,55 +335,9 @@ function CtaSection({
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    );
-  }
+        </section>
 
-  if (layout === "simple") {
-    return (
-      <section
-        className={cn("bg-background", className)}
-        style={style}
-        aria-labelledby="cta-heading"
-        {...props}
-      >
-        <div className="container mx-auto">
-          <div 
-            className="bg-primary px-6 py-16 sm:rounded-xl md:p-16"
-            style={{ backgroundColor }}
-          >
-            <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-8 text-center">
-              {/* Section Header */}
-              <div className="section-title-gap-lg flex flex-col items-center text-center">
-                {/* Category Tag */}
-                <Tagline 
-                  className="text-primary-foreground/80"
-                  style={{ color: `${textColor}CC` }}
-                >
-                  {tagline}
-                </Tagline>
-                {/* Main Title */}
-                <h2
-                  id="cta-heading"
-                  className="text-primary-foreground heading-lg"
-                  style={{ color: textColor }}
-                >
-                  {headline}
-                </h2>
-              </div>
-              {/* CTA Button */}
-              <Button
-                variant={buttonVariant}
-                aria-label={`${buttonText} with our service`}
-              >
-                {buttonText}
-                {showArrow && <ArrowRight />}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     );
   }
 
@@ -346,7 +352,7 @@ function CtaSection({
         aria-labelledby="cta-heading"
         {...props}
       >
-        <div className="container-padding-x container mx-auto">
+        <div className="container mx-auto container-padding-x">
           <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
             {/* Left Column - Content */}
             <div className="flex flex-1 flex-col gap-6 lg:gap-8">
@@ -389,7 +395,7 @@ function CtaSection({
                     required
                     aria-required="true"
                     aria-label="Enter your email"
-                    className="flex-1 min-w-0 !h-[40px] md:py-2 py-2.5"
+                    className="flex-1 min-w-0 !h-[40px] md:py-2 py-2.5 md:min-w-[350px]"
                   />
                   <Button 
                     type="submit" 
@@ -429,121 +435,129 @@ function CtaSection({
 
   if (layout === "split-screen") {
     return (
-      <section
-        className={cn("md:bg-background py-0 lg:py-24", className)}
-        style={{ backgroundColor: "#f5f5f5", ...style }}
-        aria-labelledby="cta-heading"
-        {...props}
-      >
-        <div className="md:container md:mx-auto">
-          <div 
-            className="w-full overflow-hidden pt-16 md:max-w-7xl md:rounded-xl lg:pl-16"
-            style={{ backgroundColor }}
-          >
-            <div className="flex flex-col gap-8 lg:flex-row lg:gap-12 lg:items-end">
-              {/* Left Column - Content */}
-              <div className="mx-auto flex max-w-xl flex-1 flex-col items-center justify-between gap-4 px-6 text-center lg:max-w-full lg:items-start lg:gap-8 lg:px-0 lg:pb-16 lg:text-left">
-                {/* Section Header */}
-                <div className="section-title-gap-lg flex flex-col items-center text-center lg:items-start lg:text-left">
-                  {/* Tagline */}
-                  <Tagline 
-                    className="text-sm font-medium"
-                    style={{ color: `${textColor}CC` }}
-                  >
-                    {tagline}
-                  </Tagline>
-                  {/* Main Heading */}
-                  <h2
-                    id="cta-heading"
-                    className="heading-lg"
-                    style={{ color: textColor }}
-                  >
-                    {headline}
-                  </h2>
-                </div>
-                {/* CTA Content */}
-                <div className="flex flex-col items-center gap-6 lg:items-start">
-                  {/* Description */}
-                  <p 
-                    className="text-base pt-5"
-                    style={{ color: `${textColor}CC` }}
-                  >
-                    {description}
-                  </p>
-                  {/* CTA Button */}
-                  <Button
-                    variant={buttonVariant}
-                    aria-label={`${buttonText} with our service`}
-                  >
-                    {buttonText}
-                    {showArrow && <ArrowRight />}
-                  </Button>
-                </div>
-              </div>
-              {/* Right Column - Image */}
-              <div className="w-full flex-1 pl-6 lg:pl-0">
-                <AspectRatio ratio={4/3}>
-                  <div className="h-full w-full rounded-tl-lg bg-muted flex items-center justify-center">
-                    {renderImageOrPlaceholder("rounded-tl-lg")}
+      <div className="w-screen">
+
+        <section
+          className={cn("md:bg-background md:section-padding-y", className)}
+          style={{ backgroundColor: "#f5f5f5", ...style }}
+          aria-labelledby="cta-heading"
+          {...props}
+        >
+          <div className="container mx-auto">
+            <div 
+              className="w-full overflow-hidden pt-16 md:rounded-xl lg:pl-16"
+              style={{ backgroundColor }}
+            >
+              <div className="flex flex-col gap-8 lg:flex-row lg:gap-12 lg:items-end">
+                {/* Left Column - Content */}
+                <div className="mx-auto flex max-w-xl flex-1 flex-col items-center justify-between gap-4 px-6 text-center lg:max-w-full lg:items-start lg:gap-8 lg:px-0 lg:pb-16 lg:text-left">
+                  {/* Section Header */}
+                  <div className="section-title-gap-lg flex flex-col items-center text-center lg:items-start lg:text-left">
+                    {/* Tagline */}
+                    <Tagline 
+                      className="text-sm font-medium"
+                      style={{ color: `${textColor}CC` }}
+                    >
+                      {tagline}
+                    </Tagline>
+                    {/* Main Heading */}
+                    <h2
+                      id="cta-heading"
+                      className="heading-lg"
+                      style={{ color: textColor }}
+                    >
+                      {headline}
+                    </h2>
                   </div>
-                </AspectRatio>
+                  {/* CTA Content */}
+                  <div className="flex flex-col items-center gap-6 lg:items-start">
+                    {/* Description */}
+                    <p 
+                      className="text-base"
+                      style={{ color: `${textColor}CC` }}
+                    >
+                      {description}
+                    </p>
+                    {/* CTA Button */}
+                    <Button
+                      variant={buttonVariant}
+                      aria-label={`${buttonText} with our service`}
+                    >
+                      {buttonText}
+                      {showArrow && <ArrowRight />}
+                    </Button>
+                  </div>
+                </div>
+                {/* Right Column - Image */}
+                <div className="w-full flex-1 pl-6 lg:pl-0">
+                  <AspectRatio ratio={4/3}>
+                    <div className="h-full w-full rounded-tl-lg bg-muted flex items-center justify-center">
+                      {renderImageOrPlaceholder("rounded-tl-lg")}
+                    </div>
+                  </AspectRatio>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
     );
   }
 
   return (
-    <section
-      className={cn("section-padding-y", className)}
-      style={{
-        backgroundColor,
-        ...style,
-      }}
-      aria-labelledby="cta-heading"
-      {...props}
-    >
-      <div className="container-padding-x container mx-auto">
-        <div className="mx-auto flex max-w-xl flex-col items-center gap-8 md:gap-10">
-          {/* Section Title */}
-          <div className="section-title-gap-lg mx-auto flex max-w-xl flex-col items-center text-center">
-            {/* Tagline */}
-            <Tagline 
-              className="text-sm font-medium"
-              style={{ color: `${textColor}CC` }} // 80% opacity
-            >
-              {tagline}
-            </Tagline>
-            {/* Main Heading */}
-            <h2 
-              id="cta-heading" 
-              className="heading-lg"
-              style={{ color: textColor }}
-            >
-              {headline}
-            </h2>
-            {/* Description */}
-            <p 
-              className="text-base"
-              style={{ color: `${textColor}CC` }} // 80% opacity
-            >
-              {description}
-            </p>
-          </div>
+    <div className="w-screen">
 
-          {/* CTA Button */}
-          <Button
-            variant={buttonVariant}
-            aria-label={`${buttonText} with our service`}
-          >
-            {buttonText}
-            {showArrow && <ArrowRight />}
-          </Button>
+      <section
+        className={cn("section-padding-y", className)}
+        style={{
+          backgroundColor,
+          ...style,
+        }}
+        aria-labelledby="cta-heading"
+        {...props}
+      >
+        <div className="container-padding-x container mx-auto">
+          <div className="mx-auto flex max-w-xl flex-col items-center gap-8 md:gap-10">
+            {/* Section Title */}
+            <div className="section-title-gap-lg mx-auto flex max-w-xl flex-col items-center text-center">
+              {/* Tagline */}
+              <Tagline 
+                className="text-sm font-medium"
+                style={{ color: `${textColor}CC` }} // 80% opacity
+              >
+                {tagline}
+              </Tagline>
+              {/* Main Heading */}
+              <h2 
+                id="cta-heading" 
+                className="heading-lg"
+                style={{ color: textColor }}
+              >
+                {headline}
+              </h2>
+              {/* Description */}
+              <p 
+                className="text-base"
+                style={{ color: `${textColor}CC` }} // 80% opacity
+              >
+                {description}
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <Button
+              variant={buttonVariant}
+              aria-label={`${buttonText} with our service`}
+            >
+              {buttonText}
+              {showArrow && <ArrowRight />}
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+    </div>
   );
 }
 
