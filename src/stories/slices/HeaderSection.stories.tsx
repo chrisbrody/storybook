@@ -62,10 +62,16 @@ const meta: Meta<typeof HeaderSection> = {
       description: 'Color for the description text',
       table: { category: 'Content', subcategory: '3. Description' },
     },
+    layout: {
+      control: { type: 'select' },
+      options: ['default', 'centered', 'left-aligned', 'hero', 'minimal', 'split'],
+      description: 'Layout variant - different structural layouts for various use cases',
+      table: { category: 'Layout & Styling' },
+    },
     alignment: {
       control: { type: 'select' },
       options: ['center', 'left'],
-      description: 'Text alignment - center always centers, left centers on mobile but left-aligns on desktop',
+      description: 'Text alignment - center always centers, left centers on mobile but left-aligns on desktop (used in default layout only)',
       table: { category: 'Layout & Styling' },
     },
     background: {
@@ -102,17 +108,95 @@ export const Default: Story = {
   args: {},
   argTypes: {
     taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+  },
+};
+
+export const LeftAligned: Story = {
+  args: {
+    layout: 'left-aligned',
+    tagline: 'Eminent Interior Design',
+    heading: 'Creating Exceptional Spaces for Luxury Living',
+    description: 'Our expert team specializes in high-end residential and commercial interior design, delivering stunning results that exceed expectations while maintaining functionality and timeless appeal.',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+  },
+};
+
+export const Hero: Story = {
+  args: {
+    layout: 'hero',
+    tagline: 'Luxury Interior Design Studio',
+    heading: 'Transform Your Home Into a Masterpiece',
+    description: 'Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life through sophisticated design solutions.',
+    backgroundColor: '#1a1a1a',
+    taglineColor: '#fafafa',
+    headlineColor: '#fafafa',
+    descriptionColor: '#fafafa',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+  },
+};
+
+export const HeroLeftAligned: Story = {
+  args: {
+    layout: 'hero-left-aligned',
+    tagline: 'Luxury Interior Design Studio',
+    heading: 'Transform Your Home Into a Masterpiece',
+    description: 'Experience award-winning interior design that creates stunning, functional spaces reflecting your unique style and enhancing your daily life through sophisticated design solutions.',
+    backgroundColor: '#1a1a1a',
+    taglineColor: '#fafafa',
+    headlineColor: '#fafafa',
+    descriptionColor: '#fafafa',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+  },
+};
+
+export const Minimal: Story = {
+  args: {
+    layout: 'minimal',
+    heading: 'Expert Interior Design Services',
+    description: 'Creating beautiful, functional spaces that enhance your lifestyle through thoughtful design and premium materials.',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
+    tagline: { table: { disable: true } },
+  },
+};
+
+export const Split: Story = {
+  args: {
+    layout: 'split',
+    tagline: 'Interior Design Studio',
+    heading: 'Luxury Design Solutions for Modern Living',
+    description: 'Our comprehensive approach to interior design combines aesthetic excellence with practical functionality, creating spaces that are both beautiful and livable for discerning homeowners.',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
+    alignment: { table: { disable: true } },
   },
 };
 
 export const CustomStyling: Story = {
   args: {
-    tagline: 'Custom Design',
-    heading: 'Tailored to your brand',
-    description: 'Customize every aspect of your experience to match your unique brand identity.',
+    layout: 'default',
+    tagline: 'Custom Design Solutions',
+    heading: 'Tailored Interior Design for Your Unique Vision',
+    description: 'Every project is customized to reflect your personal style and functional needs, ensuring a space that truly feels like home.',
     className: 'border-t-4 border-blue-500',
-    taglineVariant: "ghost",
     taglineColor: "#1f1f1f",
-    headlineColor: "#1f1f1f"
+    headlineColor: "#1f1f1f",
+    backgroundColor: '#f8f9fa',
+  },
+  argTypes: {
+    taglineVariant: { table: { disable: true } },
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Tagline } from "./Tagline";
+import { Tagline } from "@/components/ui/tagline";
 
 interface HeaderSectionProps {
   /** The tagline text displayed above the heading */
@@ -27,6 +27,8 @@ interface HeaderSectionProps {
   alignment?: "center" | "left";
   /** Background color variant */
   background?: "default" | "muted" | "accent";
+  /** Layout variant */
+  layout?: "default" | "left-aligned" | "hero" | "hero-left-aligned" | "minimal" | "split";
   /** Custom CSS classes */
   className?: string;
   /** Background color of the section */
@@ -34,18 +36,19 @@ interface HeaderSectionProps {
 }
 
 export function HeaderSection({
-  tagline = "Header section",
+  tagline = "Interior Design Studio",
   taglineFont = "Inter",
   taglineColor,
-  heading = "Short engaging headline",
+  heading = "Transform Your Space with Expert Interior Design",
   headlineFont = "Inter",
   headlineColor,
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit interdum hendrerit ex vitae sodales.",
+  description = "Experience luxury interior design that reflects your unique style and enhances your daily life. Our award-winning team creates stunning, functional spaces that exceed expectations.",
   descriptionFont = "Inter",
   descriptionColor,
   taglineVariant = "ghost",
   alignment = "center",
   background = "default",
+  layout = "default",
   className = "",
   backgroundColor
 }: HeaderSectionProps) {
@@ -79,9 +82,197 @@ export function HeaderSection({
     fontFamily: descriptionFont || undefined,
   };
 
+  // Hero layout - Large centered text with dramatic styling
+  if (layout === "hero") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <Tagline 
+                variant={taglineVariant}
+                style={taglineStyle}
+              >
+                {tagline}
+              </Tagline>
+              <h1 
+                id="page-heading" 
+                className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-foreground" 
+                style={headlineStyle}
+              >
+                {heading}
+              </h1>
+              <p
+                className="text-muted-foreground text-lg sm:text-xl max-w-2xl"
+                style={descriptionStyle}
+                aria-description="page description"
+              >
+                {description}
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Left-aligned layout - Content aligned to the left
+  if (layout === "hero-left-aligned") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="flex max-w-4xl flex-col gap-6 text-left">
+              <Tagline 
+                variant={taglineVariant}
+                style={taglineStyle}
+              >
+                {tagline}
+              </Tagline>
+              <h1 
+                id="page-heading" 
+                className="heading-xl text-foreground" 
+                style={headlineStyle}
+              >
+                {heading}
+              </h1>
+              <p
+                className="text-muted-foreground text-base lg:text-lg max-w-2xl"
+                style={descriptionStyle}
+                aria-description="page description"
+              >
+                {description}
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Minimal layout - Clean and simple
+  if (layout === "minimal") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} py-8 md:py-12 ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+              <h1 
+                id="page-heading" 
+                className="heading-lg text-foreground" 
+                style={headlineStyle}
+              >
+                {heading}
+              </h1>
+              <p
+                className="text-muted-foreground text-base"
+                style={descriptionStyle}
+                aria-description="page description"
+              >
+                {description}
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Left-aligned layout - Content aligned to the left
+  if (layout === "left-aligned") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="flex max-w-4xl flex-col gap-6 text-left">
+              <Tagline 
+                variant={taglineVariant}
+                style={taglineStyle}
+              >
+                {tagline}
+              </Tagline>
+              <h1 
+                id="page-heading" 
+                className="heading-xl text-foreground" 
+                style={headlineStyle}
+              >
+                {heading}
+              </h1>
+              <p
+                className="text-muted-foreground text-base lg:text-lg max-w-2xl"
+                style={descriptionStyle}
+                aria-description="page description"
+              >
+                {description}
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Split layout - Two column layout
+  if (layout === "split") {
+    return (
+      <div className="w-screen">
+        <section
+          className={`${backgroundClasses[background]} section-padding-y ${className}`}
+          style={sectionStyle}
+          aria-labelledby="page-heading"
+        >
+          <div className="container-padding-x container mx-auto">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+              <div className="flex flex-col gap-6">
+                <Tagline 
+                  variant={taglineVariant}
+                  style={taglineStyle}
+                >
+                  {tagline}
+                </Tagline>
+                <h1 
+                  id="page-heading" 
+                  className="heading-xl text-foreground" 
+                  style={headlineStyle}
+                >
+                  {heading}
+                </h1>
+              </div>
+              <div>
+                <p
+                  className="text-muted-foreground text-base lg:text-lg"
+                  style={descriptionStyle}
+                  aria-description="page description"
+                >
+                  {description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Default layout - Original implementation
   return (
     <div className="w-screen">
-
       <section
         className={`${backgroundClasses[background]} section-padding-y ${className}`}
         style={sectionStyle}
@@ -112,7 +303,6 @@ export function HeaderSection({
           </div>          
         </div>
       </section>
-
     </div>
   );
 }
