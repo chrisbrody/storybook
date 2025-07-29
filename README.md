@@ -93,9 +93,10 @@ Accordion-style FAQ component for client questions.
 Comprehensive article/blog component with multiple layout variants.
 
 **Features:**
-- **3 Layout Variants**: Default, With Carousel, With Sidebar
+- **4 Layout Variants**: Default, With Carousel, With Sidebar, Article TOC
 - **Rich content support**: headings, paragraphs, blockquotes, lists, inline images
 - **Table of contents sidebar** with smooth scrolling navigation
+- **Article TOC variant** with dedicated table of contents for long-form content
 - **Before/after slider integration** for project transformations
 - **6-image carousel** with luxury project photography
 - **Mobile-responsive layouts** optimized for all device types
@@ -109,8 +110,10 @@ Flexible blog component with multiple layout variants for showcasing articles an
 - **Author integration** with avatars, names, and roles
 - **Customizable styling** with color controls and hover effects
 - **Responsive grid layouts** with configurable columns and spacing
-- **Image support** with aspect ratio controls
+- **Image support** with aspect ratio controls and toggle functionality
 - **Content management** with dates, categories, and descriptions
+- **Enhanced Featured variant** with luxury estate content and improved layout
+- **List variant** with consolidated content display and improved accessibility
 
 **Available Slices (Components Only - No Storybook Stories Yet):**
 
