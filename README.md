@@ -22,14 +22,41 @@ This project follows a **slice-based architecture** where components are organiz
 - **Typography Components**: Heading, Paragraph, Display Text, Lead Text, Small Text, Caption
 - **Interactive Elements**: Button, Link, Dropdown Menu
 - **Content Components**: Badge, Blockquote, Quote Attribution, Inline Code
-- **Form Components**: Calendar
+- **Layout Components**: Card ✅
+- **Form Components**: Calendar, Input ✅
 - **Data Components**: List Typography
 - **Feedback Components**: Alert
 - **Interactive Components**: Slider
 
+## 🏷️ Card Component (`card/`) ✅
+Versatile card component for displaying various types of content including forms, property listings, and project information.
+
+**Features:**
+- **5 Story Variants**: Default, Login Form, Meeting Notes, Property Listing, Interior Design Project
+- **Typography Controls**: Title/description/content size, weight, and color customization
+- **Design Controls**: Font family, border color, background color, shadow size variants
+- **Image Upload Support**: Property and project image controls with luxury interior design defaults
+- **Form Integration**: Login forms with email/password fields and Google authentication
+- **Property Listings**: Real estate card layouts with property details and pricing
+- **Project Showcases**: Interior design project cards with investment ranges and timelines
+- **Meeting Notes**: Professional note-taking layouts with client information
+- **Luxury Aesthetic**: All variants themed for high-end interior design applications
+
+## 📝 Input Component (`input/`) ✅
+Enhanced input component with variants and comprehensive customization options for luxury design applications.
+
+**Features:**
+- **3 State Variants**: Default, Warning, Danger with appropriate styling and focus states
+- **Custom Color Controls**: Border, text, and background color pickers with real-time preview
+- **Label & Description Support**: Integrated labels, helper text, and error message handling
+- **Accessibility**: Proper ARIA attributes, keyboard navigation, and screen reader support
+- **Form Integration**: Perfect for consultation requests, contact forms, and client information gathering
+- **Luxury Theming**: Interior design focused examples and sophisticated styling
+- **Typography Controls**: Consistent with other components for brand coherence
+- **Validation States**: Visual feedback for form validation and user guidance
+
 **Additional Components Available:**
-- **Layout Components**: Card, Separator, Sheet
-- **Form Components**: Input
+- **Layout Components**: Separator, Sheet
 - **Media Components**: Avatar, Aspect Ratio, Logo
 - **Navigation Components**: Accordion
 - **Interactive Components**: Carousel
