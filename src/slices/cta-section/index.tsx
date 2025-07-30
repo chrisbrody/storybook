@@ -145,7 +145,7 @@ function CtaSection({
     return (
       <div className="w-screen"> 
         <section
-          className={cn("section-padding-y", className)}
+          className={cn("section-padding-y md:px-8", className)}
           style={{
             backgroundColor,
             ...style,
